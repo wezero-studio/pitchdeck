@@ -34,19 +34,26 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 export default function Home() {
   // Mobile carousel
   const [brandIndex, setBrandIndex] = useState(0);
+  const [exitingBrandIndex, setExitingBrandIndex] = useState<number | null>(null);
   const [slideDir, setSlideDir] = useState<"left" | "right" | null>(null);
   const [isSliding, setIsSliding] = useState(false);
-  const BRAND_COUNT = 9;
+  const BRAND_COUNT = 10;
+  const SLIDE_OUT_MS = 280;
+  const SLIDE_IN_MS = 320;
 
   const slideTo = (next: number, dir: "left" | "right") => {
-    if (isSliding) return;
-    setSlideDir(dir);
+    if (isSliding || next === brandIndex) return;
     setIsSliding(true);
+    setSlideDir(dir);
+    setExitingBrandIndex(brandIndex);
     window.setTimeout(() => {
       setBrandIndex(next);
-      setSlideDir(null);
-      window.setTimeout(() => setIsSliding(false), 50);
-    }, 320);
+      setExitingBrandIndex(null);
+      window.setTimeout(() => {
+        setSlideDir(null);
+        setIsSliding(false);
+      }, SLIDE_IN_MS);
+    }, SLIDE_OUT_MS);
   };
 
   // Desktop scroll-reveal
@@ -546,8 +553,11 @@ export default function Home() {
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "none" : i % 2 === 0 ? "translateX(40px)" : "translateX(-40px)",
               };
-              const isMobileActive = i === brandIndex;
-              const mobileClass = isMobileActive
+              const isMobileExiting = i === exitingBrandIndex;
+              const isMobileActive = i === brandIndex && !isMobileExiting;
+              const mobileClass = isMobileExiting
+                ? `brand-card-item mobile-active${slideDir === "left" ? " slide-out-left" : slideDir === "right" ? " slide-out-right" : ""}`
+                : isMobileActive
                 ? `brand-card-item mobile-active${slideDir === "left" ? " slide-in-left" : slideDir === "right" ? " slide-in-right" : ""}`
                 : "brand-card-item";
               return (

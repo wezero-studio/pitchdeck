@@ -810,6 +810,12 @@ body {
   .brand-card-item.mobile-active.slide-in-right {
     animation: slideInRight 0.32s cubic-bezier(0.4,0,0.2,1) both;
   }
+  .brand-card-item.mobile-active.slide-out-left {
+    animation: slideOutLeft 0.28s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .brand-card-item.mobile-active.slide-out-right {
+    animation: slideOutRight 0.28s cubic-bezier(0.4,0,0.2,1) both;
+  }
 }
 
 .mobile-only-flex {
