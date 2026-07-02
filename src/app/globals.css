@@ -820,3 +820,26 @@ body {
     display: flex;
   }
 }
+
+@media (max-width: 640px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0;
+    border: 1px solid #eaeaea;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .stats-row > div {
+    border-right: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+  }
+  .stats-row > div:nth-child(2n) {
+    border-right: none;
+  }
+  .stats-row > div:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+  .stats-divider {
+    display: none !important;
+  }
+}

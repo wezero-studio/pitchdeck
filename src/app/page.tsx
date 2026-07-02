@@ -358,35 +358,38 @@ export default function Home() {
           className="stats-row"
           style={{
             marginTop: 160,
-            display: "flex",
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
             alignItems: "center",
           }}
         >
           {[
-            { target: 821, suffix: "cr", label: "Funded" },
+            { target: 821, suffix: "+", label: "Brands Evaluated" },
             { target: 114, suffix: "", label: "Franchise Partners" },
             { target: 100, suffix: "%", label: "Guided Diligence" },
             { target: 6042, suffix: "+", label: "Investor Matches" },
           ].map((stat, i, arr) => (
-            <div key={stat.label} style={{ display: "flex", alignItems: "center", flex: 1 }}>
-              <div style={{ flex: 1, textAlign: "center" }}>
+            <div key={stat.label} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ textAlign: "center", padding: "12px 8px" }}>
                 <div
                   style={{
-                    fontSize: "clamp(2.5rem, 4vw, 4.2rem)",
+                    fontSize: "clamp(2rem, 4vw, 4.2rem)",
                     fontWeight: 900,
                     letterSpacing: "-2px",
                     color: "#111",
-                    lineHeight: 1.1
+                    lineHeight: 1.1,
+                    whiteSpace: "nowrap",
                   }}
                 >
                   <AnimatedCounter target={stat.target} suffix={stat.suffix} />
                 </div>
                 <div
                   style={{
-                    fontSize: 13,
+                    fontSize: 12,
                     color: "#444",
-                    marginTop: 12,
+                    marginTop: 10,
                     fontWeight: 500,
+                    lineHeight: 1.3,
                   }}
                 >
                   {stat.label}
@@ -395,7 +398,7 @@ export default function Home() {
               {i < arr.length - 1 && (
                 <div
                   className="stats-divider"
-                  style={{ width: 1, height: 60, background: "#eaeaea", flexShrink: 0 }}
+                  style={{ width: 1, height: 48, background: "#eaeaea", flexShrink: 0 }}
                 />
               )}
             </div>
