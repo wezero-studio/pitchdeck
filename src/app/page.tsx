@@ -556,21 +556,21 @@ export default function Home() {
                   
                   {/* Social/Reviews Row - Highlighted Cards */}
                   <div style={{ display: "flex", gap: 16, marginBottom: 32, flexWrap: "wrap" }}>
-                    <div style={{ flex: "1 1 140px", display: "flex", alignItems: "center", gap: 12, padding: "16px", background: "#fff", border: "1.5px solid #eaeaea", borderRadius: 16, boxShadow: "0 8px 24px rgba(0,0,0,0.04)" }}>
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#fefae0", display: "flex", alignItems: "center", justifyContent: "center", color: "#ca8a04", fontSize: 22, flexShrink: 0 }}>★</div>
+                    <div style={{ flex: "1 1 140px", display: "flex", alignItems: "center", gap: 12, padding: "16px", background: "#fefae0", border: "1.5px solid #fde047", borderRadius: 16 }}>
+                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#fef08a", display: "flex", alignItems: "center", justifyContent: "center", color: "#ca8a04", fontSize: 22, flexShrink: 0 }}>★</div>
                       <div>
-                        <div style={{ fontSize: 18, fontWeight: 900, color: "#111", lineHeight: 1 }}>{brand.reviews}</div>
-                        <div style={{ fontSize: 13, color: "#666", marginTop: 4, fontWeight: 500 }}>{brand.reviewsCount} reviews</div>
+                        <div style={{ fontSize: 18, fontWeight: 900, color: "#854d0e", lineHeight: 1 }}>{brand.reviews}</div>
+                        <div style={{ fontSize: 13, color: "#a16207", marginTop: 4, fontWeight: 600 }}>{brand.reviewsCount} reviews</div>
                       </div>
                     </div>
                     
-                    <div style={{ flex: "1 1 140px", display: "flex", alignItems: "center", gap: 12, padding: "16px", background: "#fff", border: "1.5px solid #eaeaea", borderRadius: 16, boxShadow: "0 8px 24px rgba(0,0,0,0.04)" }}>
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#f4f5f7", display: "flex", alignItems: "center", justifyContent: "center", color: "#111", flexShrink: 0 }}>
+                    <div style={{ flex: "1 1 140px", display: "flex", alignItems: "center", gap: 12, padding: "16px", background: "#f4f5f7", border: "1.5px solid #e5e7eb", borderRadius: 16 }}>
+                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", color: "#374151", flexShrink: 0 }}>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                       </div>
                       <div>
-                        <div style={{ fontSize: 18, fontWeight: 900, color: "#111", lineHeight: 1 }}>{brand.followers}</div>
-                        <div style={{ fontSize: 13, color: "#666", marginTop: 4, fontWeight: 500 }}>Followers</div>
+                        <div style={{ fontSize: 18, fontWeight: 900, color: "#1f2937", lineHeight: 1 }}>{brand.followers}</div>
+                        <div style={{ fontSize: 13, color: "#4b5563", marginTop: 4, fontWeight: 600 }}>Followers</div>
                       </div>
                     </div>
                   </div>
