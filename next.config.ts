@@ -1,18 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "i.pravatar.cc",
-      },
-      {
-        protocol: "https",
-        hostname: "logo.clearbit.com",
-      },
-    ],
-  },
+  // DO NOT add ignoreBuildErrors or ignoreDuringBuilds - fix errors instead
+  output: "export",
 };
 
 export default nextConfig;
