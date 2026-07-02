@@ -93,154 +93,6 @@ export default function Home() {
         overflowX: "hidden",
       }}
     >
-      {/* ── NAVBAR ── */}
-      <header
-        style={{
-          width: "100%",
-          background: "#fff",
-          borderBottom: "1px solid #f0f0f0",
-          position: "sticky",
-          top: 0,
-          zIndex: 50,
-          transform: navVisible ? "translateY(0)" : "translateY(-100%)",
-          transition: "transform 0.35s cubic-bezier(0.4,0,0.2,1)",
-        }}
-      >
-        <nav
-          style={{
-            maxWidth: 1380,
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "14px 48px",
-          }}
-        >
-          {/* Logo */}
-          <Link
-            href="/"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              lineHeight: 1,
-              textDecoration: "none",
-              userSelect: "none",
-            }}
-          >
-            <span
-              style={{
-                fontSize: 21,
-                fontWeight: 900,
-                letterSpacing: "-0.5px",
-                color: "#3dba44",
-              }}
-            >
-              Franchise
-            </span>
-            <span
-              style={{
-                fontSize: 21,
-                fontWeight: 900,
-                letterSpacing: "-0.5px",
-                color: "#111",
-                marginTop: -2,
-              }}
-            >
-              Broker.
-            </span>
-          </Link>
-
-          {/* Desktop Links */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 32,
-              fontSize: 14,
-              fontWeight: 500,
-              color: "#222",
-            }}
-          >
-            {[
-              { label: "Home", href: "#home" },
-              { label: "For Investors ▾", href: "#opportunities" },
-              { label: "For Franchisors", href: "#growth" },
-              { label: "Resources ▾", href: "#why-us" },
-              { label: "Testimonials", href: "#testimonials" },
-              { label: "FAQs", href: "#faq" },
-            ].map(
-              ({ label: item, href }) => (
-                <a
-                  key={item}
-                  href={href}
-                  style={{
-                    color: "#222",
-                    textDecoration: "none",
-                    fontSize: 14,
-                    fontWeight: 500,
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {item}
-                </a>
-              )
-            )}
-          </div>
-
-          {/* CTA Buttons — matching reference exactly */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            {/* Outlined "Contact Us" */}
-            <a
-              href="#contact"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                border: "1.5px solid #111",
-                borderRadius: 999,
-                padding: "10px 22px",
-                fontSize: 13,
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "0.04em",
-                color: "#111",
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-                cursor: "pointer",
-              }}
-            >
-              Contact Us
-              <ArrowIcon />
-            </a>
-
-            {/* Green "Get Started" */}
-            <a
-              href="#get-started"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "#3dba44",
-                borderRadius: 999,
-                padding: "10px 22px",
-                fontSize: 13,
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "0.04em",
-                color: "#fff",
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-                cursor: "pointer",
-              }}
-            >
-              Get Started
-              <ArrowIcon color="#fff" />
-            </a>
-          </div>
-        </nav>
-      </header>
-
       {/* ── HERO ── */}
       <main
         id="home"
@@ -402,7 +254,7 @@ export default function Home() {
               paddingRight: 32,
             }}
           >
-            Partnering with the world&apos;s leading food franchises
+            Partnering with Pakistan's leading food franchises
           </div>
 
           {/* Scrolling Marquee */}
@@ -484,8 +336,7 @@ export default function Home() {
                     fontWeight: 900,
                     letterSpacing: "-2px",
                     color: "#111",
-                    lineHeight: 1.1,
-                    fontFamily: "var(--font-display), Inter, sans-serif",
+                    lineHeight: 1.1
                   }}
                 >
                   <AnimatedCounter target={stat.target} suffix={stat.suffix} />
@@ -509,70 +360,6 @@ export default function Home() {
               )}
             </div>
           ))}
-        </div>
-
-        {/* Confidence Stats */}
-        <div className="confidence-shell">
-          <div className="confidence-bg-piece confidence-bg-top-left" aria-hidden="true" />
-          <div className="confidence-bg-piece confidence-bg-top-right" aria-hidden="true" />
-          <div className="confidence-bg-piece confidence-bg-right" aria-hidden="true" />
-          <div className="confidence-bg-piece confidence-bg-bottom-left" aria-hidden="true" />
-          <div className="confidence-bg-piece confidence-bg-bottom-mid" aria-hidden="true" />
-          <div className="confidence-bg-piece confidence-bg-bottom-right" aria-hidden="true" />
-
-          <div className="confidence-header">
-            <div>
-              <h2>Numbers that build confidence</h2>
-              <p>
-                Proven franchise guidance backed by curated opportunities, investor support,
-                and market-tested restaurant brands.
-              </p>
-            </div>
-            <a href="#success-stories">Success Stories</a>
-          </div>
-
-          <div className={`confidence-cards ${confidenceTransition}`} key={confidencePage}>
-            {confidenceStats.map((stat) => (
-              <article className="confidence-card" key={stat.label}>
-                <button aria-label={`Open ${stat.label}`} type="button">
-                  <ArrowIcon />
-                </button>
-                <div className="confidence-value">
-                  <span>{stat.value}</span>
-                  <small>{stat.unit}</small>
-                </div>
-                <p>{stat.label}</p>
-                <div className="confidence-card-footer">
-                  <div className="confidence-mini-logo">{stat.brand.slice(0, 2)}</div>
-                  <strong>{stat.brand}</strong>
-                  <em>{stat.detail}</em>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="confidence-controls">
-            <button
-              aria-label="Previous stats"
-              type="button"
-              disabled={confidenceTransition !== "idle"}
-              onClick={() =>
-                changeConfidencePage(
-                  confidencePage === 0 ? confidenceStatPages.length - 1 : confidencePage - 1
-                )
-              }
-            >
-              ←
-            </button>
-            <button
-              aria-label="Next stats"
-              type="button"
-              disabled={confidenceTransition !== "idle"}
-              onClick={() => changeConfidencePage((confidencePage + 1) % confidenceStatPages.length)}
-            >
-              →
-            </button>
-          </div>
         </div>
 
         {/* ── FEATURED BRANDS SECTION ── */}
@@ -599,10 +386,9 @@ export default function Home() {
                 lineHeight: 1.1, 
                 letterSpacing: "-1px",
                 color: "#111",
-                margin: 0,
-                fontFamily: "var(--font-display), Inter, sans-serif"
+                margin: 0
               }}>
-                Top Franchise Opportunities
+                Top franchise opportunities CURATED FOR YOU
               </h2>
             </div>
             <div style={{ maxWidth: 300 }}>
@@ -612,11 +398,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ 
-            display: "flex", 
-            flexDirection: "column", 
-            gap: 64 
-          }}>
+          <div className="brand-list-container">
             {[
               {
                 initials: "CC",
@@ -759,7 +541,7 @@ export default function Home() {
                 "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
               ];
               return (
-              <div key={i} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', flexDirection: i % 2 !== 0 ? 'row-reverse' : 'row', gap: 64, marginBottom: 120 }}>
+              <div key={i} className="brand-card-item" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', flexDirection: i % 2 !== 0 ? 'row-reverse' : 'row', gap: 64, marginBottom: 120 }}>
                 
                 {/* Left: Info */}
                 <div style={{ flex: "1 1 360px", display: "flex", flexDirection: "column", marginTop: 16 }}>
@@ -772,17 +554,24 @@ export default function Home() {
                     A highly profitable and rapidly growing franchise brand with an established customer base.
                   </p>
                   
-                  {/* Social/Reviews Row */}
-                  <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 32, fontSize: 15, color: "#666", fontWeight: 500 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                      <span style={{ color: "#facc15", fontSize: 20 }}>★</span>
-                      <span style={{ fontWeight: 700, color: "#111" }}>{brand.reviews}</span>
-                      <span>({brand.reviewsCount} reviews)</span>
+                  {/* Social/Reviews Row - Highlighted Cards */}
+                  <div style={{ display: "flex", gap: 16, marginBottom: 32, flexWrap: "wrap" }}>
+                    <div style={{ flex: "1 1 140px", display: "flex", alignItems: "center", gap: 12, padding: "16px", background: "#fff", border: "1.5px solid #eaeaea", borderRadius: 16, boxShadow: "0 8px 24px rgba(0,0,0,0.04)" }}>
+                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#fefae0", display: "flex", alignItems: "center", justifyContent: "center", color: "#ca8a04", fontSize: 22, flexShrink: 0 }}>★</div>
+                      <div>
+                        <div style={{ fontSize: 18, fontWeight: 900, color: "#111", lineHeight: 1 }}>{brand.reviews}</div>
+                        <div style={{ fontSize: 13, color: "#666", marginTop: 4, fontWeight: 500 }}>{brand.reviewsCount} reviews</div>
+                      </div>
                     </div>
-                    <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#ccc" }} />
-                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                      <span>{brand.followers}</span>
+                    
+                    <div style={{ flex: "1 1 140px", display: "flex", alignItems: "center", gap: 12, padding: "16px", background: "#fff", border: "1.5px solid #eaeaea", borderRadius: 16, boxShadow: "0 8px 24px rgba(0,0,0,0.04)" }}>
+                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#f4f5f7", display: "flex", alignItems: "center", justifyContent: "center", color: "#111", flexShrink: 0 }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: 18, fontWeight: 900, color: "#111", lineHeight: 1 }}>{brand.followers}</div>
+                        <div style={{ fontSize: 13, color: "#666", marginTop: 4, fontWeight: 500 }}>Followers</div>
+                      </div>
                     </div>
                   </div>
                   
@@ -872,98 +661,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── BUILT FOR LONG-TERM GROWTH (ROI) SECTION ── */}
-        <div id="growth" style={{ marginTop: 160, scrollMarginTop: 90 }}>
-          <div
-            className="roi-shell"
-            style={{ padding: "110px 80px" }}
-          >
-            <div className="roi-bg-piece roi-bg-top-right" aria-hidden="true" />
-            <div className="roi-bg-piece roi-bg-bottom-left" aria-hidden="true" />
-
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 48, position: "relative", zIndex: 2 }}>
-              <div style={{ flex: "1 1 400px" }}>
-                <h2 style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontWeight: 900, lineHeight: 1.1, letterSpacing: "-1px", color: "#111", marginBottom: 24, fontFamily: "var(--font-display), Inter, sans-serif" }}>
-                  Strategic Financial Projections
-                </h2>
-                <p style={{ color: "#0b2530", fontSize: 16, lineHeight: 1.6, marginBottom: 40, fontWeight: 500 }}>
-                  Detailed cost analysis, robust financial modeling, and clear unit economics demonstrating the path to high ROI.
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                  {[
-                    "Comprehensive financial modeling",
-                    "Market-specific growth projections",
-                    "Clear visibility into operational costs"
-                  ].map((item, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                      <div style={{ width: 24, height: 24, borderRadius: "50%", background: "#0b2530", color: "#d8f6d2", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                      </div>
-                      <span style={{ fontSize: 15, fontWeight: 600, color: "#0b2530" }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div style={{ flex: "1 1 500px", display: "flex", flexDirection: "column", gap: 16, paddingTop: 16 }}>
-                {[
-                  {
-                    label: "Investment Range",
-                    icon: (
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4E962F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v2m0 8v2M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-1 2-2.5 2.5S9.5 13 9.5 15h5"/>
-                      </svg>
-                    )
-                  },
-                  {
-                    label: "Estimated Payback",
-                    icon: (
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4E962F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 14"/>
-                      </svg>
-                    )
-                  },
-                  {
-                    label: "Growth Potential",
-                    icon: (
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4E962F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                        <polyline points="17 6 23 6 23 12"/>
-                      </svg>
-                    )
-                  },
-                  {
-                    label: "Available Markets",
-                    icon: (
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4E962F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="2" y1="12" x2="22" y2="12"/>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                      </svg>
-                    )
-                  }
-                ].map((card, i) => (
-                  <div key={i} style={{
-                    background: "#fff",
-                    borderRadius: 20,
-                    padding: "16px 24px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 16,
-                    width: "85%",
-                    marginLeft: i % 2 === 0 ? "0%" : "15%"
-                  }}>
-                    <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#f0fdf4", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      {card.icon}
-                    </div>
-                    <span style={{ fontSize: 15, fontWeight: 700, color: "#111" }}>{card.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -990,8 +687,7 @@ export default function Home() {
             lineHeight: 1.1,
             letterSpacing: "-1px",
             color: "#111",
-            margin: 0,
-            fontFamily: "var(--font-display), Inter, sans-serif",
+            margin: 0
           }}>
             Frequently Asked Questions
           </h2>
@@ -1103,8 +799,7 @@ export default function Home() {
               lineHeight: 1.12,
               letterSpacing: "-1px",
               color: "#111",
-              margin: "0 0 24px",
-              fontFamily: "var(--font-display), Inter, sans-serif",
+              margin: "0 0 24px"
             }}>
               Your Investment Roadmap
             </h2>

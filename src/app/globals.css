@@ -763,3 +763,35 @@ body {
 .brand-card-btn:hover {
   transform: translateY(-2px);
 }
+
+/* Mobile Swipeable Carousel for Brands */
+.brand-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+@media (max-width: 768px) {
+  .brand-list-container {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -24px; /* bleed to edges */
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .brand-list-container::-webkit-scrollbar {
+    display: none;
+  }
+  .brand-card-item {
+    flex: 0 0 90%;
+    scroll-snap-align: center;
+    flex-direction: column !important;
+    gap: 32px !important;
+    margin-bottom: 0 !important;
+  }
+}
