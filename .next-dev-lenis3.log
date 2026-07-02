@@ -1,0 +1,568 @@
+
+> project-name@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.15 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.69.1:3000
+
+ ✓ Starting...
+ ✓ Ready in 4.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 10.1s
+ GET / 200 in 11964ms
+ GET / 200 in 1606ms
+ GET / 200 in 4578ms
+ ✓ Compiled in 405ms
+ GET / 200 in 619ms
+ GET / 200 in 1287ms
+ GET / 200 in 331ms
+ GET / 200 in 884ms
+ GET / 200 in 792ms
+ ✓ Compiled in 299ms
+ ✓ Compiled in 235ms
+ ✓ Compiled in 242ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 1438ms
+ GET / 200 in 301ms
+ GET / 200 in 954ms
+ GET / 200 in 1549ms
+ GET / 200 in 848ms
+ ✓ Compiled in 202ms
+ GET / 200 in 1807ms
+ GET / 200 in 366ms
+ GET / 200 in 923ms
+ GET / 200 in 457ms
+ ✓ Compiled in 318ms
+ GET / 200 in 572ms
+ GET / 200 in 389ms
+ GET / 200 in 825ms
+ GET / 200 in 675ms
+ ✓ Compiled in 284ms
+ ✓ Compiled in 223ms
+ ✓ Compiled in 262ms
+ ✓ Compiled in 264ms
+ ✓ Compiled in 305ms
+ ✓ Compiled in 214ms
+ ✓ Compiled in 315ms
+ GET / 200 in 1584ms
+ ✓ Compiled in 438ms
+ ✓ Compiled in 271ms
+ ✓ Compiled in 444ms
+ ✓ Compiled in 157ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 5.6s
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\static\development\_buildManifest.js.tmp.ubl2685a9r'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\static\\development\\_buildManifest.js.tmp.ubl2685a9r'
+}
+[Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\static\development\_buildManifest.js.tmp.56kqokg7cpt'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\static\\development\\_buildManifest.js.tmp.56kqokg7cpt'
+}
+[Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\static\development\_buildManifest.js.tmp.k9q5hii7wzp'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\static\\development\\_buildManifest.js.tmp.k9q5hii7wzp'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 1681ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 648ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 564ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 528ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 525ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 475ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 501ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 524ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 594ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 640ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 599ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 515ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 280ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 220ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 247ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 225ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 247ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 223ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 230ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 250ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'D:\JOB\pitchdeck\.next\server\app\page\app-build-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\JOB\\pitchdeck\\.next\\server\\app\\page\\app-build-manifest.json'
+}
+ ⨯ Error: Cannot find module '../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- D:\JOB\pitchdeck\.next\server\pages\_document.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\require.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\load-components.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\utils.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\options.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\swc\index.js
+- D:\JOB\pitchdeck\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\config.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\next.js
+- D:\JOB\pitchdeck\node_modules\next\dist\server\lib\start-server.js
+    at Object.<anonymous> (D:\JOB\pitchdeck\.next\server\pages\_document.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 615ms
+[?25h
