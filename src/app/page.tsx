@@ -43,6 +43,46 @@ export default function Home() {
   const [navVisible, setNavVisible] = useState(true);
   const lastScrollY = React.useRef(0);
 
+  // Mobile carousel
+  const [brandIndex, setBrandIndex] = useState(0);
+  const [slideDir, setSlideDir] = useState<"left" | "right" | null>(null);
+  const [isSliding, setIsSliding] = useState(false);
+  const BRAND_COUNT = 9;
+
+  const slideTo = (next: number, dir: "left" | "right") => {
+    if (isSliding) return;
+    setSlideDir(dir);
+    setIsSliding(true);
+    window.setTimeout(() => {
+      setBrandIndex(next);
+      setSlideDir(null);
+      window.setTimeout(() => setIsSliding(false), 50);
+    }, 320);
+  };
+
+  // Desktop scroll-reveal
+  const brandRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const [visibleBrands, setVisibleBrands] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    brandRefs.current.forEach((el, idx) => {
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleBrands((prev) => new Set(prev).add(idx));
+            obs.disconnect();
+          }
+        },
+        { threshold: 0.15 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const current = window.scrollY;
@@ -396,6 +436,25 @@ export default function Home() {
                 Explore our curated selection of high-performing franchise brands ready for investment.
               </p>
             </div>
+
+            {/* Mobile arrow nav */}
+            <div className="mobile-only-flex" style={{ alignItems: "center", gap: 12 }}>
+              <button
+                aria-label="Previous brand"
+                onClick={() => slideTo(brandIndex === 0 ? BRAND_COUNT - 1 : brandIndex - 1, "right")}
+                style={{ width: 44, height: 44, borderRadius: "50%", border: "1.5px solid #111", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0 }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button
+                aria-label="Next brand"
+                onClick={() => slideTo((brandIndex + 1) % BRAND_COUNT, "left")}
+                style={{ width: 44, height: 44, borderRadius: "50%", background: "#111", border: "none", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0 }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+              <span style={{ fontSize: 13, color: "#888", fontWeight: 600 }}>{brandIndex + 1} / {BRAND_COUNT}</span>
+            </div>
           </div>
 
           <div className="brand-list-container">
@@ -540,11 +599,39 @@ export default function Home() {
                 "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80",
                 "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
               ];
+              const isVisible = visibleBrands.has(i);
+              const desktopInfoAnim: React.CSSProperties = {
+                transition: "opacity 0.65s ease, transform 0.65s ease",
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "none" : i % 2 === 0 ? "translateX(-40px)" : "translateX(40px)",
+              };
+              const desktopImgAnim: React.CSSProperties = {
+                transition: "opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s",
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "none" : i % 2 === 0 ? "translateX(40px)" : "translateX(-40px)",
+              };
+              const isMobileActive = i === brandIndex;
+              const mobileClass = isMobileActive
+                ? `brand-card-item mobile-active${slideDir === "left" ? " slide-in-left" : slideDir === "right" ? " slide-in-right" : ""}`
+                : "brand-card-item";
               return (
-              <div key={i} className="brand-card-item" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', flexDirection: i % 2 !== 0 ? 'row-reverse' : 'row', gap: 64, marginBottom: 120 }}>
+              <div
+                key={i}
+                ref={(el) => { brandRefs.current[i] = el; }}
+                className={mobileClass}
+                data-brand-index={i}
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'flex-start',
+                  flexDirection: i % 2 !== 0 ? 'row-reverse' : 'row',
+                  gap: 64,
+                  marginBottom: 120,
+                }}
+              >
                 
                 {/* Left: Info */}
-                <div style={{ flex: "1 1 360px", display: "flex", flexDirection: "column", marginTop: 16 }}>
+                <div style={{ flex: "1 1 360px", display: "flex", flexDirection: "column", marginTop: 16, ...desktopInfoAnim }}>
                   <div style={{ marginBottom: 24, background: "#f4f5f7", padding: "16px", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 72, width: 96, fontSize: 24, fontWeight: 900, color: "#111" }}>
                     {brand.initials}
                   </div>
@@ -622,7 +709,7 @@ export default function Home() {
                 </div>
 
                 {/* Right: Collage */}
-                <div style={{ flex: "1 1 500px", minHeight: 500, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(5, 1fr)", gap: 12 }}>
+                <div style={{ flex: "1 1 500px", minHeight: 500, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(5, 1fr)", gap: 12, ...desktopImgAnim }}>
                   {/* Tall Left */}
                   <div style={{ gridColumn: "1 / 2", gridRow: "1 / 3", borderRadius: 20, overflow: "hidden" }}>
                     <img src={secondaryImages[(i + 1) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -658,6 +745,26 @@ export default function Home() {
                 </div>
               </div>
             )})}
+          </div>
+
+          {/* Mobile dot indicators */}
+          <div className="mobile-only-flex" style={{ justifyContent: "center", gap: 8, marginTop: 24 }}>
+            {Array.from({ length: BRAND_COUNT }).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => slideTo(idx, idx > brandIndex ? "left" : "right")}
+                style={{
+                  width: idx === brandIndex ? 24 : 8,
+                  height: 8,
+                  borderRadius: 999,
+                  background: idx === brandIndex ? "#111" : "#ddd",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                  transition: "width 0.3s ease, background 0.3s ease",
+                }}
+              />
+            ))}
           </div>
         </div>
       </section>

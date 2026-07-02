@@ -764,6 +764,23 @@ body {
   transform: translateY(-2px);
 }
 
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideOutLeft {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-60px); }
+}
+@keyframes slideOutRight {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(60px); }
+}
+
 /* Mobile Swipeable Carousel for Brands */
 .brand-list-container {
   display: flex;
@@ -773,25 +790,33 @@ body {
 
 @media (max-width: 768px) {
   .brand-list-container {
-    flex-direction: row;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 16px;
-    padding-bottom: 24px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    margin: 0 -24px; /* bleed to edges */
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  .brand-list-container::-webkit-scrollbar {
-    display: none;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
   }
   .brand-card-item {
-    flex: 0 0 90%;
-    scroll-snap-align: center;
+    display: none !important;
     flex-direction: column !important;
     gap: 32px !important;
     margin-bottom: 0 !important;
+  }
+  .brand-card-item.mobile-active {
+    display: flex !important;
+    animation: none;
+  }
+  .brand-card-item.mobile-active.slide-in-left {
+    animation: slideInLeft 0.32s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .brand-card-item.mobile-active.slide-in-right {
+    animation: slideInRight 0.32s cubic-bezier(0.4,0,0.2,1) both;
+  }
+}
+
+.mobile-only-flex {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-only-flex {
+    display: flex;
   }
 }
