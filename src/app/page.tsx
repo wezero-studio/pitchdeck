@@ -660,10 +660,7 @@ export default function Home() {
             )})}
           </div>
         </div>
-
-        </div>
       </section>
-
       {/* ── FAQ SECTION ── */}
       <section id="faq" style={{ maxWidth: 880, margin: "0 auto", padding: "0 24px 160px", scrollMarginTop: 90 }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
