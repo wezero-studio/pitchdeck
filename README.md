@@ -1,6 +1,6 @@
-# Project Name
+# Franchise Broker
 
-Brief description of what this project does and who it's for.
+Franchise Broker is a modern landing page for discovering high-potential franchise investment opportunities. It connects investors with established restaurant franchises through expert guidance, market insights, and a carefully curated portfolio of proven brands.
 
 > The repository homepage URL is automatically set to the Cloudflare Pages deployment URL on first deploy.
 
@@ -8,7 +8,7 @@ Brief description of what this project does and who it's for.
 
 - **Framework**: Next.js 15 (static export, no SSR)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
+- **Styling**: Vanilla CSS / Inline Styles
 - **Hosting**: Cloudflare Pages (static files)
 - **CI/CD**: GitHub Actions — deploys on push to `main`, preview URLs on PRs
 - **Dev Environment**: Nix (optional) + Bun
