@@ -32,17 +32,6 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 }
 
 export default function Home() {
-  const [confidencePage, setConfidencePage] = useState(0);
-  const [confidenceTransition, setConfidenceTransition] = useState<"idle" | "exit-left" | "enter-right">(
-    "idle"
-  );
-  const confidenceStats = confidenceStatPages[confidencePage];
-  const [testimonialsPage, setTestimonialsPage] = useState(0);
-  const [testimonialsDir, setTestimonialsDir] = useState<"left" | "right" | null>(null);
-  const [testimonialsAnimating, setTestimonialsAnimating] = useState(false);
-  const [navVisible, setNavVisible] = useState(true);
-  const lastScrollY = React.useRef(0);
-
   // Mobile carousel
   const [brandIndex, setBrandIndex] = useState(0);
   const [slideDir, setSlideDir] = useState<"left" | "right" | null>(null);
@@ -83,45 +72,8 @@ export default function Home() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const current = window.scrollY;
-      if (current <= 60) {
-        setNavVisible(true);
-      } else if (current > lastScrollY.current) {
-        setNavVisible(false);
-      } else {
-        setNavVisible(true);
-      }
-      lastScrollY.current = current;
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const changeTestimonialsPage = (next: number, dir: "left" | "right") => {
-    if (testimonialsAnimating) return;
-    setTestimonialsDir(dir);
-    setTestimonialsAnimating(true);
-    window.setTimeout(() => {
-      setTestimonialsPage(next);
-      setTestimonialsAnimating(false);
-    }, 350);
-  };
-
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
-
-  const changeConfidencePage = (nextPage: number) => {
-    if (confidenceTransition !== "idle") return;
-
-    setConfidenceTransition("exit-left");
-    window.setTimeout(() => {
-      setConfidencePage(nextPage);
-      setConfidenceTransition("enter-right");
-      window.setTimeout(() => setConfidenceTransition("idle"), 420);
-    }, 220);
-  };
 
   return (
     <div
@@ -294,7 +246,7 @@ export default function Home() {
               paddingRight: 32,
             }}
           >
-            Partnering with Pakistan's leading food franchises
+            Partnering with Pakistan&apos;s leading food franchises
           </div>
 
           {/* Scrolling Marquee */}
@@ -707,35 +659,43 @@ export default function Home() {
                 <div style={{ flex: "1 1 500px", minHeight: 500, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(5, 1fr)", gap: 12, ...desktopImgAnim }}>
                   {/* Tall Left */}
                   <div style={{ gridColumn: "1 / 2", gridRow: "1 / 3", borderRadius: 20, overflow: "hidden" }}>
-                    <img src={secondaryImages[(i + 1) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={secondaryImages[(i + 1) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Top Mid */}
                   <div style={{ gridColumn: "2 / 3", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
-                    <img src={secondaryImages[(i + 2) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={secondaryImages[(i + 2) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Top Right */}
                   <div style={{ gridColumn: "3 / 4", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
-                    <img src={secondaryImages[(i + 3) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={secondaryImages[(i + 3) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Large Center (Brand Image) */}
                   <div style={{ gridColumn: "2 / 4", gridRow: "2 / 4", borderRadius: 24, overflow: "hidden", zIndex: 2, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
-                    <img src={brand.image} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={brand.image} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Small Left */}
                   <div style={{ gridColumn: "1 / 2", gridRow: "3 / 4", borderRadius: 12, overflow: "hidden" }}>
-                    <img src={secondaryImages[(i + 4) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={secondaryImages[(i + 4) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Mid Right Tall */}
                   <div style={{ gridColumn: "4 / 5", gridRow: "2 / 4", borderRadius: 16, overflow: "hidden" }}>
-                    <img src={secondaryImages[(i + 5) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={secondaryImages[(i + 5) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Bottom Mid Tall */}
                   <div style={{ gridColumn: "2 / 3", gridRow: "4 / 6", borderRadius: 20, overflow: "hidden" }}>
-                    <img src={secondaryImages[(i + 6) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={secondaryImages[(i + 6) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Bottom Right Large-ish */}
                   <div style={{ gridColumn: "3 / 5", gridRow: "4 / 6", borderRadius: 20, overflow: "hidden", marginTop: 24 }}>
-                    <img src={secondaryImages[(i) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={secondaryImages[(i) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                 </div>
               </div>
@@ -1070,90 +1030,6 @@ export default function Home() {
     </div>
   );
 }
-
-const confidenceStatPages = [
-  [
-    {
-      value: "120",
-      unit: "+",
-      label: "Franchise Matches",
-      brand: "Restaurant Investors",
-      detail: "Curated Deals",
-    },
-    {
-      value: "48",
-      unit: "M",
-      label: "Opportunity Value",
-      brand: "Food Franchise Portfolio",
-      detail: "Reviewed",
-    },
-    {
-      value: "30",
-      unit: "Days",
-      label: "Average Shortlist",
-      brand: "Investor Roadmaps",
-      detail: "Within 30 Days",
-    },
-  ],
-  [
-    {
-      value: "92",
-      unit: "%",
-      label: "Qualified Leads",
-      brand: "Growth Operators",
-      detail: "Pre-screened",
-    },
-    {
-      value: "18",
-      unit: "States",
-      label: "Market Coverage",
-      brand: "Regional Partners",
-      detail: "Active Markets",
-    },
-    {
-      value: "64",
-      unit: "+",
-      label: "Brand Reviews",
-      brand: "Due Diligence Desk",
-      detail: "Completed",
-    },
-  ],
-];
-
-const testimonials = [
-  {
-    quote: "Franchise Broker was a game-changer for us. They matched us with the perfect brand within weeks, guided us through every step, and their expert market analysis gave us complete confidence in our investment decision.",
-    stat: "4",
-    statLabel: "Capital Invested (cr)",
-    name: "Rohan M.",
-    company: "First-time Franchise Investor",
-    avatar: "https://i.pravatar.cc/150?img=12",
-  },
-  {
-    quote: "The team at Franchise Broker made the entire process seamless. From shortlisting brands to finalising the deal, their transparency and support were unmatched. We're already seeing returns ahead of schedule.",
-    stat: "6",
-    statLabel: "Capital Invested (cr)",
-    name: "Sara K.",
-    company: "Restaurant Franchise Owner",
-    avatar: "/image2.jpg",
-  },
-  {
-    quote: "I was sceptical at first, but Franchise Broker's curated portfolio and deep market insights helped me identify an opportunity I would never have found on my own. Highly recommend to any serious investor.",
-    stat: "3",
-    statLabel: "Capital Invested (cr)",
-    name: "Imran T.",
-    company: "Multi-Brand Investor",
-    avatar: "/image3.jpg",
-  },
-  {
-    quote: "Working with Franchise Broker felt like having a trusted partner by my side. They understood my goals, presented the right options, and ensured I made an informed decision every step of the way.",
-    stat: "5",
-    statLabel: "Capital Invested (cr)",
-    name: "Nadia A.",
-    company: "Franchise Investor",
-    avatar: "/image4.jpg",
-  },
-];
 
 const faqs = [
   {
