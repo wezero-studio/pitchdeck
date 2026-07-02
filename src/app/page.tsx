@@ -439,26 +439,7 @@ export default function Home() {
                 Explore our curated selection of high-performing franchise brands ready for investment.
               </p>
             </div>
-
-            {/* Mobile arrow nav */}
-            <div className="mobile-only-flex" style={{ alignItems: "center", gap: 12 }}>
-              <button
-                aria-label="Previous brand"
-                onClick={() => slideTo(brandIndex === 0 ? BRAND_COUNT - 1 : brandIndex - 1, "right")}
-                style={{ width: 44, height: 44, borderRadius: "50%", border: "1.5px solid #111", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0 }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-              </button>
-              <button
-                aria-label="Next brand"
-                onClick={() => slideTo((brandIndex + 1) % BRAND_COUNT, "left")}
-                style={{ width: 44, height: 44, borderRadius: "50%", background: "#111", border: "none", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0 }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-              </button>
-              <span style={{ fontSize: 13, color: "#888", fontWeight: 600 }}>{brandIndex + 1} / {BRAND_COUNT}</span>
             </div>
-          </div>
 
           <div className="brand-list-container">
             {[
@@ -639,7 +620,18 @@ export default function Home() {
                     {brand.initials}
                   </div>
                   
-                  <h3 style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)", fontWeight: 900, marginBottom: 16, letterSpacing: "-0.5px" }}>{brand.name}</h3>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+                    <h3 style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)", fontWeight: 900, letterSpacing: "-0.5px", margin: 0 }}>{brand.name}</h3>
+                    {/* Mobile next arrow - only on active card */}
+                    <button
+                      className="mobile-only-flex"
+                      aria-label="Next brand"
+                      onClick={() => slideTo((brandIndex + 1) % BRAND_COUNT, "left")}
+                      style={{ width: 44, height: 44, borderRadius: "50%", background: "#111", border: "none", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0 }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                  </div>
                   <p style={{ color: "#555", fontSize: 16, lineHeight: 1.6, marginBottom: 24, maxWidth: "90%" }}>
                     A highly profitable and rapidly growing franchise brand with an established customer base.
                   </p>
