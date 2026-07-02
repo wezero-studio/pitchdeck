@@ -276,8 +276,8 @@ export default function Home() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=85"
-                alt="Franchise Investment Opportunities"
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=85"
+                alt="Restaurant Franchise Opportunities"
                 style={{
                   width: "100%",
                   height: "100%",
@@ -316,9 +316,9 @@ export default function Home() {
                 fontFamily: "var(--font-display), Inter, sans-serif",
               }}
             >
-              <div className="hero-line-1" style={{ whiteSpace: "nowrap" }}>Discover High-Potential</div>
-              <div className="hero-line-2" style={{ whiteSpace: "nowrap" }}>Franchise Investment</div>
-              <div className="hero-line-3">Opportunities</div>
+              <div className="hero-line-1" style={{ whiteSpace: "nowrap" }}>Curated Restaurant</div>
+              <div className="hero-line-2" style={{ whiteSpace: "nowrap" }}>Franchise Portfolio</div>
+              <div className="hero-line-3">in Pakistan</div>
             </h1>
 
             <div className="hero-content-bottom" style={{ width: "100%" }}>
@@ -333,9 +333,7 @@ export default function Home() {
                   fontWeight: 400,
                 }}
               >
-                Helping investors connect with established restaurant franchises
-                through expert guidance, market insights, and a carefully curated
-                portfolio of proven brands.
+                A carefully selected portfolio of high-performing food and beverage franchises in Pakistan, prepared exclusively for our UK investor partners. Review key metrics, investments, and robust ROI projections below.
               </p>
 
               {/* CTA Button — green pill, matching reference */}
@@ -362,104 +360,12 @@ export default function Home() {
                 <ArrowIcon color="#fff" />
               </a>
 
-              {/* Testimonial Card — matching reference card */}
-              <div
-                style={{
-                  marginTop: 28,
-                  background: "#f4f5f7",
-                  borderRadius: 20,
-                  padding: "20px 24px",
-                  maxWidth: 420,
-                  width: "100%",
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: 14,
-                    lineHeight: 1.7,
-                    color: "#444",
-                    fontWeight: 400,
-                    margin: 0,
-                    marginBottom: 16,
-                  }}
-                >
-                  &ldquo;They helped us find the perfect franchise match — their
-                  expert market analysis gave us complete confidence.&rdquo;
-                </p>
-                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  {/* Avatar */}
-                  <div
-                    style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: "50%",
-                      overflow: "hidden",
-                      background: "#ccc",
-                      flexShrink: 0,
-                    }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="https://i.pravatar.cc/80?img=68"
-                      alt="Investor"
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  </div>
-                  <div>
-                    <div
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 700,
-                        color: "#111",
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      Rohan M.
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 11,
-                        color: "#999",
-                        marginTop: 2,
-                        fontWeight: 400,
-                      }}
-                    >
-                      Franchise Investor
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
 
-        {/* Decorative blobs — bottom right (matching ref) */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: -20,
-            right: 20,
-            width: 240,
-            height: 240,
-            background: "#f4f5f7",
-            borderRadius: "2.5rem",
-            transform: "rotate(8deg)",
-            zIndex: -1,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: 80,
-            right: 100,
-            width: 110,
-            height: 110,
-            background: "#f4f5f7",
-            borderRadius: "1.5rem",
-            transform: "rotate(-12deg)",
-            zIndex: -1,
-          }}
-        />
+
       </main>
 
       {/* ── PARTNERS MARQUEE & STATS SECTION ── */}
@@ -707,128 +613,262 @@ export default function Home() {
           </div>
 
           <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
-            gap: 24 
+            display: "flex", 
+            flexDirection: "column", 
+            gap: 64 
           }}>
             {[
               {
                 initials: "CC",
                 name: "Chopped Chips",
-                investment: "2cr",
+                investment: "£85,000",
                 industry: "Food & Beverage",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.8",
+                reviewsCount: "1.2k",
+                followers: "15k",
+                sales: "£180,000 / yr",
+                roi: "18%"
               },
               {
                 initials: "EN",
-                name: "Enaari (Fine dine, fish)",
-                investment: "3cr",
+                name: "Enaari",
+                investment: "£150,000",
                 industry: "Fine Dining",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.9",
+                reviewsCount: "850",
+                followers: "22k",
+                sales: "£350,000 / yr",
+                roi: "22%"
               },
               {
                 initials: "LC",
-                name: "The last crumb cookies",
-                investment: "3cr",
+                name: "The Last Crumb",
+                investment: "£120,000",
                 industry: "Dessert & Bakery",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.7",
+                reviewsCount: "2.1k",
+                followers: "45k",
+                sales: "£280,000 / yr",
+                roi: "20%"
               },
               {
                 initials: "YI",
                 name: "Yar Istanbul",
-                investment: "4cr",
+                investment: "£200,000",
                 industry: "Restaurant",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.6",
+                reviewsCount: "940",
+                followers: "12k",
+                sales: "£420,000 / yr",
+                roi: "19%"
               },
               {
                 initials: "AR",
                 name: "Artisan",
-                investment: "4cr",
+                investment: "£140,000",
                 industry: "Restaurant",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.8",
+                reviewsCount: "1.5k",
+                followers: "18k",
+                sales: "£310,000 / yr",
+                roi: "21%"
               },
               {
                 initials: "SS",
                 name: "Soft Swirl",
-                investment: "5cr",
+                investment: "£90,000",
                 industry: "Dessert & Ice Cream",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.9",
+                reviewsCount: "3.2k",
+                followers: "50k",
+                sales: "£200,000 / yr",
+                roi: "25%"
               },
               {
                 initials: "SD",
-                name: "Saadi di Sajji (by aleem daar)",
-                investment: "3.5cr",
+                name: "Saadi di Sajji",
+                investment: "£160,000",
                 industry: "Restaurant",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.5",
+                reviewsCount: "1.1k",
+                followers: "9k",
+                sales: "£360,000 / yr",
+                roi: "17%"
               },
               {
                 initials: "CP",
-                name: "Cafe praha (Dha/Bahria)",
-                investment: "5cr",
+                name: "Cafe Praha",
+                investment: "£130,000",
                 industry: "Cafe",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.7",
+                reviewsCount: "1.8k",
+                followers: "28k",
+                sales: "£290,000 / yr",
+                roi: "22%"
               },
               {
                 initials: "CK",
                 name: "Chai Khaana",
-                investment: "2cr",
+                investment: "£75,000",
                 industry: "Cafe",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.8",
+                reviewsCount: "4.5k",
+                followers: "65k",
+                sales: "£150,000 / yr",
+                roi: "24%"
               },
               {
                 initials: "FB",
-                name: "The fat boy",
-                investment: "2cr",
+                name: "The Fat Boy",
+                investment: "£110,000",
                 industry: "Restaurant",
-                link: "#"
+                link: "#",
+                image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
+                reviews: "4.6",
+                reviewsCount: "820",
+                followers: "11k",
+                sales: "£250,000 / yr",
+                roi: "21%"
               }
-            ].map((brand, i) => (
-              <div key={i} className="brand-card">
-                <div style={{ marginBottom: 24, background: "#fff", padding: "16px", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 72, width: 96, fontSize: 24, fontWeight: 900, color: "#111" }}>
-                  {brand.initials}
-                </div>
-                <h3 style={{ fontSize: 26, fontWeight: 900, marginBottom: 24, letterSpacing: "-0.5px" }}>{brand.name}</h3>
+            ].map((brand, i) => {
+              const secondaryImages = [
+                "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+              ];
+              return (
+              <div key={i} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', flexDirection: i % 2 !== 0 ? 'row-reverse' : 'row', gap: 64, marginBottom: 120 }}>
                 
-                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                  <div>
-                    <div style={{ fontSize: 12, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Industry</div>
-                    <div style={{ fontSize: 16, fontWeight: 700, color: "#111" }}>{brand.industry}</div>
+                {/* Left: Info */}
+                <div style={{ flex: "1 1 360px", display: "flex", flexDirection: "column", marginTop: 16 }}>
+                  <div style={{ marginBottom: 24, background: "#f4f5f7", padding: "16px", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 72, width: 96, fontSize: 24, fontWeight: 900, color: "#111" }}>
+                    {brand.initials}
                   </div>
                   
+                  <h3 style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)", fontWeight: 900, marginBottom: 16, letterSpacing: "-0.5px" }}>{brand.name}</h3>
+                  <p style={{ color: "#555", fontSize: 16, lineHeight: 1.6, marginBottom: 24, maxWidth: "90%" }}>
+                    A highly profitable and rapidly growing franchise brand with an established customer base.
+                  </p>
+                  
+                  {/* Social/Reviews Row */}
+                  <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 32, fontSize: 15, color: "#666", fontWeight: 500 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      <span style={{ color: "#facc15", fontSize: 20 }}>★</span>
+                      <span style={{ fontWeight: 700, color: "#111" }}>{brand.reviews}</span>
+                      <span>({brand.reviewsCount} reviews)</span>
+                    </div>
+                    <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#ccc" }} />
+                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                      <span>{brand.followers}</span>
+                    </div>
+                  </div>
+                  
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px 24px", marginBottom: 40, padding: "24px", background: "#f9fafb", borderRadius: 20 }}>
+                    <div>
+                      <div style={{ fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Industry</div>
+                      <div style={{ fontSize: 17, fontWeight: 700, color: "#111" }}>{brand.industry}</div>
+                    </div>
+                    
+                    <div>
+                      <div style={{ fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Investment Needed</div>
+                      <div style={{ fontSize: 17, fontWeight: 700, color: "#111" }}>{brand.investment}</div>
+                    </div>
+
+                    <div>
+                      <div style={{ fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Projected Sales</div>
+                      <div style={{ fontSize: 17, fontWeight: 700, color: "#111" }}>{brand.sales}</div>
+                    </div>
+
+                    <div>
+                      <div style={{ fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Est. ROI</div>
+                      <div style={{ fontSize: 17, fontWeight: 700, color: "#3dba44" }}>{brand.roi}</div>
+                    </div>
+                  </div>
+
                   <div>
-                    <div style={{ fontSize: 12, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Investment Starting From</div>
-                    <div style={{ fontSize: 16, fontWeight: 700, color: "#111" }}>{brand.investment}</div>
+                    <a
+                      href={brand.link}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 10,
+                        background: "#3dba44",
+                        borderRadius: 999,
+                        padding: "16px 32px",
+                        fontSize: 14,
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em",
+                        color: "#fff",
+                        textDecoration: "none",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Learn More <ArrowIcon color="#fff" />
+                    </a>
                   </div>
                 </div>
 
-                <div className="brand-card-cutout" aria-hidden="true" />
-                
-                <a
-                  href={brand.link}
-                  style={{
-                    position: "absolute",
-                    bottom: 12,
-                    right: 8,
-                    zIndex: 2,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 8,
-                    background: "#3dba44",
-                    borderRadius: 999,
-                    padding: "11px 18px",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    color: "#fff",
-                    textDecoration: "none",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  Learn More <ArrowIcon color="#fff" />
-                </a>
+                {/* Right: Collage */}
+                <div style={{ flex: "1 1 500px", minHeight: 500, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(5, 1fr)", gap: 12 }}>
+                  {/* Tall Left */}
+                  <div style={{ gridColumn: "1 / 2", gridRow: "1 / 3", borderRadius: 20, overflow: "hidden" }}>
+                    <img src={secondaryImages[(i + 1) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                  {/* Top Mid */}
+                  <div style={{ gridColumn: "2 / 3", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
+                    <img src={secondaryImages[(i + 2) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                  {/* Top Right */}
+                  <div style={{ gridColumn: "3 / 4", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
+                    <img src={secondaryImages[(i + 3) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                  {/* Large Center (Brand Image) */}
+                  <div style={{ gridColumn: "2 / 4", gridRow: "2 / 4", borderRadius: 24, overflow: "hidden", zIndex: 2, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
+                    <img src={brand.image} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                  {/* Small Left */}
+                  <div style={{ gridColumn: "1 / 2", gridRow: "3 / 4", borderRadius: 12, overflow: "hidden" }}>
+                    <img src={secondaryImages[(i + 4) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                  {/* Mid Right Tall */}
+                  <div style={{ gridColumn: "4 / 5", gridRow: "2 / 4", borderRadius: 16, overflow: "hidden" }}>
+                    <img src={secondaryImages[(i + 5) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                  {/* Bottom Mid Tall */}
+                  <div style={{ gridColumn: "2 / 3", gridRow: "4 / 6", borderRadius: 20, overflow: "hidden" }}>
+                    <img src={secondaryImages[(i + 6) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                  {/* Bottom Right Large-ish */}
+                  <div style={{ gridColumn: "3 / 5", gridRow: "4 / 6", borderRadius: 20, overflow: "hidden", marginTop: 24 }}>
+                    <img src={secondaryImages[(i) % 7]} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
 
@@ -844,10 +884,10 @@ export default function Home() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: 48, position: "relative", zIndex: 2 }}>
               <div style={{ flex: "1 1 400px" }}>
                 <h2 style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontWeight: 900, lineHeight: 1.1, letterSpacing: "-1px", color: "#111", marginBottom: 24, fontFamily: "var(--font-display), Inter, sans-serif" }}>
-                  Built for Long-Term Growth
+                  Strategic Financial Projections
                 </h2>
                 <p style={{ color: "#0b2530", fontSize: 16, lineHeight: 1.6, marginBottom: 40, fontWeight: 500 }}>
-                  We break down costs, payback periods, and growth potential so you invest with confidence.
+                  Detailed cost analysis, robust financial modeling, and clear unit economics demonstrating the path to high ROI.
                 </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                   {[
@@ -924,391 +964,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* ── WHY US SECTION ── */}
-        <div id="why-us" style={{ marginTop: 160, scrollMarginTop: 90 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 32 }}>
-            <div style={{ maxWidth: 600 }}>
-              <div style={{ 
-                display: "inline-block", 
-                background: "#dcfce7", 
-                color: "#166534", 
-                padding: "6px 16px", 
-                borderRadius: 999, 
-                fontSize: 12, 
-                fontWeight: 700, 
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: 24
-              }}>
-                Why Choose Us
-              </div>
-              <h2 style={{ 
-                fontSize: "clamp(2.5rem, 4vw, 3.5rem)", 
-                fontWeight: 900, 
-                lineHeight: 1.1, 
-                letterSpacing: "-1px",
-                color: "#111",
-                margin: 0,
-                fontFamily: "var(--font-display), Inter, sans-serif"
-              }}>
-                Streamlined Franchise Investment Solutions
-              </h2>
-            </div>
-            <div style={{ maxWidth: 300 }}>
-              <p style={{ color: "#666", fontSize: 15, lineHeight: 1.6, marginBottom: 20 }}>
-                Partner with industry experts and build a profitable franchise portfolio.
-              </p>
-              <a
-                href="#schedule"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  background: "#3dba44",
-                  borderRadius: 999,
-                  padding: "14px 28px",
-                  fontSize: 13,
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                  color: "#fff",
-                  textDecoration: "none",
-                }}
-              >
-                Schedule a Call With Us <ArrowIcon color="#fff" />
-              </a>
-            </div>
-          </div>
-
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", 
-            gap: 24 
-          }}>
-            {[
-              {
-                bg: "#e3fbe9",
-                iconColor: "#4ade80",
-                title: "Expert guidance",
-                desc: "Our dedicated team of franchise experts will guide you through every step of your investment journey.",
-                icon: (
-                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="greenGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-                        <stop stopColor="#4ade80" />
-                        <stop offset="1" stopColor="#16a34a" />
-                      </linearGradient>
-                    </defs>
-                    <g>
-                      <rect x="26" y="8" width="12" height="48" rx="6" fill="url(#greenGrad)" />
-                      <rect x="8" y="26" width="48" height="12" rx="6" fill="url(#greenGrad)" />
-                      <circle cx="14" cy="14" r="8" fill="url(#greenGrad)" />
-                      <circle cx="50" cy="14" r="8" fill="url(#greenGrad)" />
-                      <circle cx="14" cy="50" r="8" fill="url(#greenGrad)" />
-                      <circle cx="50" cy="50" r="8" fill="url(#greenGrad)" />
-                      <rect x="18" y="18" width="28" height="28" rx="8" fill="#ffffff" />
-                      <path d="M34 22L26 33h6l-2 9 8-11h-6l2-9z" fill="url(#greenGrad)" />
-                    </g>
-                  </svg>
-                )
-              },
-              {
-                bg: "#fefae0",
-                iconColor: "#facc15",
-                title: "Curated opportunities",
-                desc: "Gain access to a carefully vetted portfolio of high-growth food franchise brands.",
-                icon: (
-                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="yellowGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-                        <stop stopColor="#fde047" />
-                        <stop offset="1" stopColor="#eab308" />
-                      </linearGradient>
-                    </defs>
-                    <g>
-                      <path d="M48 16H24c-4.4 0-8 3.6-8 8v8h12v-8h20v16H36v12h12c4.4 0 8-3.6 8-8V24c0-4.4-3.6-8-8-8z" fill="url(#yellowGrad)" />
-                      <path d="M16 48h24c4.4 0 8-3.6 8-8v-8H36v8H16V24h12V12H16c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8z" fill="#fef08a" />
-                    </g>
-                  </svg>
-                )
-              },
-              {
-                bg: "#d9f9fb",
-                iconColor: "#22d3ee",
-                title: "Transparent process",
-                desc: "No hidden fees or surprises. We believe in complete transparency from start to finish.",
-                icon: (
-                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
-                        <stop stopColor="#67e8f9" />
-                        <stop offset="1" stopColor="#06b6d4" />
-                      </linearGradient>
-                    </defs>
-                    <g>
-                      <circle cx="50" cy="14" r="6" fill="url(#blueGrad)" />
-                      <circle cx="40" cy="24" r="4" fill="url(#blueGrad)" />
-                      <circle cx="32" cy="28" r="14" fill="url(#blueGrad)" />
-                      <rect x="12" y="46" width="40" height="14" rx="7" fill="url(#blueGrad)" />
-                    </g>
-                  </svg>
-                )
-              },
-              {
-                bg: "#fceef6",
-                iconColor: "#c084fc",
-                title: "Ongoing support",
-                desc: "Our partnership doesn't end at signing. We provide continuous support to ensure your success.",
-                icon: (
-                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="pinkGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-                        <stop stopColor="#f472b6" />
-                        <stop offset="1" stopColor="#d946ef" />
-                      </linearGradient>
-                    </defs>
-                    <g>
-                      <rect x="12" y="12" width="16" height="16" rx="4" fill="url(#pinkGrad)" />
-                      <rect x="12" y="28" width="16" height="16" rx="4" fill="url(#pinkGrad)" />
-                      <rect x="28" y="28" width="16" height="16" rx="4" fill="url(#pinkGrad)" />
-                      <rect x="28" y="44" width="32" height="16" rx="4" fill="url(#pinkGrad)" />
-                    </g>
-                  </svg>
-                )
-              }
-            ].map((card, i) => (
-              <div key={i} style={{ 
-                background: card.bg, 
-                borderRadius: 24, 
-                padding: "40px 32px 56px",
-                minHeight: 320,
-                display: "flex",
-                flexDirection: "column"
-              }}>
-                <div style={{ marginBottom: 40 }}>
-                  {card.icon}
-                </div>
-                <h3 style={{ fontSize: 22, fontWeight: 800, color: "#111", lineHeight: 1.3, marginBottom: 16, fontFamily: "var(--font-display), Inter, sans-serif" }}>
-                  {card.title}
-                </h3>
-                <p style={{ fontSize: 15, color: "#555", lineHeight: 1.6, margin: 0 }}>
-                  {card.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-
-
-      {/* ── TESTIMONIALS SECTION ── */}
-      <section id="testimonials" style={{ maxWidth: 1360, margin: "0 auto", padding: "120px 24px 140px", scrollMarginTop: 90 }}>
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <div style={{
-            display: "inline-block",
-            background: "#dcfce7",
-            color: "#166534",
-            padding: "6px 20px",
-            borderRadius: 999,
-            fontSize: 12,
-            fontWeight: 700,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            marginBottom: 24,
-          }}>
-            Testimonials
-          </div>
-          <h2 style={{
-            fontSize: "clamp(2.4rem, 4vw, 3.5rem)",
-            fontWeight: 900,
-            lineHeight: 1.1,
-            letterSpacing: "-1px",
-            color: "#111",
-            margin: "0 0 20px",
-            fontFamily: "var(--font-display), Inter, sans-serif",
-          }}>
-            Trusted by Investors Nationwide
-          </h2>
-          <p style={{ color: "#666", fontSize: 15, lineHeight: 1.7, maxWidth: 520, margin: "0 auto" }}>
-            Don&apos;t just take our word for it. Hear what our franchise investors have to say about their experience with Franchise Broker.
-          </p>
-        </div>
-
-        {/* Cards Row */}
-        <div style={{ overflow: "hidden", position: "relative" }}>
-          <div
-            key={testimonialsPage}
-            className={`testi-slide ${
-              testimonialsAnimating
-                ? testimonialsDir === "left"
-                  ? "testi-exit-left"
-                  : "testi-exit-right"
-                : testimonialsDir === "left"
-                ? "testi-enter-right"
-                : testimonialsDir === "right"
-                ? "testi-enter-left"
-                : ""
-            }`}
-            style={{
-              display: "flex",
-              gap: 20,
-            }}
-          >
-            {testimonials
-              .filter((_, i) => i === testimonialsPage || i === testimonialsPage + 1)
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
-              .map((t, _idx) => (
-                <div
-                  key={t.name}
-                  style={{
-                    flex: "0 0 calc(50% - 10px)",
-                    background: "#eaf0f6",
-                    borderRadius: 24,
-                    padding: "32px",
-                    display: "flex",
-                    gap: 28,
-                    alignItems: "stretch",
-                    opacity: 1,
-                    overflow: "hidden",
-                    minHeight: 280,
-                  }}
-                >
-                  {/* Left: quote + text */}
-                  <div style={{
-                    flex: 1,
-                    background: "#dce3ea",
-                    borderRadius: 16,
-                    padding: "26px 26px 22px",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 14,
-                  }}>
-                    {/* Big open-quote mark */}
-                    <div style={{
-                      fontSize: 72,
-                      lineHeight: 0.6,
-                      color: "#3dba44",
-                      fontWeight: 900,
-                      fontFamily: "Georgia, serif",
-                      userSelect: "none",
-                    }}>
-                      &ldquo;
-                    </div>
-                    <p style={{ fontSize: 14, lineHeight: 1.8, color: "#2d3a42", margin: 0, flex: 1 }}>
-                      {t.quote}
-                    </p>
-                  </div>
-
-                  {/* Right: stat + avatar — shown on both cards */}
-                  <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    minWidth: 154,
-                  }}>
-                    <div>
-                      <div style={{ display: "flex", alignItems: "flex-end", gap: 4 }}>
-                        <span style={{ fontSize: 13, color: "#4a5a6a", fontWeight: 500 }}>&#8377;</span>
-                        <span style={{ fontSize: 50, fontWeight: 900, lineHeight: 1, color: "#111", letterSpacing: "-2px", fontFamily: "var(--font-display), Inter, sans-serif" }}>{t.stat}</span>
-                        <span style={{ fontSize: 17, fontWeight: 700, color: "#4a5a6a", paddingBottom: 7 }}>cr</span>
-                      </div>
-                      <div style={{ fontSize: 12, color: "#4a5a6a", fontWeight: 500, marginTop: 6 }}>{t.statLabel}</div>
-                    </div>
-
-                    <div>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={t.avatar}
-                        alt={t.name}
-                        style={{
-                          width: 50,
-                          height: 50,
-                          borderRadius: "50%",
-                          objectFit: "cover",
-                          display: "block",
-                          marginBottom: 14,
-                        }}
-                      />
-                      <div style={{ height: 1, background: "#a0b4c4", marginBottom: 14 }} />
-                      <div style={{ fontSize: 14, fontWeight: 700, color: "#111" }}>{t.name}</div>
-                      <div style={{ fontSize: 11, color: "#4a5a6a", marginTop: 3 }}>{t.company}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-
-        {/* Controls */}
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 20, marginTop: 48 }}>
-          <button
-            aria-label="Previous testimonial"
-            onClick={() => changeTestimonialsPage(Math.max(0, testimonialsPage - 1), "right")}
-            disabled={testimonialsPage === 0 || testimonialsAnimating}
-            style={{
-              width: 52,
-              height: 44,
-              borderRadius: 999,
-              border: "1.5px solid #ccc",
-              background: "#fff",
-              fontSize: 18,
-              cursor: testimonialsPage === 0 ? "not-allowed" : "pointer",
-              opacity: testimonialsPage === 0 ? 0.35 : 1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              transition: "opacity 0.2s",
-            }}
-          >
-            ←
-          </button>
-
-          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => changeTestimonialsPage(i, i > testimonialsPage ? "left" : "right")}
-                aria-label={`Go to testimonial ${i + 1}`}
-                style={{
-                  width: i === testimonialsPage ? 24 : 10,
-                  height: 10,
-                  borderRadius: 999,
-                  background: i === testimonialsPage ? "#3dba44" : "#d1d5db",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: 0,
-                  transition: "all 0.3s",
-                }}
-              />
-            ))}
-          </div>
-
-          <button
-            aria-label="Next testimonial"
-            onClick={() => changeTestimonialsPage(Math.min(testimonials.length - 1, testimonialsPage + 1), "left")}
-            disabled={testimonialsPage >= testimonials.length - 1 || testimonialsAnimating}
-            style={{
-              width: 52,
-              height: 44,
-              borderRadius: 999,
-              border: "1.5px solid #ccc",
-              background: "#fff",
-              fontSize: 18,
-              cursor: testimonialsPage >= testimonials.length - 1 ? "not-allowed" : "pointer",
-              opacity: testimonialsPage >= testimonials.length - 1 ? 0.35 : 1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              transition: "opacity 0.2s",
-            }}
-          >
-            →
-          </button>
         </div>
       </section>
 
@@ -1451,12 +1106,28 @@ export default function Home() {
               margin: "0 0 24px",
               fontFamily: "var(--font-display), Inter, sans-serif",
             }}>
-              Ready to Grow Your Franchise Portfolio?
+              Your Investment Roadmap
             </h2>
             <p style={{ color: "#666", fontSize: 16, lineHeight: 1.7, maxWidth: 440, marginBottom: 32 }}>
-              Get matched with vetted, high-performing restaurant franchise brands and
-              start building long-term wealth with expert guidance every step of the way.
+              From initial selection to your first dividend payout, we handle the complexities of cross-border franchise investment.
             </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 24, marginBottom: 40 }}>
+              {[
+                { step: "01", title: "Select Brand", desc: "Review financials and lock in the territory." },
+                { step: "02", title: "Due Diligence", desc: "Legal structuring and profit repatriation setup for UK investors." },
+                { step: "03", title: "Buildout & Hiring", desc: "Handled seamlessly by the verified local franchise team." },
+                { step: "04", title: "Launch & Returns", desc: "Store opening and transparent monthly dividend distributions." }
+              ].map((item) => (
+                <div key={item.step} style={{ display: "flex", gap: 16 }}>
+                  <div style={{ fontSize: 15, fontWeight: 900, color: "#3dba44", flexShrink: 0, marginTop: 2 }}>{item.step}</div>
+                  <div>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: "#111", marginBottom: 4 }}>{item.title}</div>
+                    <div style={{ fontSize: 15, color: "#666", lineHeight: 1.5 }}>{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
             <a
               href="#get-started"
               style={{
@@ -1479,51 +1150,6 @@ export default function Home() {
               <ArrowIcon color="#fff" />
             </a>
 
-            {/* Floating testimonial card */}
-            <div style={{
-              marginTop: 72,
-              background: "#f4f5f7",
-              borderRadius: 20,
-              padding: "20px 24px",
-              maxWidth: 400,
-            }}>
-              <p style={{
-                fontSize: 14,
-                lineHeight: 1.7,
-                color: "#444",
-                fontWeight: 400,
-                margin: 0,
-                marginBottom: 16,
-              }}>
-                &ldquo;Investing through Franchise Broker felt effortless — clear
-                guidance, no surprises, and steady returns from day one.&rdquo;
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <div style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  background: "#ccc",
-                  flexShrink: 0,
-                }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/image5.jpg"
-                    alt="Karan Verma"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                </div>
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: "#111", lineHeight: 1.3 }}>
-                    Karan Verma
-                  </div>
-                  <div style={{ fontSize: 11, color: "#999", marginTop: 2, fontWeight: 400 }}>
-                    Franchise Investor
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right: image */}
@@ -1537,8 +1163,8 @@ export default function Home() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/meeting.jpg"
-                alt="Franchise investors meeting"
+                src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80"
+                alt="Restaurant dining experience"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
               <span className="cta-cut cta-cut-top-one" aria-hidden="true" />
@@ -1737,34 +1363,34 @@ const testimonials = [
 
 const faqs = [
   {
-    question: "What is the minimum investment required to start a franchise?",
+    question: "Can I repatriate my profits back to the UK?",
     answer:
-      "Minimum investment varies widely by brand and industry, typically ranging from a couple of crores for smaller quick-service formats to significantly more for larger dine-in concepts. We help you shortlist brands that match your budget.",
+      "Yes. Pakistan's foreign investment laws allow for 100% repatriation of capital, profits, and dividends for foreign investors, provided the initial investment is properly registered through authorized banking channels.",
   },
   {
-    question: "How does Franchise Broker select which brands to work with?",
+    question: "Do I need to be in Pakistan to manage the restaurant?",
     answer:
-      "Every brand goes through a due-diligence review covering financial health, unit economics, and franchisee support before it's added to our curated portfolio.",
+      "No. We prioritize franchise opportunities that offer turnkey management or connect you with verified local operating partners. You will receive transparent monthly reporting while they handle daily operations.",
   },
   {
-    question: "How long does the franchise matching process take?",
+    question: "How is my £250,000 budget best allocated?",
     answer:
-      "Most investors receive a shortlisted set of matching opportunities within 30 days, though timelines can vary based on your requirements and target market.",
+      "Depending on the brand, £250K can fund a single flagship location for a premium brand, or 2-3 locations for smaller quick-service or cafe formats, providing instant portfolio diversification.",
   },
   {
-    question: "Do you charge investors any fees?",
+    question: "Why invest in the Pakistani food sector?",
     answer:
-      "Our advisory services are free for investors — we're compensated by the franchisor once a deal is successfully closed.",
+      "Pakistan has a booming, food-loving middle class and a massive youth demographic. Combined with significantly lower operating, labor, and real estate costs compared to the UK, the profit margins and ROI potential are exceptionally high.",
+  },
+  {
+    question: "How does Franchise Broker select which brands to pitch?",
+    answer:
+      "Every brand goes through rigorous due-diligence covering financial health, unit economics, supply chain stability, and franchisee support before we present it to our international investors.",
   },
   {
     question: "What support do you provide after the deal is signed?",
     answer:
-      "We continue supporting you through site selection, financial modeling, and operational onboarding well after the agreement is finalized.",
-  },
-  {
-    question: "Can I invest in a franchise outside my home state?",
-    answer:
-      "Yes. We work with brands and investors across multiple states and can help you evaluate market-specific growth potential wherever you want to invest.",
+      "We act as your local representatives, supporting you through legal structuring, site selection verification, financial modeling, and ensuring smooth operational onboarding with the franchisor.",
   },
 ];
 
