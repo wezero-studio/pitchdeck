@@ -158,13 +158,13 @@ export default function Home() {
               className="hero-heading"
               style={{
                 fontSize: "clamp(3rem, 4.5vw, 5.5rem)",
-                fontWeight: 900,
+                fontWeight: 600,
                 lineHeight: 1.05,
                 letterSpacing: "-1px",
                 color: "#111",
                 margin: 0,
                 marginTop: "-12px",
-                fontFamily: "var(--font-display), Inter, sans-serif",
+                fontFamily: "Inter, sans-serif",
               }}
             >
               <div className="hero-line-1" style={{ whiteSpace: "nowrap" }}>Curated Restaurant</div>
@@ -333,7 +333,7 @@ export default function Home() {
                 <div
                   style={{
                     fontSize: "clamp(2rem, 4vw, 4.2rem)",
-                    fontWeight: 900,
+                    fontWeight: 700,
                     letterSpacing: "-2px",
                     color: "#111",
                     lineHeight: 1.1,
@@ -384,7 +384,7 @@ export default function Home() {
               </div>
               <h2 style={{ 
                 fontSize: "clamp(2.5rem, 4vw, 3.5rem)", 
-                fontWeight: 900, 
+                fontWeight: 700, 
                 lineHeight: 1.1, 
                 letterSpacing: "-1px",
                 color: "#111",
@@ -403,11 +403,12 @@ export default function Home() {
           <div className="brand-list-container">
             {[
               {
-                initials: "CC",
+                logo: "/chopchips.png",
                 name: "Chopped Chips",
                 investment: "£85,000",
                 industry: "Food & Beverage",
                 link: "#",
+                instagram: "https://www.instagram.com/chopchips.pk/",
                 image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.8",
                 reviewsCount: "1.2k",
@@ -416,11 +417,12 @@ export default function Home() {
                 roi: "18%"
               },
               {
-                initials: "EN",
+                logo: "/enaarilogo.jpg",
                 name: "Enaari",
                 investment: "£150,000",
                 industry: "Fine Dining",
                 link: "#",
+                instagram: "https://www.instagram.com/_enaari_/",
                 image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.9",
                 reviewsCount: "850",
@@ -429,11 +431,12 @@ export default function Home() {
                 roi: "22%"
               },
               {
-                initials: "LC",
+                logo: "/lastcrumb.jpg",
                 name: "The Last Crumb",
                 investment: "£120,000",
                 industry: "Dessert & Bakery",
                 link: "#",
+                instagram: "https://www.instagram.com/lastcrumbcookiespakistan/?hl=en",
                 image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.7",
                 reviewsCount: "2.1k",
@@ -442,11 +445,14 @@ export default function Home() {
                 roi: "20%"
               },
               {
-                initials: "YI",
+                logo: "/yeristanbul.jpg",
+                logoStyle: { objectFit: "contain" } as React.CSSProperties,
+                logoNoBox: true,
                 name: "Yar Istanbul",
                 investment: "£200,000",
                 industry: "Restaurant",
                 link: "#",
+                instagram: "https://www.instagram.com/yeristanbulisb/?hl=en",
                 image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.6",
                 reviewsCount: "940",
@@ -455,11 +461,12 @@ export default function Home() {
                 roi: "19%"
               },
               {
-                initials: "AR",
+                logo: "/artisan.png",
                 name: "Artisan",
                 investment: "£140,000",
                 industry: "Restaurant",
                 link: "#",
+                instagram: "https://www.instagram.com/artisancoffeeroasterpk/?hl=en",
                 image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.8",
                 reviewsCount: "1.5k",
@@ -468,11 +475,12 @@ export default function Home() {
                 roi: "21%"
               },
               {
-                initials: "SS",
+                logo: "/softswirl.jpg",
                 name: "Soft Swirl",
                 investment: "£90,000",
                 industry: "Dessert & Ice Cream",
                 link: "#",
+                instagram: "https://www.instagram.com/softswirlpk/",
                 image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.9",
                 reviewsCount: "3.2k",
@@ -481,11 +489,12 @@ export default function Home() {
                 roi: "25%"
               },
               {
-                initials: "SD",
+                logo: "/saadidisajji.jpg",
                 name: "Saadi di Sajji",
                 investment: "£160,000",
                 industry: "Restaurant",
                 link: "#",
+                instagram: "https://www.instagram.com/saadidisajjipk/",
                 image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.5",
                 reviewsCount: "1.1k",
@@ -494,11 +503,12 @@ export default function Home() {
                 roi: "17%"
               },
               {
-                initials: "CP",
+                logo: "/cafepraha.jpg",
                 name: "Cafe Praha",
                 investment: "£130,000",
                 industry: "Cafe",
                 link: "#",
+                instagram: "https://www.instagram.com/caffepraha/?hl=en",
                 image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.7",
                 reviewsCount: "1.8k",
@@ -507,11 +517,12 @@ export default function Home() {
                 roi: "22%"
               },
               {
-                initials: "CK",
+                logo: "/chaayekhana.jpg",
                 name: "Chai Khaana",
                 investment: "£75,000",
                 industry: "Cafe",
                 link: "#",
+                instagram: "https://www.instagram.com/chaaye_khana/?hl=en",
                 image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.8",
                 reviewsCount: "4.5k",
@@ -520,11 +531,12 @@ export default function Home() {
                 roi: "24%"
               },
               {
-                initials: "FB",
+                logo: "/thefatboy.png",
                 name: "The Fat Boy",
                 investment: "£110,000",
                 industry: "Restaurant",
                 link: "#",
+                instagram: "https://www.instagram.com/thefatboylahore/?hl=en",
                 image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
                 reviews: "4.6",
                 reviewsCount: "820",
@@ -577,22 +589,22 @@ export default function Home() {
               >
                 
                 {/* Left: Info */}
-                <div style={{ flex: "1 1 360px", display: "flex", flexDirection: "column", marginTop: 16, ...desktopInfoAnim }}>
-                  <div style={{ marginBottom: 24, background: "#f4f5f7", padding: "16px", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 72, width: 96, fontSize: 24, fontWeight: 900, color: "#111" }}>
-                    {brand.initials}
+                <div className="brand-info-block" style={{ flex: "1 1 360px", display: "flex", flexDirection: "column", marginTop: 16, ...desktopInfoAnim }}>
+                  {/* Mobile Swipe Hint (Only on first card) */}
+                  {i === 0 && (
+                    <div className="mobile-only-flex" style={{ marginBottom: 20, marginTop: -12 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#166534", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", background: "#dcfce7", padding: "6px 12px", borderRadius: 999 }}>
+                        Swipe to explore
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                      </div>
+                    </div>
+                  )}
+                  <div style={{ marginBottom: 24, background: (brand as any).logoNoBox ? "transparent" : "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 72, width: 96, overflow: "hidden" }}>
+                    <img src={brand.logo} alt={`${brand.name} logo`} style={{ width: "100%", height: "100%", objectFit: "cover", ...(brand as any).logoStyle }} />
                   </div>
                   
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-                    <h3 style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)", fontWeight: 900, letterSpacing: "-0.5px", margin: 0 }}>{brand.name}</h3>
-                    {/* Mobile next arrow - only on active card */}
-                    <button
-                      className="mobile-only-flex"
-                      aria-label="Next brand"
-                      onClick={() => slideTo((brandIndex + 1) % BRAND_COUNT, "left")}
-                      style={{ width: 44, height: 44, borderRadius: "50%", background: "#111", border: "none", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0 }}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                    </button>
+                    <h3 style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)", fontWeight: 700, letterSpacing: "-0.5px", margin: 0 }}>{brand.name}</h3>
                   </div>
                   <p style={{ color: "#555", fontSize: 16, lineHeight: 1.6, marginBottom: 24, maxWidth: "90%" }}>
                     A highly profitable and rapidly growing franchise brand with an established customer base.
@@ -600,23 +612,25 @@ export default function Home() {
                   
                   {/* Social/Reviews Row - Highlighted Cards */}
                   <div style={{ display: "flex", gap: 16, marginBottom: 32, flexWrap: "wrap" }}>
-                    <div style={{ flex: "1 1 140px", display: "flex", alignItems: "center", gap: 12, padding: "16px", background: "#fefae0", border: "1.5px solid #fde047", borderRadius: 16 }}>
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#fef08a", display: "flex", alignItems: "center", justifyContent: "center", color: "#ca8a04", fontSize: 22, flexShrink: 0 }}>★</div>
+                    <a href="#" className="metric-card" aria-label="View Google Reviews" target="_blank" rel="noopener noreferrer">
+                      <div className="metric-card-cutout"></div>
+                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#dcf2e1", display: "flex", alignItems: "center", justifyContent: "center", color: "#329b47", fontSize: 22, flexShrink: 0 }}>★</div>
                       <div>
-                        <div style={{ fontSize: 18, fontWeight: 900, color: "#854d0e", lineHeight: 1 }}>{brand.reviews}</div>
-                        <div style={{ fontSize: 13, color: "#a16207", marginTop: 4, fontWeight: 600 }}>{brand.reviewsCount} reviews</div>
+                        <div style={{ fontSize: 18, fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.reviews}</div>
+                        <div style={{ fontSize: 13, color: "#256632", marginTop: 4, fontWeight: 600 }}>{brand.reviewsCount} reviews</div>
                       </div>
-                    </div>
+                    </a>
                     
-                    <div style={{ flex: "1 1 140px", display: "flex", alignItems: "center", gap: 12, padding: "16px", background: "#f4f5f7", border: "1.5px solid #e5e7eb", borderRadius: 16 }}>
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", color: "#374151", flexShrink: 0 }}>
+                    <a href={(brand as any).instagram || "#"} className="metric-card" aria-label="View Instagram Profile" target="_blank" rel="noopener noreferrer">
+                      <div className="metric-card-cutout"></div>
+                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#dcf2e1", display: "flex", alignItems: "center", justifyContent: "center", color: "#329b47", flexShrink: 0 }}>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                       </div>
                       <div>
-                        <div style={{ fontSize: 18, fontWeight: 900, color: "#1f2937", lineHeight: 1 }}>{brand.followers}</div>
-                        <div style={{ fontSize: 13, color: "#4b5563", marginTop: 4, fontWeight: 600 }}>Followers</div>
+                        <div style={{ fontSize: 18, fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.followers}</div>
+                        <div style={{ fontSize: 13, color: "#256632", marginTop: 4, fontWeight: 600 }}>Followers</div>
                       </div>
-                    </div>
+                    </a>
                   </div>
                   
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px 24px", marginBottom: 40, padding: "24px", background: "#f9fafb", borderRadius: 20 }}>
@@ -666,7 +680,7 @@ export default function Home() {
                 </div>
 
                 {/* Right: Collage */}
-                <div style={{ flex: "1 1 500px", minHeight: 500, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(5, 1fr)", gap: 12, ...desktopImgAnim }}>
+                <div className="brand-img-block" style={{ flex: "1 1 500px", minHeight: 500, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(5, 1fr)", gap: 12, ...desktopImgAnim }}>
                   {/* Tall Left */}
                   <div style={{ gridColumn: "1 / 2", gridRow: "1 / 3", borderRadius: 20, overflow: "hidden" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -712,25 +726,6 @@ export default function Home() {
             )})}
           </div>
 
-          {/* Mobile dot indicators */}
-          <div className="mobile-only-flex" style={{ justifyContent: "center", gap: 8, marginTop: 24 }}>
-            {Array.from({ length: BRAND_COUNT }).map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => slideTo(idx, idx > brandIndex ? "left" : "right")}
-                style={{
-                  width: idx === brandIndex ? 24 : 8,
-                  height: 8,
-                  borderRadius: 999,
-                  background: idx === brandIndex ? "#111" : "#ddd",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  transition: "width 0.3s ease, background 0.3s ease",
-                }}
-              />
-            ))}
-          </div>
         </div>
       </section>
       {/* ── FAQ SECTION ── */}
@@ -752,7 +747,7 @@ export default function Home() {
           </div>
           <h2 style={{
             fontSize: "clamp(2.4rem, 4vw, 3.5rem)",
-            fontWeight: 900,
+            fontWeight: 700,
             lineHeight: 1.1,
             letterSpacing: "-1px",
             color: "#111",
@@ -788,7 +783,7 @@ export default function Home() {
                     fontSize: 17,
                     fontWeight: 700,
                     color: "#111",
-                    fontFamily: "var(--font-display), Inter, sans-serif",
+                    fontFamily: "Inter, sans-serif",
                   }}>
                     {faq.question}
                   </span>
@@ -864,7 +859,7 @@ export default function Home() {
           <div style={{ flex: "1 1 440px", position: "relative" }}>
             <h2 style={{
               fontSize: "clamp(2.4rem, 4vw, 3.6rem)",
-              fontWeight: 900,
+              fontWeight: 700,
               lineHeight: 1.12,
               letterSpacing: "-1px",
               color: "#111",
@@ -884,7 +879,7 @@ export default function Home() {
                 { step: "04", title: "Launch & Returns", desc: "Store opening and transparent monthly dividend distributions." }
               ].map((item) => (
                 <div key={item.step} style={{ display: "flex", gap: 16 }}>
-                  <div style={{ fontSize: 15, fontWeight: 900, color: "#3dba44", flexShrink: 0, marginTop: 2 }}>{item.step}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: "#3dba44", flexShrink: 0, marginTop: 2 }}>{item.step}</div>
                   <div>
                     <div style={{ fontSize: 16, fontWeight: 700, color: "#111", marginBottom: 4 }}>{item.title}</div>
                     <div style={{ fontSize: 15, color: "#666", lineHeight: 1.5 }}>{item.desc}</div>
@@ -1000,10 +995,10 @@ export default function Home() {
               userSelect: "none",
             }}
           >
-            <span style={{ fontSize: 18, fontWeight: 900, letterSpacing: "-0.5px", color: "#3dba44" }}>
+            <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.5px", color: "#3dba44" }}>
               Franchise
             </span>
-            <span style={{ fontSize: 18, fontWeight: 900, letterSpacing: "-0.5px", color: "#111", marginTop: -2 }}>
+            <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.5px", color: "#111", marginTop: -2 }}>
               Broker.
             </span>
           </Link>

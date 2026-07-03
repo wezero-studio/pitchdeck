@@ -381,9 +381,9 @@ body {
 .confidence-header h2 {
   margin: 0;
   color: #0b2530;
-  font-family: var(--font-display), Inter, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: clamp(2.25rem, 3.3vw, 3.45rem);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: 0;
 }
@@ -481,13 +481,13 @@ body {
   display: flex;
   align-items: flex-end;
   gap: 8px;
-  font-family: var(--font-display), Inter, sans-serif;
+  font-family: var(--font-mono), Inter, sans-serif;
   line-height: 0.9;
 }
 
 .confidence-value span {
   font-size: clamp(2.6rem, 3.5vw, 3.8rem);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .confidence-value small {
@@ -521,7 +521,7 @@ body {
   place-items: center;
   color: #0b2530;
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .confidence-card-footer strong {
@@ -790,31 +790,33 @@ body {
 
 @media (max-width: 768px) {
   .brand-list-container {
-    position: relative;
-    overflow: hidden;
-    min-height: 200px;
-  }
-  .brand-card-item {
-    display: none !important;
-    flex-direction: column !important;
-    gap: 32px !important;
-    margin-bottom: 0 !important;
-  }
-  .brand-card-item.mobile-active {
     display: flex !important;
-    animation: none;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 0 !important;
+    padding-bottom: 24px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
-  .brand-card-item.mobile-active.slide-in-left {
-    animation: slideInLeft 0.32s cubic-bezier(0.4,0,0.2,1) both;
+  .brand-list-container::-webkit-scrollbar {
+    display: none;
   }
-  .brand-card-item.mobile-active.slide-in-right {
-    animation: slideInRight 0.32s cubic-bezier(0.4,0,0.2,1) both;
+  
+  .brand-card-item {
+    display: contents !important; 
   }
-  .brand-card-item.mobile-active.slide-out-left {
-    animation: slideOutLeft 0.28s cubic-bezier(0.4,0,0.2,1) both;
-  }
-  .brand-card-item.mobile-active.slide-out-right {
-    animation: slideOutRight 0.28s cubic-bezier(0.4,0,0.2,1) both;
+
+  .brand-info-block, .brand-img-block {
+    flex: 0 0 85vw !important;
+    max-width: 85vw !important;
+    width: 85vw !important;
+    scroll-snap-align: start !important;
+    padding: 0 16px !important;
+    margin-bottom: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -848,4 +850,60 @@ body {
   .stats-divider {
     display: none !important;
   }
+}
+
+/* Metric Cards */
+.metric-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #f1f8f3;
+  border: 1.5px solid #d8ebd9;
+  border-radius: 16px;
+  flex: 1 1 140px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+  isolation: isolate;
+  cursor: pointer;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+}
+
+.metric-card-cutout {
+  position: absolute;
+  bottom: -1.5px;
+  right: -1.5px;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-top-left-radius: 12px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.metric-card-cutout::before,
+.metric-card-cutout::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+}
+
+.metric-card-cutout::before {
+  top: -12px;
+  right: 0;
+  background: radial-gradient(circle at top left, transparent 12px, #fff 12.5px);
+}
+
+.metric-card-cutout::after {
+  bottom: 0;
+  left: -12px;
+  background: radial-gradient(circle at top left, transparent 12px, #fff 12.5px);
 }
