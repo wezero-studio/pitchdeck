@@ -6,13 +6,18 @@ on:
   pull_request:
     branches: [main]
 
-# Cloudflare project name is derived from the repository name automatically.
+# Cloudflare Pages project name is hardcoded (not derived from the repo name)
+# because "pitchdeck" was already taken by an unrelated Cloudflare account —
+# *.pages.dev subdomains are global, not scoped per-account. Cloudflare
+# auto-suffixed our first-ever project creation to "pitchdeck-boo", so that's
+# the project every deploy actually needs to target from here on.
 # Required secrets: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
 # Optional secret: GH_ADMIN_TOKEN (PAT with repo admin scope, for setting homepage URL)
 
 env:
   NEXT_TELEMETRY_DISABLED: 1
   NODE_OPTIONS: --max-old-space-size=4096
+  CLOUDFLARE_PROJECT_NAME: pitchdeck-boo
 
 jobs:
   ci:
@@ -87,7 +92,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          PROJECT="${{ github.event.repository.name }}"
+          PROJECT="${{ env.CLOUDFLARE_PROJECT_NAME }}"
           if bunx wrangler pages project list | grep -qw "$PROJECT"; then
             echo "Cloudflare Pages project '$PROJECT' already exists."
           else
@@ -101,7 +106,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out --project-name=${{ github.event.repository.name }} --branch=main --commit-dirty=true
+          command: pages deploy out --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} --branch=main --commit-dirty=true
 
       - name: Set repository homepage to deployment URL
         continue-on-error: true
@@ -116,7 +121,7 @@ jobs:
           # steps.deploy.outputs.deployment-url — that output is a unique,
           # one-off URL generated fresh on every single deploy, which would
           # make the homepage link change (and look "different") every push.
-          PAGES_URL="https://${{ github.event.repository.name }}.pages.dev"
+          PAGES_URL="https://${{ env.CLOUDFLARE_PROJECT_NAME }}.pages.dev"
           gh repo edit --homepage "$PAGES_URL" || echo "::warning::Failed to set repo homepage (GitHub API issue) — deploy itself was unaffected."
 
   deploy-preview:
@@ -160,7 +165,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          PROJECT="${{ github.event.repository.name }}"
+          PROJECT="${{ env.CLOUDFLARE_PROJECT_NAME }}"
           if bunx wrangler pages project list | grep -qw "$PROJECT"; then
             echo "Cloudflare Pages project '$PROJECT' already exists."
           else
@@ -174,7 +179,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out --project-name=${{ github.event.repository.name }} --commit-dirty=true
+          command: pages deploy out --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} --commit-dirty=true
 
       - name: Comment preview URL
         uses: actions/github-script@v8
