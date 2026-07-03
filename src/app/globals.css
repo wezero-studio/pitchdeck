@@ -381,7 +381,7 @@ body {
 .confidence-header h2 {
   margin: 0;
   color: #0b2530;
-  font-family: Inter, sans-serif;
+  font-family: Fraunces, serif;
   font-size: clamp(2.25rem, 3.3vw, 3.45rem);
   font-weight: 700;
   line-height: 1.05;
@@ -481,7 +481,7 @@ body {
   display: flex;
   align-items: flex-end;
   gap: 8px;
-  font-family: var(--font-mono), Inter, sans-serif;
+  font-family: var(--font-mono), Fraunces, serif;
   line-height: 0.9;
 }
 

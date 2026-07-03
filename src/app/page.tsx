@@ -103,7 +103,7 @@ export default function Home() {
         minHeight: "100vh",
         background: "#fff",
         color: "#111",
-        fontFamily: "Inter, sans-serif",
+        fontFamily: "Fraunces, serif",
         overflowX: "hidden",
       }}
     >
@@ -168,7 +168,7 @@ export default function Home() {
               paddingTop: 8,
             }}
           >
-            {/* Headline — massive, tight, Inter black */}
+            {/* Headline — massive, tight, Fraunces black */}
             <h1
               className="hero-heading"
               style={{
@@ -179,7 +179,7 @@ export default function Home() {
                 color: "#111",
                 margin: 0,
                 marginTop: "-12px",
-                fontFamily: "Inter, sans-serif",
+                fontFamily: "Fraunces, serif",
               }}
             >
               <div className="hero-line-1" style={{ whiteSpace: "nowrap" }}>Curated Restaurant</div>
@@ -889,7 +889,7 @@ export default function Home() {
                     fontSize: 17,
                     fontWeight: 700,
                     color: "#111",
-                    fontFamily: "Inter, sans-serif",
+                    fontFamily: "Fraunces, serif",
                   }}>
                     {faq.question}
                   </span>

@@ -10,7 +10,7 @@ export default function NotFound() {
         alignItems: "center",
         justifyContent: "center",
         gap: 16,
-        fontFamily: "Inter, sans-serif",
+        fontFamily: "Fraunces, serif",
         textAlign: "center",
         padding: 24,
       }}
