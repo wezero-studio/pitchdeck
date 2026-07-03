@@ -31,6 +31,8 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
   );
 }
 
+type BrandPhoto = { src: string; w: number; h: number };
+
 type BrandData = {
   logo: string;
   name: string;
@@ -46,7 +48,25 @@ type BrandData = {
   roi: string;
   logoStyle?: React.CSSProperties;
   logoNoBox?: boolean;
+  photos?: BrandPhoto[];
+  photoFallback?: string[];
 };
+
+// Fills the 8 collage slots — [hero, tallLeft, topMid, topRight, smallLeft,
+// midRightTall, bottomMidTall, bottomRight] — with real photos first, widest
+// ones going to the two big landscape-ish boxes (hero, bottomRight) and
+// narrower ones to the tall boxes. Each real photo is used at most once —
+// no duplicates. Once real photos run out, remaining slots (least visually
+// prominent first) are filled from the fallback stock list.
+function buildCollageSlots(photos: BrandPhoto[], fallback: string[]): string[] {
+  const real = [...photos].sort((a, b) => b.w / b.h - a.w / a.h).map((p) => p.src);
+  const slotsByPriority = [0, 7, 1, 5, 6, 2, 3, 4];
+  const slots: string[] = new Array(8);
+  slotsByPriority.forEach((slot, i) => {
+    slots[slot] = i < real.length ? real[i] : fallback[(i - real.length) % fallback.length];
+  });
+  return slots;
+}
 
 export default function Home() {
   // Mobile carousel (state kept for future use)
@@ -409,7 +429,16 @@ export default function Home() {
                 reviewsCount: "1.2k",
                 followers: "15k",
                 sales: "£180,000 / yr",
-                roi: "18%"
+                roi: "18%",
+                photos: [
+                  { src: "/chopchips/images.jpg", w: 201, h: 250 },
+                  { src: "/chopchips/img2.jpg", w: 335, h: 597 },
+                  { src: "/chopchips/img3.jpg", w: 400, h: 224 },
+                  { src: "/chopchips/img4.jpg", w: 452, h: 678 },
+                  { src: "/chopchips/img5.jpg", w: 399, h: 501 },
+                  { src: "/chopchips/img6.jpg", w: 4000, h: 2925 },
+                  { src: "/chopchips/img7.jpg", w: 399, h: 501 },
+                ],
               },
               {
                 logo: "/enaarilogo.jpg",
@@ -437,7 +466,14 @@ export default function Home() {
                 reviewsCount: "2.1k",
                 followers: "45k",
                 sales: "£280,000 / yr",
-                roi: "20%"
+                roi: "20%",
+                photos: [
+                  { src: "/lastcrumb/img1.jpeg", w: 1440, h: 1053 },
+                  { src: "/lastcrumb/img2.jpg", w: 365, h: 547 },
+                  { src: "/lastcrumb/img3.jpg", w: 399, h: 501 },
+                  { src: "/lastcrumb/img4.jpg", w: 447, h: 447 },
+                  { src: "/lastcrumb/img5.jpg", w: 386, h: 518 },
+                ],
               },
               {
                 logo: "/yeristanbul.jpg",
@@ -453,7 +489,16 @@ export default function Home() {
                 reviewsCount: "940",
                 followers: "12k",
                 sales: "£420,000 / yr",
-                roi: "19%"
+                roi: "19%",
+                photos: [
+                  { src: "/yeristanbul/img1.jpg", w: 335, h: 597 },
+                  { src: "/yeristanbul/img2.jpg", w: 447, h: 447 },
+                  { src: "/yeristanbul/img3.jpg", w: 399, h: 501 },
+                  { src: "/yeristanbul/img4.jpg", w: 399, h: 501 },
+                  { src: "/yeristanbul/img5.jpg", w: 335, h: 597 },
+                  { src: "/yeristanbul/img6.jpg", w: 387, h: 516 },
+                  { src: "/yeristanbul/img7.jpg", w: 393, h: 508 },
+                ],
               },
               {
                 logo: "/artisan.png",
@@ -467,7 +512,16 @@ export default function Home() {
                 reviewsCount: "1.5k",
                 followers: "18k",
                 sales: "£310,000 / yr",
-                roi: "21%"
+                roi: "21%",
+                photos: [
+                  { src: "/artisan/img2.jpg", w: 554, h: 554 },
+                  { src: "/artisan/img3.jpg", w: 1440, h: 1053 },
+                  { src: "/artisan/img4.jpg", w: 516, h: 387 },
+                  { src: "/artisan/img5.jpg", w: 550, h: 550 },
+                  { src: "/artisan/img6.webp", w: 399, h: 224 },
+                  { src: "/artisan/img7.jpg", w: 479, h: 640 },
+                  { src: "/artisan/img8.jpg", w: 335, h: 597 },
+                ],
               },
               {
                 logo: "/softswirl.jpg",
@@ -481,7 +535,19 @@ export default function Home() {
                 reviewsCount: "3.2k",
                 followers: "50k",
                 sales: "£200,000 / yr",
-                roi: "25%"
+                roi: "25%",
+                photos: [
+                  { src: "/softswirl/img1.jpg", w: 399, h: 501 },
+                  { src: "/softswirl/img2.jpg", w: 335, h: 597 },
+                  { src: "/softswirl/img3.jpg", w: 736, h: 1308 },
+                  { src: "/softswirl/img4.jpg", w: 236, h: 419 },
+                ],
+                photoFallback: [
+                  "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1576506295286-5cda18df43e7?auto=format&fit=crop&w=800&q=80",
+                ],
               },
               {
                 logo: "/saadidisajji.jpg",
@@ -495,7 +561,14 @@ export default function Home() {
                 reviewsCount: "1.1k",
                 followers: "9k",
                 sales: "£360,000 / yr",
-                roi: "17%"
+                roi: "17%",
+                photos: [
+                  { src: "/saadidisajji/img1.jpg", w: 399, h: 501 },
+                  { src: "/saadidisajji/img2.jpg", w: 4000, h: 2925 },
+                  { src: "/saadidisajji/img3.jpg", w: 335, h: 597 },
+                  { src: "/saadidisajji/img4.jpg", w: 387, h: 516 },
+                  { src: "/saadidisajji/img5.jpg", w: 387, h: 516 },
+                ],
               },
               {
                 logo: "/cafepraha.jpg",
@@ -509,7 +582,17 @@ export default function Home() {
                 reviewsCount: "1.8k",
                 followers: "28k",
                 sales: "£290,000 / yr",
-                roi: "22%"
+                roi: "22%",
+                photos: [
+                  { src: "/cafepraha/img1.jpg", w: 456, h: 438 },
+                  { src: "/cafepraha/img2.jpg", w: 445, h: 449 },
+                  { src: "/cafepraha/img3.jpg", w: 382, h: 573 },
+                  { src: "/cafepraha/img4.jpg", w: 387, h: 516 },
+                  { src: "/cafepraha/img5.jpg", w: 480, h: 360 },
+                  { src: "/cafepraha/img6.jpg", w: 739, h: 415 },
+                  { src: "/cafepraha/img7.jpg", w: 335, h: 597 },
+                  { src: "/cafepraha/img8.jpg", w: 335, h: 597 },
+                ],
               },
               {
                 logo: "/chaayekhana.jpg",
@@ -523,7 +606,17 @@ export default function Home() {
                 reviewsCount: "4.5k",
                 followers: "65k",
                 sales: "£150,000 / yr",
-                roi: "24%"
+                roi: "24%",
+                photos: [
+                  { src: "/chaayekhana/img1.jpg", w: 678, h: 452 },
+                  { src: "/chaayekhana/img2.jpeg", w: 958, h: 1280 },
+                  { src: "/chaayekhana/img3.jpg", w: 415, h: 739 },
+                  { src: "/chaayekhana/img4.jpg", w: 500, h: 375 },
+                  { src: "/chaayekhana/img5.webp", w: 511, h: 383 },
+                  { src: "/chaayekhana/img6.jpg", w: 335, h: 597 },
+                  { src: "/chaayekhana/img7.jpg", w: 399, h: 501 },
+                  { src: "/chaayekhana/img8.jpg", w: 447, h: 447 },
+                ],
               },
               {
                 logo: "/thefatboy.png",
@@ -537,7 +630,19 @@ export default function Home() {
                 reviewsCount: "820",
                 followers: "11k",
                 sales: "£250,000 / yr",
-                roi: "21%"
+                roi: "21%",
+                photos: [
+                  { src: "/thefatboy/img1.jpg", w: 335, h: 597 },
+                  { src: "/thefatboy/img2.jpg", w: 335, h: 597 },
+                ],
+                photoFallback: [
+                  "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=80",
+                  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+                ],
               }
             ] as BrandData[]).map((brand, i) => {
               const secondaryImages = [
@@ -560,6 +665,18 @@ export default function Home() {
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "none" : i % 2 === 0 ? "translateX(40px)" : "translateX(-40px)",
               };
+              const collage = brand.photos
+                ? buildCollageSlots(brand.photos, brand.photoFallback ?? secondaryImages)
+                : [
+                    brand.image,
+                    secondaryImages[(i + 1) % 7],
+                    secondaryImages[(i + 2) % 7],
+                    secondaryImages[(i + 3) % 7],
+                    secondaryImages[(i + 4) % 7],
+                    secondaryImages[(i + 5) % 7],
+                    secondaryImages[(i + 6) % 7],
+                    secondaryImages[i % 7],
+                  ];
               return (
               <div
                 key={i}
@@ -673,42 +790,42 @@ export default function Home() {
                   {/* Tall Left */}
                   <div style={{ gridColumn: "1 / 2", gridRow: "1 / 3", borderRadius: 20, overflow: "hidden" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={secondaryImages[(i + 1) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={collage[1]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Top Mid */}
                   <div style={{ gridColumn: "2 / 3", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={secondaryImages[(i + 2) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={collage[2]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Top Right */}
                   <div style={{ gridColumn: "3 / 4", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={secondaryImages[(i + 3) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={collage[3]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Large Center (Brand Image) */}
                   <div style={{ gridColumn: "2 / 4", gridRow: "2 / 4", borderRadius: 24, overflow: "hidden", zIndex: 2, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={brand.image} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={collage[0]} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Small Left */}
                   <div style={{ gridColumn: "1 / 2", gridRow: "3 / 4", borderRadius: 12, overflow: "hidden" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={secondaryImages[(i + 4) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={collage[4]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Mid Right Tall */}
                   <div style={{ gridColumn: "4 / 5", gridRow: "2 / 4", borderRadius: 16, overflow: "hidden" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={secondaryImages[(i + 5) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={collage[5]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Bottom Mid Tall */}
                   <div style={{ gridColumn: "2 / 3", gridRow: "4 / 6", borderRadius: 20, overflow: "hidden" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={secondaryImages[(i + 6) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={collage[6]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   {/* Bottom Right Large-ish */}
                   <div style={{ gridColumn: "3 / 5", gridRow: "4 / 6", borderRadius: 20, overflow: "hidden", marginTop: 24 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={secondaryImages[(i) % 7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={collage[7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                 </div>
               </div>
