@@ -31,30 +31,25 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
   );
 }
 
-export default function Home() {
-  // Mobile carousel
-  const [brandIndex, setBrandIndex] = useState(0);
-  const [exitingBrandIndex, setExitingBrandIndex] = useState<number | null>(null);
-  const [slideDir, setSlideDir] = useState<"left" | "right" | null>(null);
-  const [isSliding, setIsSliding] = useState(false);
-  const BRAND_COUNT = 10;
-  const SLIDE_OUT_MS = 280;
-  const SLIDE_IN_MS = 320;
+type BrandData = {
+  logo: string;
+  name: string;
+  investment: string;
+  industry: string;
+  link: string;
+  instagram?: string;
+  image: string;
+  reviews: string;
+  reviewsCount: string;
+  followers: string;
+  sales: string;
+  roi: string;
+  logoStyle?: React.CSSProperties;
+  logoNoBox?: boolean;
+};
 
-  const slideTo = (next: number, dir: "left" | "right") => {
-    if (isSliding || next === brandIndex) return;
-    setIsSliding(true);
-    setSlideDir(dir);
-    setExitingBrandIndex(brandIndex);
-    window.setTimeout(() => {
-      setBrandIndex(next);
-      setExitingBrandIndex(null);
-      window.setTimeout(() => {
-        setSlideDir(null);
-        setIsSliding(false);
-      }, SLIDE_IN_MS);
-    }, SLIDE_OUT_MS);
-  };
+export default function Home() {
+  // Mobile carousel (state kept for future use)
 
   // Desktop scroll-reveal
   const brandRefs = React.useRef<(HTMLDivElement | null)[]>([]);
@@ -401,7 +396,7 @@ export default function Home() {
             </div>
 
           <div className="brand-list-container">
-            {[
+            {([
               {
                 logo: "/chopchips.png",
                 name: "Chopped Chips",
@@ -544,7 +539,7 @@ export default function Home() {
                 sales: "£250,000 / yr",
                 roi: "21%"
               }
-            ].map((brand, i) => {
+            ] as BrandData[]).map((brand, i) => {
               const secondaryImages = [
                 "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
                 "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
@@ -565,18 +560,11 @@ export default function Home() {
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "none" : i % 2 === 0 ? "translateX(40px)" : "translateX(-40px)",
               };
-              const isMobileExiting = i === exitingBrandIndex;
-              const isMobileActive = i === brandIndex && !isMobileExiting;
-              const mobileClass = isMobileExiting
-                ? `brand-card-item mobile-active${slideDir === "left" ? " slide-out-left" : slideDir === "right" ? " slide-out-right" : ""}`
-                : isMobileActive
-                ? `brand-card-item mobile-active${slideDir === "left" ? " slide-in-left" : slideDir === "right" ? " slide-in-right" : ""}`
-                : "brand-card-item";
               return (
               <div
                 key={i}
                 ref={(el) => { brandRefs.current[i] = el; }}
-                className={mobileClass}
+                className="brand-card-item"
                 data-brand-index={i}
                 style={{
                   display: 'flex',
@@ -599,8 +587,9 @@ export default function Home() {
                       </div>
                     </div>
                   )}
-                  <div style={{ marginBottom: 24, background: (brand as any).logoNoBox ? "transparent" : "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 72, width: 96, overflow: "hidden" }}>
-                    <img src={brand.logo} alt={`${brand.name} logo`} style={{ width: "100%", height: "100%", objectFit: "cover", ...(brand as any).logoStyle }} />
+                  <div style={{ marginBottom: 24, background: brand.logoNoBox ? "transparent" : "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 72, width: 96, overflow: "hidden" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={brand.logo} alt={`${brand.name} logo`} style={{ width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
                   </div>
                   
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
@@ -621,7 +610,7 @@ export default function Home() {
                       </div>
                     </a>
                     
-                    <a href={(brand as any).instagram || "#"} className="metric-card" aria-label="View Instagram Profile" target="_blank" rel="noopener noreferrer">
+                    <a href={brand.instagram ?? "#"} className="metric-card" aria-label="View Instagram Profile" target="_blank" rel="noopener noreferrer">
                       <div className="metric-card-cutout"></div>
                       <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#dcf2e1", display: "flex", alignItems: "center", justifyContent: "center", color: "#329b47", flexShrink: 0 }}>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
