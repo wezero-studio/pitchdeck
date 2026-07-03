@@ -101,7 +101,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out --project-name=${{ github.event.repository.name }} --commit-dirty=true
+          command: pages deploy out --project-name=${{ github.event.repository.name }} --branch=main --commit-dirty=true
 
       - name: Set repository homepage to deployment URL
         continue-on-error: true
@@ -112,10 +112,12 @@ jobs:
             echo "::warning::GH_ADMIN_TOKEN not set — skipping homepage update. Add a PAT with admin scope as an org secret to enable this."
             exit 0
           fi
-          DEPLOY_URL="${{ steps.deploy.outputs.deployment-url }}"
+          # Always point the repo homepage at the stable production alias, not
+          # steps.deploy.outputs.deployment-url — that output is a unique,
+          # one-off URL generated fresh on every single deploy, which would
+          # make the homepage link change (and look "different") every push.
           PAGES_URL="https://${{ github.event.repository.name }}.pages.dev"
-          HOMEPAGE="${DEPLOY_URL:-$PAGES_URL}"
-          gh repo edit --homepage "$HOMEPAGE" || echo "::warning::Failed to set repo homepage (GitHub API issue) — deploy itself was unaffected."
+          gh repo edit --homepage "$PAGES_URL" || echo "::warning::Failed to set repo homepage (GitHub API issue) — deploy itself was unaffected."
 
   deploy-preview:
     name: Deploy Preview
