@@ -25,7 +25,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Franchise Broker — Discover High-Potential Investment Opportunities",
+  title: "Polaris Commercials — Discover High-Potential Investment Opportunities",
   description:
     "Helping investors connect with established restaurant franchises through expert guidance, market insights, and a carefully curated portfolio of proven brands.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
@@ -35,11 +35,11 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   openGraph: {
-    title: "Franchise Broker — Discover High-Potential Investment Opportunities",
+    title: "Polaris Commercials — Discover High-Potential Investment Opportunities",
     description:
       "Helping investors connect with established restaurant franchises through expert guidance and a curated portfolio of proven brands.",
     url: "/",
-    siteName: "Franchise Broker",
+    siteName: "Polaris Commercials",
     locale: "en_US",
     type: "website",
     images: [
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Franchise Broker — Discover High-Potential Investment Opportunities",
+        alt: "Polaris Commercials — Discover High-Potential Investment Opportunities",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Franchise Broker — Discover High-Potential Investment Opportunities",
+    title: "Polaris Commercials — Discover High-Potential Investment Opportunities",
     description:
       "Helping investors connect with established restaurant franchises through expert guidance and a curated portfolio of proven brands.",
     images: ["/og-image.png"],

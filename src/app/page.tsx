@@ -163,6 +163,27 @@ const curatedBrands = [
 ];
 
 
+function useIntersectionObserver(threshold = 0.15) {
+  const [isIntersecting, setIsIntersecting] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    if (!ref.current) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          obs.disconnect();
+        }
+      },
+      { threshold }
+    );
+    obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+
+  return [ref, isIntersecting] as const;
+}
 
 export default function Home() {
   // Mobile carousel (state kept for future use)
@@ -236,6 +257,10 @@ export default function Home() {
           animation: sliceUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           transform: translateY(110%);
         }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
         .slice-hidden {
           transform: translateY(110%);
         }
@@ -331,18 +356,14 @@ export default function Home() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            width: "100%",
+            maxWidth: "1400px",
+            margin: "0 auto",
           }}
         >
-          <div
-            style={{
-              fontSize: "36px",
-              fontWeight: 400,
-              color: "#dfdfdf",
-              fontFamily: "var(--font-playfair), serif",
-              letterSpacing: "0.02em",
-            }}
-          >
-            T
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.jpeg" alt="Polaris Commercials" style={{ height: "48px", width: "auto", objectFit: "contain", mixBlendMode: "lighten" }} />
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <a
@@ -434,19 +455,27 @@ export default function Home() {
           color: "#111",
         }}
       >
-        <div style={{ maxWidth: "1200px", textAlign: "center", overflow: "hidden" }}>
-          <p
-            className={section2Visible ? "animate-slice-up delay-100" : "slice-hidden"}
-            style={{
-              fontFamily: "var(--font-playfair), serif",
-              fontSize: "clamp(2rem, 3.8vw, 3.2rem)",
-              lineHeight: 1.35,
-              fontWeight: 400,
-              margin: 0,
-            }}
-          >
-            A carefully selected portfolio of high-performing food and beverage franchises in Pakistan, prepared exclusively for our UK investor partners. <span style={{ fontStyle: "italic" }}>Review key metrics, investments, and robust ROI projections below.</span>
-          </p>
+        <div style={{ maxWidth: "1200px", textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div style={{ overflow: "hidden" }}>
+            <p className={section2Visible ? "animate-slice-up delay-100" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.35, fontWeight: 400, margin: 0 }}>
+              A carefully selected portfolio of high-performing food
+            </p>
+          </div>
+          <div style={{ overflow: "hidden" }}>
+            <p className={section2Visible ? "animate-slice-up delay-200" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.35, fontWeight: 400, margin: 0 }}>
+              and beverage franchises in Pakistan, prepared exclusively
+            </p>
+          </div>
+          <div style={{ overflow: "hidden" }}>
+            <p className={section2Visible ? "animate-slice-up delay-300" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.35, fontWeight: 400, margin: 0 }}>
+              for our UK investor partners. <span style={{ fontStyle: "italic" }}>Review key metrics,</span>
+            </p>
+          </div>
+          <div style={{ overflow: "hidden" }}>
+            <p className={section2Visible ? "animate-slice-up delay-400" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.35, fontWeight: 400, margin: 0 }}>
+              <span style={{ fontStyle: "italic" }}>investments, and robust ROI projections below.</span>
+            </p>
+          </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "24px", alignItems: "center" }}>
@@ -1109,7 +1138,7 @@ export default function Home() {
           </Link>
 
           <p style={{ fontSize: 13, color: "#888", margin: 0 }}>
-            © {new Date().getFullYear()} Franchise Broker. All rights reserved.
+            © {new Date().getFullYear()} Polaris Commercials. All rights reserved.
           </p>
 
           <div style={{ display: "flex", gap: 24 }}>
@@ -1159,7 +1188,7 @@ const faqs = [
       "Pakistan has a booming, food-loving middle class and a massive youth demographic. Combined with significantly lower operating, labor, and real estate costs compared to the UK, the profit margins and ROI potential are exceptionally high.",
   },
   {
-    question: "How does Franchise Broker select which brands to pitch?",
+    question: "How does Polaris Commercials select which brands to pitch?",
     answer:
       "Every brand goes through rigorous due-diligence covering financial health, unit economics, supply chain stability, and franchisee support before we present it to our international investors.",
   },
