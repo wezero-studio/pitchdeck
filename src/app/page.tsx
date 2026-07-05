@@ -87,6 +87,16 @@ const curatedBrands = [
     reviews: "820 reviews",
     photos: [
       "/thefatboy/img1.jpg", "/thefatboy/img2.jpg", "/thefatboy/img1.jpg", "/thefatboy/img2.jpg", "/thefatboy/img1.jpg"
+    ],
+    marqueePhotos: [
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1582196016295-f8c8bd4b3a99?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
@@ -107,6 +117,16 @@ const curatedBrands = [
     reviews: "1.2k reviews",
     photos: [
       "/chopchips/img2.jpg", "/chopchips/img3.jpg", "/chopchips/img4.jpg", "/chopchips/img5.jpg", "/chopchips/img6.jpg", "/chopchips/img7.jpg"
+    ],
+    marqueePhotos: [
+      "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1562802378-063ec186a863?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
@@ -128,6 +148,16 @@ const curatedBrands = [
     reviews: "940 reviews",
     photos: [
       "/yeristanbul/img1.jpg", "/yeristanbul/img2.jpg", "/yeristanbul/img3.jpg", "/yeristanbul/img4.jpg", "/yeristanbul/img5.jpg", "/yeristanbul/img6.jpg"
+    ],
+    marqueePhotos: [
+      "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1583623025817-d180a2221d0a?auto=format&fit=crop&w=600&q=80"
     ]
   }
 ];
@@ -181,6 +211,7 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
   const [showAllOptions, setShowAllOptions] = useState(false);
+  const [expandedBrand, setExpandedBrand] = useState<number | null>(null);
 
   return (
     <div
@@ -225,6 +256,33 @@ export default function Home() {
         .delay-100 { animation-delay: 100ms; }
         .delay-200 { animation-delay: 200ms; }
         .delay-300 { animation-delay: 300ms; }
+        .brand-list-row {
+          border-top: 1px solid #e5e5e5;
+          padding: 28px 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+          transition: background 0.3s ease, padding 0.3s ease;
+          border-radius: 0;
+          background: transparent;
+        }
+        .brand-list-row:hover {
+          background: #111;
+          padding: 28px 32px;
+          border-radius: 8px;
+          border-top-color: transparent;
+          margin-top: -1px;
+        }
+        .brand-list-row:hover .row-name,
+        .brand-list-row:hover .row-tag,
+        .brand-list-row:hover .row-num {
+          color: #fff !important;
+        }
+        .brand-list-row:hover .row-arrow {
+          border-color: rgba(255,255,255,0.3);
+          color: #fff;
+        }
       `}</style>
       <main
         id="home"
@@ -418,14 +476,13 @@ export default function Home() {
         style={{
           maxWidth: 1360,
           margin: "0 auto",
-          padding: "100px 24px 100px 24px",
+          padding: "40px 24px 80px 24px",
         }}
       >
         {/* Stats Row */}
         <div
           className="stats-row"
           style={{
-            marginTop: 160,
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
             alignItems: "center",
@@ -474,11 +531,11 @@ export default function Home() {
         </div>
 
         {/* ── OUR CURATED PICKS HEADER ── */}
-        <div style={{ marginTop: 160, textAlign: "center", marginBottom: 80 }}>
+        <div style={{ marginTop: 160, textAlign: "left", marginBottom: 80 }}>
           <h2 style={{ fontSize: "clamp(3rem, 5vw, 4rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, color: "#111", margin: 0 }}>
             Our Curated <span style={{ fontStyle: "italic" }}>Picks</span>
           </h2>
-          <p style={{ fontSize: "1.2rem", color: "#555", marginTop: "16px", maxWidth: "600px", margin: "16px auto 0" }}>
+          <p style={{ fontSize: "1.2rem", color: "#555", marginTop: "16px", maxWidth: "600px" }}>
             Explore our top 3 highly vetted franchise opportunities yielding robust daily sales and maximum ROI.
           </p>
         </div>
@@ -488,7 +545,7 @@ export default function Home() {
           {curatedBrands.map((brand, idx) => (
             <div key={idx} style={{ marginBottom: 0 }}>
               {/* Brand Info + Metrics Row */}
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "64px", position: "relative", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "64px", marginBottom: "80px", position: "relative", flexWrap: "wrap", paddingBottom: "80px" }}>
 
               {/* LEFT STICKY (INFO) */}
               <div style={{ flex: "1 1 350px", position: "sticky", top: "120px" }}>
@@ -504,11 +561,11 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* RIGHT SCROLLING (METRICS + MARQUEE) */}
-              <div style={{ flex: "1 1 50%", maxWidth: "560px", display: "flex", flexDirection: "column" }}>
+              {/* RIGHT SCROLLING (METRICS) */}
+              <div style={{ flex: "1 1 50%", maxWidth: "560px", display: "flex", flexDirection: "column", gap: "24px" }}>
 
                 {/* Metric Card: Investment */}
-                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", marginBottom: "24px" }}>
+                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Investment Required</div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
                     <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.price}</div>
@@ -517,7 +574,7 @@ export default function Home() {
                 </div>
 
                 {/* Metric Card: Daily Sales */}
-                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", marginBottom: "24px" }}>
+                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Average Daily Sales</div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
                     <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.sales}</div>
@@ -526,7 +583,7 @@ export default function Home() {
                 </div>
 
                 {/* Metric Card: Monthly Net Profit */}
-                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", marginBottom: "24px" }}>
+                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit</div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
                     <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.profit}</div>
@@ -535,7 +592,7 @@ export default function Home() {
                 </div>
 
                 {/* Metric Card: Ownership & Deal Type */}
-                <div className="tooltip-container" style={{ position: "relative", background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer", marginBottom: "24px" }}>
+                <div className="tooltip-container" style={{ position: "relative", background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}>
                   <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111", display: "flex", alignItems: "center", gap: "8px" }}>
                     Ownership Structure
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
@@ -550,7 +607,7 @@ export default function Home() {
                 </div>
 
                 {/* Social / Rating Row */}
-                <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "160px" }}>
+                <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                   <div style={{ flex: "1 1 200px", background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px" }}>
                     <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
                     <div>
@@ -570,538 +627,265 @@ export default function Home() {
                   </a>
                 </div>
 
-                {/* ── PER-BRAND IMAGE MARQUEE ── */}
-                {/* Lives inside the scrolling column (not as a sibling of the
-                    row) so its height counts toward this row's total height —
-                    that's what keeps the sticky info panel on the left pinned
-                    all the way through the marquee instead of releasing early. */}
-                <div style={{ background: "#111", padding: "64px 0", overflow: "hidden", display: "flex", flexDirection: "column", gap: "20px", marginBottom: idx < curatedBrands.length - 1 ? "160px" : "80px", marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)", width: "100vw" }}>
-                  {/* Row 1 */}
-                  <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
-                    {[...brand.photos, ...brand.photos].map((src, i) => {
-                      // eslint-disable-next-line @next/next/no-img-element
-                      return <img key={i} src={src} alt={brand.name} style={{ height: "260px", width: "380px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
-                    })}
-                  </div>
-                  {/* Row 2 */}
-                  <div style={{ display: "flex", width: "max-content", animation: "marquee-left 35s linear infinite" }}>
-                    {[...brand.photos, ...brand.photos].map((src, i) => {
-                      // eslint-disable-next-line @next/next/no-img-element
-                      return <img key={i} src={src} alt={brand.name} style={{ height: "260px", width: "380px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
-                    })}
-                  </div>
-                </div>
-
               </div>
+              </div>
+
+              {/* ── PER-BRAND IMAGE MARQUEE (3 rows) ── */}
+              <div style={{ background: "#111", padding: "64px 0", overflow: "hidden", display: "flex", flexDirection: "column", gap: "20px", marginBottom: idx < curatedBrands.length - 1 ? "160px" : "80px", marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)", width: "100vw" }}>
+                {/* Row 1: left to right */}
+                <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
+                  {[...brand.marqueePhotos, ...brand.marqueePhotos].map((src, i) => {
+                    // eslint-disable-next-line @next/next/no-img-element
+                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
+                  })}
+                </div>
+                {/* Row 2: right to left */}
+                <div style={{ display: "flex", width: "max-content", animation: "marquee-left 35s linear infinite" }}>
+                  {[...brand.marqueePhotos.slice().reverse(), ...brand.marqueePhotos.slice().reverse()].map((src, i) => {
+                    // eslint-disable-next-line @next/next/no-img-element
+                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
+                  })}
+                </div>
+                {/* Row 3: left to right */}
+                <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
+                  {[...brand.marqueePhotos, ...brand.marqueePhotos].map((src, i) => {
+                    // eslint-disable-next-line @next/next/no-img-element
+                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
+                  })}
+                </div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── VIEW ALL OPTIONS TOGGLE ── */}
-      <section style={{ textAlign: "center", padding: "60px 24px 120px" }}>
-        <button
-          onClick={() => setShowAllOptions(!showAllOptions)}
-          style={{
-            background: "#111",
-            color: "#fff",
-            padding: "16px 32px",
-            borderRadius: "999px",
-            fontSize: "1.1rem",
-            fontWeight: 600,
-            cursor: "pointer",
-            border: "none",
-            boxShadow: "0 4px 14px rgba(0,0,0,0.1)",
-            transition: "transform 0.2s"
-          }}
-        >
-          {showAllOptions ? "Hide Additional Options" : "View All The Options You Have"}
-        </button>
+      {/* ── VIEW ALL OPTIONS – ACCORDION LIST ── */}
+      <section style={{ maxWidth: 1360, margin: "0 auto", padding: "60px 48px 120px" }}>
+        {/* Toggle button */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 48 }}>
+          <h2 style={{ fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontSize: "clamp(2.5rem, 4vw, 3.5rem)", color: "#111", margin: 0, letterSpacing: "-1px" }}>
+            All <span style={{ fontStyle: "italic" }}>Options</span>
+          </h2>
+          <button
+            onClick={() => { setShowAllOptions(!showAllOptions); setExpandedBrand(null); }}
+            style={{
+              background: showAllOptions ? "#111" : "transparent",
+              color: showAllOptions ? "#fff" : "#111",
+              padding: "14px 28px",
+              borderRadius: "999px",
+              fontSize: "0.95rem",
+              fontWeight: 600,
+              cursor: "pointer",
+              border: "1.5px solid #111",
+              transition: "all 0.2s"
+            }}
+          >
+            {showAllOptions ? "Hide Options" : "View All The Options You Have"}
+          </button>
+        </div>
+
+        {showAllOptions && (
+          <div>
+            {/* List border bottom */}
+            {([
+              { logo: "/chopchips.png", name: "Chopped Chips", tag: "Food & Beverage", investment: "3cr", sales: "1-4L", profit: "10-17L", ownership: "Franchise Only", dealTooltip: "Investor buys rights, runs own branch, pays ~10% royalty.", instagram: "https://www.instagram.com/chopchips.pk/", rating: "4.8", reviews: "1.2k reviews", photos: ["/chopchips/img6.jpg", "/chopchips/img2.jpg", "/chopchips/images.jpg", "/chopchips/img4.jpg", "/chopchips/img5.jpg", "/chopchips/img3.jpg", "/chopchips/img7.jpg"] },
+              { logo: "/enaarilogo.jpg", name: "Enaari", tag: "Fine Dining", investment: "£150,000", sales: "£350,000/yr", profit: "22%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/_enaari_/", rating: "4.9", reviews: "850 reviews", photos: [] },
+              { logo: "/lastcrumb.jpg", name: "The Last Crumb", tag: "Dessert & Bakery", investment: "£120,000", sales: "£280,000/yr", profit: "20%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/lastcrumbcookiespakistan/?hl=en", rating: "4.7", reviews: "2.1k reviews", photos: ["/lastcrumb/img1.jpeg", "/lastcrumb/img2.jpg", "/lastcrumb/img3.jpg", "/lastcrumb/img4.jpg", "/lastcrumb/img5.jpg"] },
+              { logo: "/artisan.png", name: "Artisan", tag: "Cafe & Roastery", investment: "£140,000", sales: "£310,000/yr", profit: "21%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/artisancoffeeroasterpk/?hl=en", rating: "4.8", reviews: "1.5k reviews", photos: ["/artisan/img2.jpg", "/artisan/img3.jpg", "/artisan/img4.jpg", "/artisan/img5.jpg", "/artisan/img6.webp", "/artisan/img7.jpg", "/artisan/img8.jpg"] },
+              { logo: "/softswirl.jpg", name: "Soft Swirl", tag: "Dessert & Ice Cream", investment: "£90,000", sales: "£200,000/yr", profit: "25%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/softswirlpk/", rating: "4.9", reviews: "3.2k reviews", photos: ["/softswirl/img1.jpg", "/softswirl/img2.jpg", "/softswirl/img3.jpg", "/softswirl/img4.jpg"] },
+              { logo: "/saadidisajji.jpg", name: "Saadi di Sajji", tag: "Restaurant", investment: "£160,000", sales: "£360,000/yr", profit: "17%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/saadidisajjipk/", rating: "4.5", reviews: "1.1k reviews", photos: ["/saadidisajji/img1.jpg", "/saadidisajji/img2.jpg", "/saadidisajji/img3.jpg", "/saadidisajji/img4.jpg", "/saadidisajji/img5.jpg"] },
+              { logo: "/cafepraha.jpg", name: "Cafe Praha", tag: "Cafe", investment: "£130,000", sales: "£290,000/yr", profit: "22%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/caffepraha/?hl=en", rating: "4.7", reviews: "1.8k reviews", photos: ["/cafepraha/img1.jpg", "/cafepraha/img2.jpg", "/cafepraha/img3.jpg", "/cafepraha/img4.jpg", "/cafepraha/img5.jpg", "/cafepraha/img6.jpg", "/cafepraha/img7.jpg", "/cafepraha/img8.jpg"] },
+              { logo: "/chaayekhana.jpg", name: "Chai Khaana", tag: "Cafe", investment: "£75,000", sales: "£150,000/yr", profit: "24%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/chaaye_khana/?hl=en", rating: "4.8", reviews: "4.5k reviews", photos: ["/chaayekhana/img1.jpg", "/chaayekhana/img2.jpeg", "/chaayekhana/img3.jpg", "/chaayekhana/img4.jpg", "/chaayekhana/img5.webp", "/chaayekhana/img6.jpg", "/chaayekhana/img7.jpg", "/chaayekhana/img8.jpg"] },
+              { logo: "/thefatboy.png", name: "The Fat Boy", tag: "Restaurant", investment: "4cr", sales: "1-5L", profit: "15-25L", ownership: "50/50 or Franchise", dealTooltip: "50/50 Partnership (~4cr) or full franchise rights.", instagram: "https://www.instagram.com/thefatboylahore/?hl=en", rating: "4.6", reviews: "820 reviews", photos: ["/thefatboy/img1.jpg", "/thefatboy/img2.jpg"] },
+            ]).map((brand, idx) => (
+              <div key={idx}>
+                {/* List Row */}
+                <div
+                  className="brand-list-row"
+                  onClick={() => setExpandedBrand(expandedBrand === idx ? null : idx)}
+                  role="button"
+                  aria-expanded={expandedBrand === idx}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+                    <span className="row-num" style={{ fontSize: "0.9rem", color: "#aaa", fontWeight: 500, minWidth: 32 }}>0{idx + 1}</span>
+                    <div style={{ width: 48, height: 48, borderRadius: 8, background: "#f4f5f7", overflow: "hidden", flexShrink: 0 }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={brand.logo} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <span className="row-name" style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)", fontWeight: 400, color: "#111", letterSpacing: "-0.5px" }}>{brand.name}</span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+                    <span className="row-tag" style={{ fontSize: 13, color: "#888", fontWeight: 500, display: "none" }}>{brand.tag}</span>
+                    <span className="row-arrow" style={{ width: 36, height: 36, borderRadius: "50%", border: "1.5px solid #ddd", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", flexShrink: 0, transition: "transform 0.25s ease", transform: expandedBrand === idx ? "rotate(45deg)" : "rotate(0)" }}>
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1V15M1 8H15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Expanded Detail Panel */}
+                {/* Expanded Detail Panel */}
+                <div style={{
+                  display: "grid",
+                  gridTemplateRows: expandedBrand === idx ? "1fr" : "0fr",
+                  transition: "grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                }}>
+                  <div style={{ overflow: "hidden" }}>
+                    <div style={{ 
+                      padding: expandedBrand === idx ? "48px 0 80px" : "0", 
+                      borderBottom: expandedBrand === idx ? "1px solid #e5e5e5" : "none",
+                      opacity: expandedBrand === idx ? 1 : 0,
+                      transition: "opacity 0.4s ease-out 0.1s, padding 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                      visibility: expandedBrand === idx ? "visible" : "hidden"
+                    }}>
+                      <div style={{ display: "flex", alignItems: "flex-start", gap: "64px", flexWrap: "wrap" }}>
+
+                        {/* Left: Info */}
+                        <div style={{ flex: "1 1 350px" }}>
+                          <div style={{ marginBottom: 24, background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden" }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={brand.logo} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                          </div>
+                          <h3 style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, margin: "0 0 24px 0", color: "#111", letterSpacing: "-1px" }}>{brand.name}</h3>
+                          <p style={{ fontSize: "1.05rem", color: "#444", lineHeight: 1.6, maxWidth: "400px", marginBottom: 16 }}>A highly profitable franchise brand with an established customer base and proven market demand in Pakistan.</p>
+                          <p style={{ fontSize: "1.05rem", color: "#444", lineHeight: 1.6, maxWidth: "400px" }}>By building strong, centralized operating systems, we reduce dependency on third-party aggregators and protect your margins.</p>
+                        </div>
+
+                        {/* Right: Metric Cards */}
+                        <div style={{ flex: "1 1 50%", maxWidth: "560px", display: "flex", flexDirection: "column", gap: "16px" }}>
+                          <div style={{ display: "flex", gap: 16 }}>
+                            <div style={{ flex: 1, background: "#f4f5f7", padding: "28px", borderRadius: "8px", minHeight: "160px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                              <div style={{ fontSize: "1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Investment</div>
+                              <div style={{ fontSize: "2rem", fontWeight: 400, color: "#111" }}>{brand.investment}</div>
+                            </div>
+                            <div style={{ flex: 1, background: "#f4f5f7", padding: "28px", borderRadius: "8px", minHeight: "160px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                              <div style={{ fontSize: "1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Avg. Daily Sales</div>
+                              <div style={{ fontSize: "2rem", fontWeight: 400, color: "#111" }}>{brand.sales}</div>
+                            </div>
+                          </div>
+                          <div style={{ display: "flex", gap: 16 }}>
+                            <div style={{ flex: 1, background: "#f4f5f7", padding: "28px", borderRadius: "8px", minHeight: "160px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                              <div style={{ fontSize: "1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit</div>
+                              <div style={{ fontSize: "2rem", fontWeight: 400, color: "#111" }}>{brand.profit}</div>
+                            </div>
+                            <div className="tooltip-container" style={{ flex: 1, position: "relative", background: "#f4f5f7", padding: "28px", borderRadius: "8px", minHeight: "160px", display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}>
+                              <div style={{ fontSize: "1rem", fontFamily: "var(--font-playfair), serif", color: "#111", display: "flex", alignItems: "center", gap: 6 }}>
+                                Ownership
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                              </div>
+                              <div style={{ fontSize: "1.2rem", fontWeight: 400, color: "#111" }}>{brand.ownership}</div>
+                              <div className="tooltip-content" style={{ opacity: 0, visibility: "hidden", transform: "translateY(10px)", transition: "all 0.2s ease", position: "absolute", bottom: "110%", left: 0, width: "100%", fontSize: "0.9rem", color: "#4b5563", lineHeight: 1.5, padding: "14px", background: "#fff", borderRadius: "8px", border: "1px solid #e5e7eb", boxShadow: "0 4px 12px rgba(0,0,0,0.1)", zIndex: 10 }}>{brand.dealTooltip}</div>
+                            </div>
+                          </div>
+                          <div style={{ display: "flex", gap: 16 }}>
+                            <div style={{ flex: 1, background: "#f4f5f7", padding: "28px", borderRadius: "8px", display: "flex", alignItems: "center", gap: 16 }}>
+                              <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 20, flexShrink: 0 }}>★</div>
+                              <div>
+                                <div style={{ fontSize: "1.3rem", fontWeight: 700, color: "#111" }}>{brand.rating}</div>
+                                <div style={{ fontSize: 12, color: "#555", marginTop: 2 }}>{brand.reviews}</div>
+                              </div>
+                            </div>
+                            <a href={brand.instagram} target="_blank" rel="noopener noreferrer" style={{ flex: 1, background: "#f4f5f7", padding: "28px", borderRadius: "8px", display: "flex", alignItems: "center", gap: 16, textDecoration: "none" }}>
+                              <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", flexShrink: 0 }}>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                              </div>
+                              <div>
+                                <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111" }}>Instagram</div>
+                                <div style={{ fontSize: 12, color: "#555", marginTop: 2 }}>View Profile</div>
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Bottom: Pictures Layout */}
+                      <div style={{ width: "100%", marginTop: 64, position: "relative" }}>
+                        {(() => {
+                          const fallbackImages = [
+                            "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+                            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+                            "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+                            "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+                            "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80",
+                            "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80",
+                            "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+                            "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80"
+                          ];
+                          const pics = [0, 1, 2, 3, 4, 5, 6, 7].map(i => brand.photos?.[i] || fallbackImages[i]);
+                          
+                          return (
+                            <div style={{ 
+                              display: "grid", 
+                              gridTemplateColumns: "repeat(12, 1fr)", 
+                              gridTemplateRows: "repeat(5, 120px)", 
+                              gap: 16 
+                            }}>
+                              {/* Top Left */}
+                              <div style={{ gridColumn: "1 / 4", gridRow: "1 / 3", borderRadius: 16, overflow: "hidden" }}>
+                                <img src={pics[1]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                              </div>
+                              
+                              {/* Bottom Left */}
+                              <div style={{ gridColumn: "1 / 4", gridRow: "3 / 6", borderRadius: 16, overflow: "hidden" }}>
+                                <img src={pics[6]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                              </div>
+                              
+                              {/* Top Mid-Left */}
+                              <div style={{ gridColumn: "4 / 7", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
+                                <img src={pics[2]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                              </div>
+                              
+                              {/* Top Mid-Right */}
+                              <div style={{ gridColumn: "7 / 10", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
+                                <img src={pics[5]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                              </div>
+                              
+                              {/* Large Center Main */}
+                              <div style={{ gridColumn: "4 / 10", gridRow: "2 / 5", borderRadius: 24, overflow: "hidden", zIndex: 1, boxShadow: "0 10px 30px rgba(0,0,0,0.05)" }}>
+                                <img src={pics[0]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                              </div>
+                              
+                              {/* Bottom Mid */}
+                              <div style={{ gridColumn: "5 / 9", gridRow: "5 / 6", borderRadius: 12, overflow: "hidden" }}>
+                                <img src={pics[7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                              </div>
+                              
+                              {/* Top Right */}
+                              <div style={{ gridColumn: "10 / 13", gridRow: "1 / 3", borderRadius: 16, overflow: "hidden" }}>
+                                <img src={pics[3]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                              </div>
+                              
+                              {/* Bottom Right */}
+                              <div style={{ gridColumn: "10 / 13", gridRow: "3 / 6", borderRadius: 16, overflow: "hidden" }}>
+                                <img src={pics[4]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                              </div>
+                            </div>
+                          );
+                        })()}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* Last divider */}
+            <div style={{ borderBottom: "1px solid #e5e5e5" }} />
+          </div>
+        )}
       </section>
 
-      {/* ── FEATURED BRANDS SECTION (ORIGINAL LIST) ── */}
-      {showAllOptions && (
-        <div id="opportunities" style={{ scrollMarginTop: 90 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 32 }}>
-            <div style={{ maxWidth: 600 }}>
-              <div style={{ 
-                display: "inline-block", 
-                background: "#fefae0", 
-                color: "#ca8a04", 
-                padding: "6px 16px", 
-                borderRadius: 999, 
-                fontSize: 12, 
-                fontWeight: 700, 
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: 24
-              }}>
-                Featured Brands
-              </div>
-              <h2 style={{ 
-                fontSize: "clamp(2.5rem, 4vw, 3.5rem)", 
-                fontWeight: 700, 
-                lineHeight: 1.1, 
-                letterSpacing: "-1px",
-                color: "#111",
-                margin: 0
-              }}>
-                Top franchise opportunities CURATED FOR YOU
-              </h2>
-            </div>
-            <div style={{ maxWidth: 300 }}>
-              <p style={{ color: "#666", fontSize: 15, lineHeight: 1.6, marginBottom: 20 }}>
-                Explore our curated selection of high-performing franchise brands ready for investment.
-              </p>
-            </div>
-            </div>
-
-          <div className="brand-list-container">
-            {([
-              {
-                logo: "/chopchips.png",
-                name: "Chopped Chips",
-                investment: "£85,000",
-                industry: "Food & Beverage",
-                link: "#",
-                instagram: "https://www.instagram.com/chopchips.pk/",
-                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.8",
-                reviewsCount: "1.2k",
-                followers: "15k",
-                sales: "£180,000 / yr",
-                roi: "18%",
-                photos: [
-                  { src: "/chopchips/images.jpg", w: 201, h: 250 },
-                  { src: "/chopchips/img2.jpg", w: 335, h: 597 },
-                  { src: "/chopchips/img3.jpg", w: 400, h: 224 },
-                  { src: "/chopchips/img4.jpg", w: 452, h: 678 },
-                  { src: "/chopchips/img5.jpg", w: 399, h: 501 },
-                  { src: "/chopchips/img6.jpg", w: 4000, h: 2925 },
-                  { src: "/chopchips/img7.jpg", w: 399, h: 501 },
-                ],
-              },
-              {
-                logo: "/enaarilogo.jpg",
-                name: "Enaari",
-                investment: "£150,000",
-                industry: "Fine Dining",
-                link: "#",
-                instagram: "https://www.instagram.com/_enaari_/",
-                image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.9",
-                reviewsCount: "850",
-                followers: "22k",
-                sales: "£350,000 / yr",
-                roi: "22%"
-              },
-              {
-                logo: "/lastcrumb.jpg",
-                name: "The Last Crumb",
-                investment: "£120,000",
-                industry: "Dessert & Bakery",
-                link: "#",
-                instagram: "https://www.instagram.com/lastcrumbcookiespakistan/?hl=en",
-                image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.7",
-                reviewsCount: "2.1k",
-                followers: "45k",
-                sales: "£280,000 / yr",
-                roi: "20%",
-                photos: [
-                  { src: "/lastcrumb/img1.jpeg", w: 1440, h: 1053 },
-                  { src: "/lastcrumb/img2.jpg", w: 365, h: 547 },
-                  { src: "/lastcrumb/img3.jpg", w: 399, h: 501 },
-                  { src: "/lastcrumb/img4.jpg", w: 447, h: 447 },
-                  { src: "/lastcrumb/img5.jpg", w: 386, h: 518 },
-                ],
-              },
-              {
-                logo: "/yeristanbul.jpg",
-                logoStyle: { objectFit: "contain" } as React.CSSProperties,
-                logoNoBox: true,
-                name: "Yar Istanbul",
-                investment: "£200,000",
-                industry: "Restaurant",
-                link: "#",
-                instagram: "https://www.instagram.com/yeristanbulisb/?hl=en",
-                image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.6",
-                reviewsCount: "940",
-                followers: "12k",
-                sales: "£420,000 / yr",
-                roi: "19%",
-                photos: [
-                  { src: "/yeristanbul/img1.jpg", w: 335, h: 597 },
-                  { src: "/yeristanbul/img2.jpg", w: 447, h: 447 },
-                  { src: "/yeristanbul/img3.jpg", w: 399, h: 501 },
-                  { src: "/yeristanbul/img4.jpg", w: 399, h: 501 },
-                  { src: "/yeristanbul/img5.jpg", w: 335, h: 597 },
-                  { src: "/yeristanbul/img6.jpg", w: 387, h: 516 },
-                  { src: "/yeristanbul/img7.jpg", w: 393, h: 508 },
-                ],
-              },
-              {
-                logo: "/artisan.png",
-                name: "Artisan",
-                investment: "£140,000",
-                industry: "Restaurant",
-                link: "#",
-                instagram: "https://www.instagram.com/artisancoffeeroasterpk/?hl=en",
-                image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.8",
-                reviewsCount: "1.5k",
-                followers: "18k",
-                sales: "£310,000 / yr",
-                roi: "21%",
-                photos: [
-                  { src: "/artisan/img2.jpg", w: 554, h: 554 },
-                  { src: "/artisan/img3.jpg", w: 1440, h: 1053 },
-                  { src: "/artisan/img4.jpg", w: 516, h: 387 },
-                  { src: "/artisan/img5.jpg", w: 550, h: 550 },
-                  { src: "/artisan/img6.webp", w: 399, h: 224 },
-                  { src: "/artisan/img7.jpg", w: 479, h: 640 },
-                  { src: "/artisan/img8.jpg", w: 335, h: 597 },
-                ],
-              },
-              {
-                logo: "/softswirl.jpg",
-                name: "Soft Swirl",
-                investment: "£90,000",
-                industry: "Dessert & Ice Cream",
-                link: "#",
-                instagram: "https://www.instagram.com/softswirlpk/",
-                image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.9",
-                reviewsCount: "3.2k",
-                followers: "50k",
-                sales: "£200,000 / yr",
-                roi: "25%",
-                photos: [
-                  { src: "/softswirl/img1.jpg", w: 399, h: 501 },
-                  { src: "/softswirl/img2.jpg", w: 335, h: 597 },
-                  { src: "/softswirl/img3.jpg", w: 736, h: 1308 },
-                  { src: "/softswirl/img4.jpg", w: 236, h: 419 },
-                ],
-                photoFallback: [
-                  "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1576506295286-5cda18df43e7?auto=format&fit=crop&w=800&q=80",
-                ],
-              },
-              {
-                logo: "/saadidisajji.jpg",
-                name: "Saadi di Sajji",
-                investment: "£160,000",
-                industry: "Restaurant",
-                link: "#",
-                instagram: "https://www.instagram.com/saadidisajjipk/",
-                image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.5",
-                reviewsCount: "1.1k",
-                followers: "9k",
-                sales: "£360,000 / yr",
-                roi: "17%",
-                photos: [
-                  { src: "/saadidisajji/img1.jpg", w: 399, h: 501 },
-                  { src: "/saadidisajji/img2.jpg", w: 4000, h: 2925 },
-                  { src: "/saadidisajji/img3.jpg", w: 335, h: 597 },
-                  { src: "/saadidisajji/img4.jpg", w: 387, h: 516 },
-                  { src: "/saadidisajji/img5.jpg", w: 387, h: 516 },
-                ],
-              },
-              {
-                logo: "/cafepraha.jpg",
-                name: "Cafe Praha",
-                investment: "£130,000",
-                industry: "Cafe",
-                link: "#",
-                instagram: "https://www.instagram.com/caffepraha/?hl=en",
-                image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.7",
-                reviewsCount: "1.8k",
-                followers: "28k",
-                sales: "£290,000 / yr",
-                roi: "22%",
-                photos: [
-                  { src: "/cafepraha/img1.jpg", w: 456, h: 438 },
-                  { src: "/cafepraha/img2.jpg", w: 445, h: 449 },
-                  { src: "/cafepraha/img3.jpg", w: 382, h: 573 },
-                  { src: "/cafepraha/img4.jpg", w: 387, h: 516 },
-                  { src: "/cafepraha/img5.jpg", w: 480, h: 360 },
-                  { src: "/cafepraha/img6.jpg", w: 739, h: 415 },
-                  { src: "/cafepraha/img7.jpg", w: 335, h: 597 },
-                  { src: "/cafepraha/img8.jpg", w: 335, h: 597 },
-                ],
-              },
-              {
-                logo: "/chaayekhana.jpg",
-                name: "Chai Khaana",
-                investment: "£75,000",
-                industry: "Cafe",
-                link: "#",
-                instagram: "https://www.instagram.com/chaaye_khana/?hl=en",
-                image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.8",
-                reviewsCount: "4.5k",
-                followers: "65k",
-                sales: "£150,000 / yr",
-                roi: "24%",
-                photos: [
-                  { src: "/chaayekhana/img1.jpg", w: 678, h: 452 },
-                  { src: "/chaayekhana/img2.jpeg", w: 958, h: 1280 },
-                  { src: "/chaayekhana/img3.jpg", w: 415, h: 739 },
-                  { src: "/chaayekhana/img4.jpg", w: 500, h: 375 },
-                  { src: "/chaayekhana/img5.webp", w: 511, h: 383 },
-                  { src: "/chaayekhana/img6.jpg", w: 335, h: 597 },
-                  { src: "/chaayekhana/img7.jpg", w: 399, h: 501 },
-                  { src: "/chaayekhana/img8.jpg", w: 447, h: 447 },
-                ],
-              },
-              {
-                logo: "/thefatboy.png",
-                name: "The Fat Boy",
-                investment: "£110,000",
-                industry: "Restaurant",
-                link: "#",
-                instagram: "https://www.instagram.com/thefatboylahore/?hl=en",
-                image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
-                reviews: "4.6",
-                reviewsCount: "820",
-                followers: "11k",
-                sales: "£250,000 / yr",
-                roi: "21%",
-                photos: [
-                  { src: "/thefatboy/img1.jpg", w: 335, h: 597 },
-                  { src: "/thefatboy/img2.jpg", w: 335, h: 597 },
-                ],
-                photoFallback: [
-                  "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=80",
-                  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
-                ],
-              }
-            ] as BrandData[]).map((brand, i) => {
-              const secondaryImages = [
-                "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
-              ];
-              const isVisible = visibleBrands.has(i);
-              const desktopInfoAnim: React.CSSProperties = {
-                transition: "opacity 0.65s ease, transform 0.65s ease",
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "none" : i % 2 === 0 ? "translateX(-40px)" : "translateX(40px)",
-              };
-              const desktopImgAnim: React.CSSProperties = {
-                transition: "opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s",
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "none" : i % 2 === 0 ? "translateX(40px)" : "translateX(-40px)",
-              };
-              const collage = brand.photos
-                ? buildCollageSlots(brand.photos, brand.photoFallback ?? secondaryImages)
-                : [
-                    brand.image,
-                    secondaryImages[(i + 1) % 7],
-                    secondaryImages[(i + 2) % 7],
-                    secondaryImages[(i + 3) % 7],
-                    secondaryImages[(i + 4) % 7],
-                    secondaryImages[(i + 5) % 7],
-                    secondaryImages[(i + 6) % 7],
-                    secondaryImages[i % 7],
-                  ];
-              return (
-              <div
-                key={i}
-                ref={(el) => { brandRefs.current[i] = el; }}
-                className="brand-card-item"
-                data-brand-index={i}
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  alignItems: 'flex-start',
-                  flexDirection: i % 2 !== 0 ? 'row-reverse' : 'row',
-                  gap: 64,
-                  marginBottom: 120,
-                }}
-              >
-                
-                {/* Left: Info */}
-                <div className="brand-info-block" style={{ flex: "1 1 360px", display: "flex", flexDirection: "column", marginTop: 16, ...desktopInfoAnim }}>
-                  {/* Mobile Swipe Hint (Only on first card) */}
-                  {i === 0 && (
-                    <div className="mobile-only-flex" style={{ marginBottom: 20, marginTop: -12 }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#166534", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", background: "#dcfce7", padding: "6px 12px", borderRadius: 999 }}>
-                        Swipe to explore
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                      </div>
-                    </div>
-                  )}
-                  <div style={{ marginBottom: 24, background: brand.logoNoBox ? "transparent" : "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 72, width: 96, overflow: "hidden" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={brand.logo} alt={`${brand.name} logo`} style={{ width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
-                  </div>
-                  
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-                    <h3 style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)", fontWeight: 700, letterSpacing: "-0.5px", margin: 0 }}>{brand.name}</h3>
-                  </div>
-                  <p style={{ color: "#555", fontSize: 16, lineHeight: 1.6, marginBottom: 24, maxWidth: "90%" }}>
-                    A highly profitable and rapidly growing franchise brand with an established customer base.
-                  </p>
-                  
-                  {/* Social/Reviews Row - Highlighted Cards */}
-                  <div style={{ display: "flex", gap: 16, marginBottom: 32, flexWrap: "wrap" }}>
-                    <a href="#" className="metric-card" aria-label="View Google Reviews" target="_blank" rel="noopener noreferrer">
-                      <div className="metric-card-cutout"></div>
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#dcf2e1", display: "flex", alignItems: "center", justifyContent: "center", color: "#329b47", fontSize: 22, flexShrink: 0 }}>★</div>
-                      <div>
-                        <div style={{ fontSize: 18, fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.reviews}</div>
-                        <div style={{ fontSize: 13, color: "#256632", marginTop: 4, fontWeight: 600 }}>{brand.reviewsCount} reviews</div>
-                      </div>
-                    </a>
-                    
-                    <a href={brand.instagram ?? "#"} className="metric-card" aria-label="View Instagram Profile" target="_blank" rel="noopener noreferrer">
-                      <div className="metric-card-cutout"></div>
-                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#dcf2e1", display: "flex", alignItems: "center", justifyContent: "center", color: "#329b47", flexShrink: 0 }}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                      </div>
-                      <div>
-                        <div style={{ fontSize: 18, fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.followers}</div>
-                        <div style={{ fontSize: 13, color: "#256632", marginTop: 4, fontWeight: 600 }}>Followers</div>
-                      </div>
-                    </a>
-                  </div>
-                  
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px 24px", marginBottom: 40, padding: "24px", background: "#f9fafb", borderRadius: 20 }}>
-                    <div>
-                      <div style={{ fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Industry</div>
-                      <div style={{ fontSize: 17, fontWeight: 700, color: "#111" }}>{brand.industry}</div>
-                    </div>
-                    
-                    <div>
-                      <div style={{ fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Investment Needed</div>
-                      <div style={{ fontSize: 17, fontWeight: 700, color: "#111" }}>{brand.investment}</div>
-                    </div>
-
-                    <div>
-                      <div style={{ fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Projected Sales</div>
-                      <div style={{ fontSize: 17, fontWeight: 700, color: "#111" }}>{brand.sales}</div>
-                    </div>
-
-                    <div>
-                      <div style={{ fontSize: 13, color: "rgba(0,0,0,0.6)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 8 }}>Est. ROI</div>
-                      <div style={{ fontSize: 17, fontWeight: 700, color: "#3dba44" }}>{brand.roi}</div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <a
-                      href={brand.link}
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 10,
-                        background: "#3dba44",
-                        borderRadius: 999,
-                        padding: "16px 32px",
-                        fontSize: 14,
-                        fontWeight: 700,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                        color: "#fff",
-                        textDecoration: "none",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      Learn More <ArrowIcon color="#fff" />
-                    </a>
-                  </div>
-                </div>
-
-                {/* Right: Collage */}
-                <div className="brand-img-block" style={{ flex: "1 1 500px", minHeight: 500, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(5, 1fr)", gap: 12, ...desktopImgAnim }}>
-                  {/* Tall Left */}
-                  <div style={{ gridColumn: "1 / 2", gridRow: "1 / 3", borderRadius: 20, overflow: "hidden" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={collage[1]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  {/* Top Mid */}
-                  <div style={{ gridColumn: "2 / 3", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={collage[2]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  {/* Top Right */}
-                  <div style={{ gridColumn: "3 / 4", gridRow: "1 / 2", borderRadius: 12, overflow: "hidden" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={collage[3]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  {/* Large Center (Brand Image) */}
-                  <div style={{ gridColumn: "2 / 4", gridRow: "2 / 4", borderRadius: 24, overflow: "hidden", zIndex: 2, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={collage[0]} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  {/* Small Left */}
-                  <div style={{ gridColumn: "1 / 2", gridRow: "3 / 4", borderRadius: 12, overflow: "hidden" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={collage[4]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  {/* Mid Right Tall */}
-                  <div style={{ gridColumn: "4 / 5", gridRow: "2 / 4", borderRadius: 16, overflow: "hidden" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={collage[5]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  {/* Bottom Mid Tall */}
-                  <div style={{ gridColumn: "2 / 3", gridRow: "4 / 6", borderRadius: 20, overflow: "hidden" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={collage[6]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                  {/* Bottom Right Large-ish */}
-                  <div style={{ gridColumn: "3 / 5", gridRow: "4 / 6", borderRadius: 20, overflow: "hidden", marginTop: 24 }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={collage[7]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                </div>
-              </div>
-            )})}
-          </div>
-
-        </div>
-      )}
       {/* ── FAQ SECTION ── */}
-      <section id="faq" style={{ maxWidth: 880, margin: "0 auto", padding: "0 24px 160px", scrollMarginTop: 90 }}>
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <div style={{
-            display: "inline-block",
-            background: "#dcfce7",
-            color: "#166534",
-            padding: "6px 20px",
-            borderRadius: 999,
-            fontSize: 12,
-            fontWeight: 700,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            marginBottom: 24,
-          }}>
-            Support
-          </div>
+      <section id="faq" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px 160px", scrollMarginTop: 90 }}>
+        <div style={{ marginBottom: 64 }}>
           <h2 style={{
-            fontSize: "clamp(2.4rem, 4vw, 3.5rem)",
-            fontWeight: 700,
+            fontSize: "clamp(3rem, 5vw, 4.5rem)",
+            fontFamily: "var(--font-playfair), serif",
+            fontWeight: 400,
             lineHeight: 1.1,
             letterSpacing: "-1px",
             color: "#111",
             margin: 0
           }}>
-            Frequently Asked Questions
+            Frequently Asked <span style={{ fontStyle: "italic" }}>Questions</span>
           </h2>
         </div>
 
@@ -1128,10 +912,12 @@ export default function Home() {
                   }}
                 >
                   <span style={{
-                    fontSize: 17,
-                    fontWeight: 700,
+                    fontSize: "clamp(1.1rem, 2vw, 1.5rem)",
+                    fontWeight: 400,
                     color: "#111",
-                    fontFamily: "Fraunces, serif",
+                    fontFamily: "var(--font-playfair), serif",
+                    letterSpacing: "-0.3px",
+                    lineHeight: 1.3,
                   }}>
                     {faq.question}
                   </span>
@@ -1194,46 +980,76 @@ export default function Home() {
       </section>
 
       {/* ── CLOSING CTA SECTION ── */}
-      <section style={{ maxWidth: 1360, margin: "0 auto", padding: "0 24px 140px" }}>
-        <div
-          className="closing-cta"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 64,
-          }}
-        >
-          {/* Left: copy */}
-          <div style={{ flex: "1 1 440px", position: "relative" }}>
-            <h2 style={{
-              fontSize: "clamp(2.4rem, 4vw, 3.6rem)",
-              fontWeight: 700,
-              lineHeight: 1.12,
-              letterSpacing: "-1px",
-              color: "#111",
-              margin: "0 0 24px"
-            }}>
-              Your Investment Roadmap
-            </h2>
-            <p style={{ color: "#666", fontSize: 16, lineHeight: 1.7, maxWidth: 440, marginBottom: 32 }}>
-              From initial selection to your first dividend payout, we handle the complexities of cross-border franchise investment.
-            </p>
+      <section style={{ maxWidth: 1360, margin: "0 auto", padding: "0 24px 80px" }}>
+        {/* TOP: Text Content */}
+        <div style={{ marginBottom: 80 }}>
+          <h2 style={{
+            fontSize: "clamp(3rem, 6vw, 5rem)",
+            fontFamily: "var(--font-playfair), serif",
+            fontWeight: 400,
+            lineHeight: 1.1,
+            letterSpacing: "-2px",
+            color: "#111",
+            margin: "0 0 32px",
+            maxWidth: 900
+          }}>
+            Your Investment <span style={{ fontStyle: "italic" }}>Roadmap</span>
+          </h2>
+          <p style={{ color: "#666", fontSize: 17, lineHeight: 1.7, maxWidth: 560, marginBottom: 48 }}>
+            From initial selection to your first dividend payout, we handle the complexities of cross-border franchise investment.
+          </p>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 24, marginBottom: 40 }}>
-              {[
-                { step: "01", title: "Select Brand", desc: "Review financials and lock in the territory." },
-                { step: "02", title: "Due Diligence", desc: "Legal structuring and profit repatriation setup for UK investors." },
-                { step: "03", title: "Buildout & Hiring", desc: "Handled seamlessly by the verified local franchise team." },
-                { step: "04", title: "Launch & Returns", desc: "Store opening and transparent monthly dividend distributions." }
-              ].map((item) => (
-                <div key={item.step} style={{ display: "flex", gap: 16 }}>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "#3dba44", flexShrink: 0, marginTop: 2 }}>{item.step}</div>
-                  <div>
-                    <div style={{ fontSize: 16, fontWeight: 700, color: "#111", marginBottom: 4 }}>{item.title}</div>
-                    <div style={{ fontSize: 15, color: "#666", lineHeight: 1.5 }}>{item.desc}</div>
-                  </div>
-                </div>
-              ))}
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", marginBottom: 48 }}>
+            {[
+              { step: "01", title: "Select Brand", desc: "Review financials and lock in the territory." },
+              { step: "02", title: "Due Diligence", desc: "Legal structuring and profit repatriation setup for UK investors." },
+              { step: "03", title: "Buildout & Hiring", desc: "Handled seamlessly by the verified local franchise team." },
+              { step: "04", title: "Launch & Returns", desc: "Store opening and transparent monthly dividend distributions." }
+            ].map((item) => (
+              <div key={item.step} style={{ flex: "1 1 200px", paddingLeft: 20, borderLeft: "2px solid #e5e5e5" }}>
+                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "#999", letterSpacing: "0.08em", marginBottom: 10 }}>{item.step}</div>
+                <div style={{ fontSize: "1.15rem", fontFamily: "var(--font-playfair), serif", color: "#111", marginBottom: 6 }}>{item.title}</div>
+                <div style={{ fontSize: 14, color: "#666", lineHeight: 1.6 }}>{item.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="#get-started"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              background: "#111",
+              borderRadius: 999,
+              padding: "16px 32px",
+              fontSize: 14,
+              fontWeight: 600,
+              color: "#fff",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            Explore Now
+            <ArrowIcon color="#fff" />
+          </a>
+        </div>
+
+        {/* BOTTOM: Full-width image with caption */}
+        <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", height: "clamp(400px, 50vw, 680px)" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=80"
+            alt="Restaurant dining experience"
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+          {/* Dark gradient overlay at bottom */}
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)" }} />
+          {/* Caption text */}
+          <div style={{ position: "absolute", bottom: 48, left: 48, right: 48, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24 }}>
+            <div>
+              <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 8 }}>Investment Opportunity</p>
+              <h3 style={{ fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#fff", margin: 0, lineHeight: 1.2 }}>Begin your franchise journey<br /><span style={{ fontStyle: "italic" }}>across Pakistan.</span></h3>
             </div>
             <a
               href="#get-started"
@@ -1241,81 +1057,22 @@ export default function Home() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 10,
-                background: "#3dba44",
+                background: "rgba(255,255,255,0.15)",
+                backdropFilter: "blur(10px)",
+                border: "1px solid rgba(255,255,255,0.3)",
                 borderRadius: 999,
                 padding: "14px 28px",
-                fontSize: 13,
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
+                fontSize: 14,
+                fontWeight: 600,
                 color: "#fff",
                 textDecoration: "none",
                 cursor: "pointer",
+                whiteSpace: "nowrap",
               }}
             >
-              Explore Now
+              Get Started
               <ArrowIcon color="#fff" />
             </a>
-
-          </div>
-
-          {/* Right: image */}
-          <div className="closing-cta-media" style={{ flex: "0 0 55%", position: "relative" }}>
-            <div
-              className="cta-stepped-media"
-              style={{
-                width: "100%",
-                height: "clamp(460px, 46vw, 680px)",
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80"
-                alt="Restaurant dining experience"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-              <span className="cta-cut cta-cut-top-one" aria-hidden="true" />
-              <span className="cta-cut cta-cut-top-two" aria-hidden="true" />
-              <span className="cta-cut cta-cut-right" aria-hidden="true" />
-              <span className="cta-cut cta-cut-bottom-left" aria-hidden="true" />
-            </div>
-
-            {/* Floating accent chips */}
-            <div style={{
-              position: "absolute",
-              bottom: 28,
-              left: -24,
-              width: 68,
-              height: 68,
-              borderRadius: 18,
-              background: "#d4fc26",
-              boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                <polyline points="17 6 23 6 23 12" />
-              </svg>
-            </div>
-            <div style={{
-              position: "absolute",
-              bottom: -20,
-              right: 40,
-              width: 68,
-              height: 68,
-              borderRadius: 18,
-              background: "#dcfce7",
-              boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#166534" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 22V4a1 1 0 0 1 1-1h13.4a.6.6 0 0 1 .5.9l-3 5.6 3 5.6a.6.6 0 0 1-.5.9H5" />
-              </svg>
-            </div>
           </div>
         </div>
       </section>
@@ -1369,17 +1126,13 @@ export default function Home() {
         </div>
       </footer>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-          @keyframes marquee {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
-          }
-          a:hover { opacity: 0.85; }
-        `,
-        }}
-      />
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        a:hover { opacity: 0.85; }
+      `}</style>
     </div>
   );
 }
