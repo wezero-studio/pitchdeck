@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "./smooth-scroll";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -59,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fraunces.className} ${ibmPlexMono.variable}`}>
+      <body className={`${fraunces.className} ${ibmPlexMono.variable} ${playfair.variable}`}>
         <SmoothScroll />
         {children}
       </body>

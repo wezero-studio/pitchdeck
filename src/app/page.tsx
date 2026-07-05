@@ -68,6 +68,72 @@ function buildCollageSlots(photos: BrandPhoto[], fallback: string[]): string[] {
   return slots;
 }
 
+const curatedBrands = [
+  {
+    name: "The Fat Boy",
+    logo: "/thefatboy.png",
+    logoNoBox: false,
+    desc: [
+      "From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.",
+      "By building strong, centralized operating systems, we reduce dependency on third-party aggregators, strengthen direct consumer channels, and protect your profit margins."
+    ],
+    price: "4cr",
+    sales: "1-5L",
+    profit: "15-25L",
+    ownership: "50/50 Partnership or Franchise",
+    dealTooltip: "Feedboy (Fat Boy) offers a 50/50 Partnership (~4 crore) where they run everything and split profit 50/50. Or choose full franchise rights (like KFC).",
+    instagram: "https://www.instagram.com/thefatboylahore/?hl=en",
+    rating: "4.6",
+    reviews: "820 reviews",
+    photos: [
+      "/thefatboy/img1.jpg", "/thefatboy/img2.jpg", "/thefatboy/img1.jpg", "/thefatboy/img2.jpg", "/thefatboy/img1.jpg"
+    ]
+  },
+  {
+    name: "Chop Chips",
+    logo: "/chopchips.png",
+    logoNoBox: false,
+    desc: [
+      "From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.",
+      "By building strong, centralized operating systems, we reduce dependency on third-party aggregators, strengthen direct consumer channels, and protect your profit margins."
+    ],
+    price: "3cr",
+    sales: "1-4L",
+    profit: "10-17L",
+    ownership: "Franchise Only",
+    dealTooltip: "Only franchise model. Investor buys rights, runs own branch, covers staff/kitchen, pays ~10% royalty. Single branch only.",
+    instagram: "https://www.instagram.com/chopchips.pk/",
+    rating: "4.8",
+    reviews: "1.2k reviews",
+    photos: [
+      "/chopchips/img2.jpg", "/chopchips/img3.jpg", "/chopchips/img4.jpg", "/chopchips/img5.jpg", "/chopchips/img6.jpg", "/chopchips/img7.jpg"
+    ]
+  },
+  {
+    name: "Yar Istanbul",
+    logo: "/yeristanbul.jpg",
+    logoNoBox: true,
+    logoStyle: { objectFit: "contain" } as React.CSSProperties,
+    desc: [
+      "From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.",
+      "By building strong, centralized operating systems, we reduce dependency on third-party aggregators, strengthen direct consumer channels, and protect your profit margins."
+    ],
+    price: "5.5cr-6cr",
+    sales: "2.5-9L",
+    profit: "25-35L",
+    ownership: "100% Shares / Full Rights",
+    dealTooltip: "100% shares and full franchising rights. You can sub-franchise and sell branches to others. Most profitable opportunity.",
+    instagram: "https://www.instagram.com/yeristanbulisb/?hl=en",
+    rating: "4.6",
+    reviews: "940 reviews",
+    photos: [
+      "/yeristanbul/img1.jpg", "/yeristanbul/img2.jpg", "/yeristanbul/img3.jpg", "/yeristanbul/img4.jpg", "/yeristanbul/img5.jpg", "/yeristanbul/img6.jpg"
+    ]
+  }
+];
+
+
+
 export default function Home() {
   // Mobile carousel (state kept for future use)
 
@@ -94,8 +160,27 @@ export default function Home() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
+  const section2Ref = React.useRef<HTMLDivElement | null>(null);
+  const [section2Visible, setSection2Visible] = useState(false);
+
+  useEffect(() => {
+    if (!section2Ref.current) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSection2Visible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(section2Ref.current);
+    return () => obs.disconnect();
+  }, []);
+
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
+  const [showAllOptions, setShowAllOptions] = useState(false);
 
   return (
     <div
@@ -104,229 +189,238 @@ export default function Home() {
         background: "#fff",
         color: "#111",
         fontFamily: "Fraunces, serif",
-        overflowX: "hidden",
       }}
     >
       {/* ── HERO ── */}
+      <style>{`
+        @keyframes sliceUp {
+          0% {
+            transform: translateY(110%);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+        .animate-slice-up {
+          animation: sliceUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          transform: translateY(110%);
+        }
+        .slice-hidden {
+          transform: translateY(110%);
+        }
+        @keyframes marquee-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-right {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .tooltip-container:hover .tooltip-content,
+        .tooltip-container:active .tooltip-content {
+          opacity: 1 !important;
+          visibility: visible !important;
+          transform: translateY(0) !important;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+      `}</style>
       <main
         id="home"
         style={{
-          scrollMarginTop: 90,
-          maxWidth: 1380,
-          margin: "0 auto",
-          padding: "0 48px 80px",
+          width: "100%",
+          height: "100vh",
+          minHeight: "600px",
           position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          overflow: "hidden",
         }}
       >
-        {/* Two-column flex */}
-        <div
-          className="hero-layout"
+        {/* Background Image */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=85"
+          alt="Paisana Living Background"
           style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 0,
+          }}
+        />
+        {/* Gradient Overlay for Text Readability */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.5) 100%)",
+            zIndex: 1,
+          }}
+        />
+
+        {/* Header Navigation */}
+        <header
+          style={{
+            position: "relative",
+            zIndex: 2,
+            padding: "32px 48px",
             display: "flex",
-            alignItems: "flex-start",
-            gap: 48,
-            paddingTop: 72,
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          {/* ── LEFT: Image ── */}
-          <div className="hero-media-column" style={{ flex: "0 0 55%", position: "relative", marginLeft: "24px" }}>
-            <div
-              className="hero-stepped-media"
-              style={{
-                width: "100%",
-                height: "clamp(460px, 46vw, 680px)",
-                position: "relative",
-                borderRadius: "2rem",
-                overflow: "hidden",
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=85"
-                alt="Restaurant Franchise Opportunities"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                }}
-              />
-              <span className="hero-cut hero-cut-top-one" aria-hidden="true" />
-              <span className="hero-cut hero-cut-top-two" aria-hidden="true" />
-              <span className="hero-cut hero-cut-right" aria-hidden="true" />
-              <span className="hero-cut hero-cut-bottom-left" aria-hidden="true" />
-            </div>
-          </div>
-
-          {/* ── RIGHT: Content ── */}
           <div
             style={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              paddingTop: 8,
+              fontSize: "36px",
+              fontWeight: 400,
+              color: "#dfdfdf",
+              fontFamily: "var(--font-playfair), serif",
+              letterSpacing: "0.02em",
             }}
           >
-            {/* Headline — massive, tight, Fraunces black */}
-            <h1
-              className="hero-heading"
+            T
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <a
+              href="#get-started"
               style={{
-                fontSize: "clamp(3rem, 4.5vw, 5.5rem)",
-                fontWeight: 600,
-                lineHeight: 1.05,
-                letterSpacing: "-1px",
-                color: "#111",
-                margin: 0,
-                marginTop: "-12px",
-                fontFamily: "Fraunces, serif",
+                display: "inline-flex",
+                alignItems: "center",
+                background: "#737373", // grey color
+                backdropFilter: "blur(8px)",
+                borderRadius: "4px",
+                padding: "15px 28px",
+                fontSize: 15,
+                fontWeight: 400,
+                fontFamily: "var(--font-playfair), serif",
+                color: "#fff",
+                textDecoration: "none",
+                transition: "background 0.3s ease",
               }}
             >
-              <div className="hero-line-1" style={{ whiteSpace: "nowrap" }}>Curated Restaurant</div>
-              <div className="hero-line-2" style={{ whiteSpace: "nowrap" }}>Franchise Portfolio</div>
-              <div className="hero-line-3">in Pakistan</div>
-            </h1>
+              Get Started
+            </a>
+            <a
+              href="#get-started"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "50px",
+                height: "50px",
+                background: "#737373", // grey color
+                backdropFilter: "blur(8px)",
+                borderRadius: "50%",
+                color: "#fff",
+                textDecoration: "none",
+                transition: "background 0.3s ease",
+              }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </header>
 
-            <div className="hero-content-bottom" style={{ width: "100%" }}>
-              {/* Sub-paragraph */}
-              <p
-                style={{
-                  marginTop: 72,
-                  maxWidth: 520,
-                  fontSize: 15,
-                  lineHeight: 1.75,
-                  color: "#888",
-                  fontWeight: 400,
-                }}
-              >
-                A carefully selected portfolio of high-performing food and beverage franchises in Pakistan, prepared exclusively for our UK investor partners. Review key metrics, investments, and robust ROI projections below.
-              </p>
+        {/* Hero Content */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            padding: "0 48px 80px",
+            maxWidth: "1400px",
+            width: "100%",
+            margin: "0 auto",
+          }}
+        >
+          <h1
+            style={{
+              fontFamily: "var(--font-playfair), serif",
+              fontSize: "clamp(3rem, 5.5vw, 6.5rem)",
+              fontWeight: 400,
+              lineHeight: 1.05,
+              color: "#f4f4f4",
+              margin: 0,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            <div style={{ overflow: "hidden" }}><div className="animate-slice-up" style={{ whiteSpace: "nowrap" }}>Curated Restaurant</div></div>
+            <div style={{ overflow: "hidden" }}><div className="animate-slice-up delay-100" style={{ whiteSpace: "nowrap" }}>Franchise Portfolio</div></div>
+            <div style={{ overflow: "hidden" }}>
+              <div className="animate-slice-up delay-200" style={{ whiteSpace: "nowrap" }}>
+                <span style={{ fontStyle: "italic", paddingRight: "4px" }}>in</span> <span style={{ fontStyle: "italic" }}>Pakistan</span>
+              </div>
+            </div>
+          </h1>
+        </div>
+      </main>
 
-              {/* CTA Button — green pill, matching reference */}
-              <a
-                href="#get-started"
-                style={{
-                  marginTop: 20,
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 10,
-                  background: "#3dba44",
-                  borderRadius: 999,
-                  padding: "13px 26px",
-                  fontSize: 13,
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  color: "#fff",
-                  textDecoration: "none",
-                  cursor: "pointer",
-                }}
-              >
-                Get Started
-                <ArrowIcon color="#fff" />
-              </a>
+      {/* ── SECTION 2: Subtext & Visuals ── */}
+      <section
+        ref={section2Ref}
+        style={{
+          backgroundColor: "#fff",
+          padding: "160px 24px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "80px",
+          color: "#111",
+        }}
+      >
+        <div style={{ maxWidth: "1200px", textAlign: "center", overflow: "hidden" }}>
+          <p
+            className={section2Visible ? "animate-slice-up delay-100" : "slice-hidden"}
+            style={{
+              fontFamily: "var(--font-playfair), serif",
+              fontSize: "clamp(2rem, 3.8vw, 3.2rem)",
+              lineHeight: 1.35,
+              fontWeight: 400,
+              margin: 0,
+            }}
+          >
+            A carefully selected portfolio of high-performing food and beverage franchises in Pakistan, prepared exclusively for our UK investor partners. <span style={{ fontStyle: "italic" }}>Review key metrics, investments, and robust ROI projections below.</span>
+          </p>
+        </div>
 
-
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px", alignItems: "center" }}>
+          <div style={{ overflow: "hidden", padding: "8px" }}>
+            <div className={section2Visible ? "animate-slice-up delay-200" : "slice-hidden"} style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+              <img src="/cafepraha/img1.jpg" alt="Cafe Praha" style={{ width: "120px", height: "64px", objectFit: "cover", borderRadius: "6px" }} />
+              <div style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", fontWeight: 400 }}>High-Yield <span style={{ fontStyle: "italic" }}>Franchises</span></div>
+            </div>
+          </div>
+          <div style={{ overflow: "hidden", padding: "8px" }}>
+            <div className={section2Visible ? "animate-slice-up delay-300" : "slice-hidden"} style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+              <div style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", fontWeight: 400 }}>Strategic <span style={{ fontStyle: "italic" }}>Positioning</span></div>
+              <img src="/chaayekhana/img1.jpg" alt="Chai Khaana" style={{ width: "120px", height: "64px", objectFit: "cover", borderRadius: "6px" }} />
+            </div>
+          </div>
+          <div style={{ overflow: "hidden", padding: "8px" }}>
+            <div className={section2Visible ? "animate-slice-up delay-300" : "slice-hidden"} style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+              <img src="/saadidisajji/img1.jpg" alt="Saadi di Sajji" style={{ width: "120px", height: "64px", objectFit: "cover", borderRadius: "6px" }} />
+              <div style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", fontWeight: 400 }}>Proven Financial <span style={{ fontStyle: "italic" }}>Returns</span></div>
             </div>
           </div>
         </div>
+      </section>
 
-
-      </main>
-
-      {/* ── PARTNERS MARQUEE & STATS SECTION ── */}
+      {/* ── STATS SECTION ── */}
       <section
         style={{
           maxWidth: 1360,
           margin: "0 auto",
-          padding: "160px 24px 100px 24px",
+          padding: "100px 24px 100px 24px",
         }}
       >
-        {/* Marquee Banner */}
-        <div
-          className="marquee-box"
-          style={{
-            background: "#f4f5f7",
-            borderRadius: 24,
-            padding: "56px 48px",
-            display: "flex",
-            alignItems: "center",
-            gap: 48,
-          }}
-        >
-          {/* Text */}
-          <div
-            className="marquee-title"
-            style={{
-              flexShrink: 0,
-              width: 180,
-              fontSize: 15,
-              fontWeight: 500,
-              color: "#111",
-              lineHeight: 1.4,
-              borderRight: "1px solid #ddd",
-              paddingRight: 32,
-            }}
-          >
-            Partnering with Pakistan&apos;s leading food franchises
-          </div>
-
-          {/* Scrolling Marquee */}
-          <div style={{
-            display: "flex",
-            overflow: "hidden",
-            width: "100%",
-            maskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
-            WebkitMaskImage: "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
-          }}>
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 60,
-              flexShrink: 0,
-              minWidth: "max-content",
-              animation: "marquee 25s linear infinite",
-            }}>
-              {[
-                { name: "McDonald's",  src: "https://cdn.simpleicons.org/mcdonalds/111111" },
-                { name: "KFC",         src: "https://cdn.simpleicons.org/kfc/111111" },
-                { name: "Burger King", src: "https://cdn.simpleicons.org/burgerking/111111" },
-                { name: "Starbucks",   src: "https://cdn.simpleicons.org/starbucks/111111" },
-                { name: "Coca-Cola",   src: "https://cdn.simpleicons.org/cocacola/111111" },
-                { name: "Deliveroo",   src: "https://cdn.simpleicons.org/deliveroo/111111" },
-                { name: "DoorDash",    src: "https://cdn.simpleicons.org/doordash/111111" },
-                { name: "foodpanda",   src: "https://cdn.simpleicons.org/foodpanda/111111" },
-                { name: "McDonald's",  src: "https://cdn.simpleicons.org/mcdonalds/111111" },
-                { name: "KFC",         src: "https://cdn.simpleicons.org/kfc/111111" },
-                { name: "Burger King", src: "https://cdn.simpleicons.org/burgerking/111111" },
-                { name: "Starbucks",   src: "https://cdn.simpleicons.org/starbucks/111111" },
-                { name: "Coca-Cola",   src: "https://cdn.simpleicons.org/cocacola/111111" },
-                { name: "Deliveroo",   src: "https://cdn.simpleicons.org/deliveroo/111111" },
-                { name: "DoorDash",    src: "https://cdn.simpleicons.org/doordash/111111" },
-                { name: "foodpanda",   src: "https://cdn.simpleicons.org/foodpanda/111111" },
-              ].map((brand, idx) => (
-                <div key={`logo-${idx}`} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, flexShrink: 0 }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={brand.src}
-                    alt={brand.name}
-                    style={{
-                      height: 60,
-                      width: 60,
-                      objectFit: "contain",
-                      opacity: 0.55,
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span style={{ fontSize: 13, fontWeight: 600, color: "#888", whiteSpace: "nowrap", letterSpacing: "0.03em" }}>
-                    {brand.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Stats Row */}
         <div
           className="stats-row"
@@ -379,8 +473,156 @@ export default function Home() {
           ))}
         </div>
 
-        {/* ── FEATURED BRANDS SECTION ── */}
-        <div id="opportunities" style={{ marginTop: 160, scrollMarginTop: 90 }}>
+        {/* ── OUR CURATED PICKS HEADER ── */}
+        <div style={{ marginTop: 160, textAlign: "center", marginBottom: 80 }}>
+          <h2 style={{ fontSize: "clamp(3rem, 5vw, 4rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, color: "#111", margin: 0 }}>
+            Our Curated <span style={{ fontStyle: "italic" }}>Picks</span>
+          </h2>
+          <p style={{ fontSize: "1.2rem", color: "#555", marginTop: "16px", maxWidth: "600px", margin: "16px auto 0" }}>
+            Explore our top 3 highly vetted franchise opportunities yielding robust daily sales and maximum ROI.
+          </p>
+        </div>
+
+        {/* ── CURATED BRANDS STICKY LIST ── */}
+        <div>
+          {curatedBrands.map((brand, idx) => (
+            <div key={idx} style={{ marginBottom: 0 }}>
+              {/* Brand Info + Metrics Row */}
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "64px", position: "relative", flexWrap: "wrap" }}>
+
+              {/* LEFT STICKY (INFO) */}
+              <div style={{ flex: "1 1 350px", position: "sticky", top: "120px" }}>
+                <div style={{ marginBottom: 24, background: brand.logoNoBox ? "transparent" : "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={brand.logo} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
+                </div>
+                <h3 style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, margin: "0 0 24px 0", color: "#111", letterSpacing: "-1px" }}>{brand.name}</h3>
+                <div style={{ fontSize: "1.05rem", color: "#444", lineHeight: 1.6, maxWidth: "400px" }}>
+                  {brand.desc.map((p, i) => (
+                    <p key={i} style={{ marginBottom: 16 }}>{p}</p>
+                  ))}
+                </div>
+              </div>
+
+              {/* RIGHT SCROLLING (METRICS + MARQUEE) */}
+              <div style={{ flex: "1 1 50%", maxWidth: "560px", display: "flex", flexDirection: "column" }}>
+
+                {/* Metric Card: Investment */}
+                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", marginBottom: "24px" }}>
+                  <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Investment Required</div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.price}</div>
+                    <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Initial capital needed to set up.</div>
+                  </div>
+                </div>
+
+                {/* Metric Card: Daily Sales */}
+                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", marginBottom: "24px" }}>
+                  <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Average Daily Sales</div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.sales}</div>
+                    <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Expected daily turnover.</div>
+                  </div>
+                </div>
+
+                {/* Metric Card: Monthly Net Profit */}
+                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", marginBottom: "24px" }}>
+                  <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit</div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.profit}</div>
+                    <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Take-home profit after all costs.</div>
+                  </div>
+                </div>
+
+                {/* Metric Card: Ownership & Deal Type */}
+                <div className="tooltip-container" style={{ position: "relative", background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer", marginBottom: "24px" }}>
+                  <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111", display: "flex", alignItems: "center", gap: "8px" }}>
+                    Ownership Structure
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
+                    <div style={{ fontSize: "1.8rem", fontWeight: 400, color: "#111", lineHeight: 1.1, maxWidth: "200px" }}>{brand.ownership}</div>
+                    <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "160px", textAlign: "right", lineHeight: 1.4 }}>Hover for terms</div>
+                  </div>
+                  <div className="tooltip-content" style={{ opacity: 0, visibility: "hidden", transform: "translateY(10px)", transition: "all 0.2s ease", position: "absolute", bottom: "110%", left: 0, width: "100%", fontSize: "0.95rem", color: "#4b5563", lineHeight: 1.5, padding: "16px", background: "#fff", borderRadius: "8px", border: "1px solid #e5e7eb", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", zIndex: 10 }}>
+                    {brand.dealTooltip}
+                  </div>
+                </div>
+
+                {/* Social / Rating Row */}
+                <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "160px" }}>
+                  <div style={{ flex: "1 1 200px", background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px" }}>
+                    <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
+                    <div>
+                      <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
+                      <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                    </div>
+                  </div>
+
+                  <a href={brand.instagram} target="_blank" rel="noopener noreferrer" style={{ flex: "1 1 200px", background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px", textDecoration: "none" }}>
+                    <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", flexShrink: 0 }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>Instagram</div>
+                      <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>View Profile</div>
+                    </div>
+                  </a>
+                </div>
+
+                {/* ── PER-BRAND IMAGE MARQUEE ── */}
+                {/* Lives inside the scrolling column (not as a sibling of the
+                    row) so its height counts toward this row's total height —
+                    that's what keeps the sticky info panel on the left pinned
+                    all the way through the marquee instead of releasing early. */}
+                <div style={{ background: "#111", padding: "64px 0", overflow: "hidden", display: "flex", flexDirection: "column", gap: "20px", marginBottom: idx < curatedBrands.length - 1 ? "160px" : "80px", marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)", width: "100vw" }}>
+                  {/* Row 1 */}
+                  <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
+                    {[...brand.photos, ...brand.photos].map((src, i) => {
+                      // eslint-disable-next-line @next/next/no-img-element
+                      return <img key={i} src={src} alt={brand.name} style={{ height: "260px", width: "380px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
+                    })}
+                  </div>
+                  {/* Row 2 */}
+                  <div style={{ display: "flex", width: "max-content", animation: "marquee-left 35s linear infinite" }}>
+                    {[...brand.photos, ...brand.photos].map((src, i) => {
+                      // eslint-disable-next-line @next/next/no-img-element
+                      return <img key={i} src={src} alt={brand.name} style={{ height: "260px", width: "380px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
+                    })}
+                  </div>
+                </div>
+
+              </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── VIEW ALL OPTIONS TOGGLE ── */}
+      <section style={{ textAlign: "center", padding: "60px 24px 120px" }}>
+        <button
+          onClick={() => setShowAllOptions(!showAllOptions)}
+          style={{
+            background: "#111",
+            color: "#fff",
+            padding: "16px 32px",
+            borderRadius: "999px",
+            fontSize: "1.1rem",
+            fontWeight: 600,
+            cursor: "pointer",
+            border: "none",
+            boxShadow: "0 4px 14px rgba(0,0,0,0.1)",
+            transition: "transform 0.2s"
+          }}
+        >
+          {showAllOptions ? "Hide Additional Options" : "View All The Options You Have"}
+        </button>
+      </section>
+
+      {/* ── FEATURED BRANDS SECTION (ORIGINAL LIST) ── */}
+      {showAllOptions && (
+        <div id="opportunities" style={{ scrollMarginTop: 90 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 32 }}>
             <div style={{ maxWidth: 600 }}>
               <div style={{ 
@@ -833,7 +1075,7 @@ export default function Home() {
           </div>
 
         </div>
-      </section>
+      )}
       {/* ── FAQ SECTION ── */}
       <section id="faq" style={{ maxWidth: 880, margin: "0 auto", padding: "0 24px 160px", scrollMarginTop: 90 }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>

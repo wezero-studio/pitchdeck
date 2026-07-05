@@ -6,6 +6,15 @@
   padding: 0;
 }
 
+html {
+  /* Must live on html, not body or any inner div: setting overflow-x on any
+     element other than the true root forces the browser to compute its
+     overflow-y as auto (per spec), which makes that element register as a
+     scroll container and breaks position:sticky for everything inside it.
+     html is exempt from this since it's the actual root scroller. */
+  overflow-x: hidden;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
