@@ -69,6 +69,7 @@ function buildCollageSlots(photos: BrandPhoto[], fallback: string[]): string[] {
 }
 
 const curatedBrands = [
+  /*
   {
     name: "The Fat Boy",
     logo: "/thefatboy.png",
@@ -129,8 +130,47 @@ const curatedBrands = [
       "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80"
     ]
   },
+  */
   {
-    name: "Yar Istanbul",
+    name: "Ottoman Kitchen",
+    logo: "/ottoman/logo.jpg",
+    logoNoBox: false,
+    logoStyle: { objectFit: "contain", transform: "scale(1.15)" } as React.CSSProperties,
+    desc: [
+      "Turkish Restaurant",
+      "One branch. Buy a Franchise."
+    ],
+    price: "5cr",
+    sales: "2.5-7L",
+    profit: "20-30L",
+    ownership: "Franchise Only",
+    dealTooltip: "Franchise model. Investor buys rights, runs own branch, covers staff/kitchen, pays ~10% royalty. Single branch only.",
+    isBestPick: false,
+    instagram: "https://www.instagram.com/ottomankitchen.isb/",
+    rating: "4.7",
+    reviews: "820 reviews",
+    staffInfo: [
+      { role: "Head Chef", count: "TBD" },
+      { role: "Management", count: "TBD" },
+      { role: "Kitchen Staff", count: "TBD" },
+      { role: "Total Staff", count: "TBD" },
+    ],
+    photos: [
+      "/ottoman/img2.jpg", "/ottoman/img3.jpg", "/ottoman/img4.jpg", "/ottoman/img5.jpg", "/ottoman/img6.jpg", "/ottoman/img7.jpg"
+    ],
+    marqueePhotos: [
+      "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1583623025817-d180a2221d0a?auto=format&fit=crop&w=600&q=80"
+    ]
+  },
+  {
+    name: "Yer istanbul",
     logo: "/yeristanbul.jpg",
     logoNoBox: true,
     logoStyle: { objectFit: "contain" } as React.CSSProperties,
@@ -143,11 +183,55 @@ const curatedBrands = [
     profit: "25-35L",
     ownership: "100% Shares / Full Rights",
     dealTooltip: "100% shares and full franchising rights. You can sub-franchise and sell branches to others. Most profitable opportunity.",
+    isBestPick: true,
     instagram: "https://www.instagram.com/yeristanbulisb/?hl=en",
     rating: "4.6",
     reviews: "940 reviews",
+    staffInfo: [
+      { role: "Head Chef", count: "1 + 1 backup" },
+      { role: "Management", count: "1 Head Manager + Associate Managers" },
+      { role: "Main Staff", count: "25 (11–12 Kitchen · 13–14 Waiting & Cleaning)" },
+      { role: "Backup Staff", count: "6–7 backup · ~31 total" },
+    ],
     photos: [
       "/yeristanbul/img1.jpg", "/yeristanbul/img2.jpg", "/yeristanbul/img3.jpg", "/yeristanbul/img4.jpg", "/yeristanbul/img5.jpg", "/yeristanbul/img6.jpg"
+    ],
+    marqueePhotos: [
+      "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1583623025817-d180a2221d0a?auto=format&fit=crop&w=600&q=80"
+    ]
+  },
+  {
+    name: "Basha Istanbul",
+    logo: "/basha istanbul/logo.png",
+    logoNoBox: true,
+    logoStyle: { objectFit: "contain" } as React.CSSProperties,
+    desc: [
+      "Franchise Turkish Restaurant"
+    ],
+    price: "7-8cr",
+    sales: "2.5-7.5L",
+    profit: "22-33L",
+    ownership: "Franchise Only",
+    dealTooltip: "Franchise model. Investor buys rights, runs own branch, covers staff/kitchen, pays ~10% royalty. Single branch only.",
+    isBestPick: false,
+    instagram: "https://www.instagram.com/bashaistanbulpk/?hl=en",
+    rating: "4.7",
+    reviews: "820 reviews",
+    staffInfo: [
+      { role: "Head Chef", count: "TBD" },
+      { role: "Management", count: "TBD" },
+      { role: "Kitchen Staff", count: "TBD" },
+      { role: "Total Staff", count: "TBD" },
+    ],
+    photos: [
+      "/basha istanbul/img2.jpg", "/basha istanbul/img3.jpg", "/basha istanbul/img4.jpg", "/basha istanbul/img6.jpg", "/basha istanbul/img7.jpg", "/basha istanbul/img8.jpg"
     ],
     marqueePhotos: [
       "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600&q=80",
@@ -211,23 +295,11 @@ export default function Home() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const section2Ref = React.useRef<HTMLDivElement | null>(null);
-  const [section2Visible, setSection2Visible] = useState(false);
-
-  useEffect(() => {
-    if (!section2Ref.current) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSection2Visible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    obs.observe(section2Ref.current);
-    return () => obs.disconnect();
-  }, []);
+  const [section2Ref, section2Visible] = useIntersectionObserver();
+  const [statsHeadingRef, statsHeadingVisible] = useIntersectionObserver();
+  const [optionsHeadingRef, optionsHeadingVisible] = useIntersectionObserver();
+  const [faqHeadingRef, faqHeadingVisible] = useIntersectionObserver();
+  const [ctaHeadingRef, ctaHeadingVisible] = useIntersectionObserver();
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
@@ -458,22 +530,7 @@ export default function Home() {
         <div style={{ maxWidth: "1200px", textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }}>
           <div style={{ overflow: "hidden" }}>
             <p className={section2Visible ? "animate-slice-up delay-100" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.35, fontWeight: 400, margin: 0 }}>
-              A carefully selected portfolio of high-performing food
-            </p>
-          </div>
-          <div style={{ overflow: "hidden" }}>
-            <p className={section2Visible ? "animate-slice-up delay-200" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.35, fontWeight: 400, margin: 0 }}>
-              and beverage franchises in Pakistan, prepared exclusively
-            </p>
-          </div>
-          <div style={{ overflow: "hidden" }}>
-            <p className={section2Visible ? "animate-slice-up delay-300" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.35, fontWeight: 400, margin: 0 }}>
-              for our UK investor partners. <span style={{ fontStyle: "italic" }}>Review key metrics,</span>
-            </p>
-          </div>
-          <div style={{ overflow: "hidden" }}>
-            <p className={section2Visible ? "animate-slice-up delay-400" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.35, fontWeight: 400, margin: 0 }}>
-              <span style={{ fontStyle: "italic" }}>investments, and robust ROI projections below.</span>
+              A carefully selected portfolio of high-performing food and beverage franchises in Pakistan, prepared exclusively for our UK investor partners. <span style={{ fontStyle: "italic" }}>Review key metrics, investments, and robust ROI projections below.</span>
             </p>
           </div>
         </div>
@@ -573,25 +630,72 @@ export default function Home() {
         <div>
           {curatedBrands.map((brand, idx) => (
             <div key={idx} style={{ marginBottom: 0 }}>
+              {/* ── PER-BRAND IMAGE MARQUEE (3 rows) ── */}
+              <div style={{ background: "#111", padding: "64px 0", overflow: "hidden", display: "flex", flexDirection: "column", gap: "20px", marginBottom: "80px", marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)", width: "100vw" }}>
+                {/* Row 1: left to right */}
+                <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
+                  {[...brand.marqueePhotos, ...brand.marqueePhotos].map((src, i) => {
+                    // eslint-disable-next-line @next/next/no-img-element
+                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
+                  })}
+                </div>
+                {/* Row 2: right to left */}
+                <div style={{ display: "flex", width: "max-content", animation: "marquee-left 35s linear infinite" }}>
+                  {[...brand.marqueePhotos.slice().reverse(), ...brand.marqueePhotos.slice().reverse()].map((src, i) => {
+                    // eslint-disable-next-line @next/next/no-img-element
+                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
+                  })}
+                </div>
+                {/* Row 3: left to right */}
+                <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
+                  {[...brand.marqueePhotos, ...brand.marqueePhotos].map((src, i) => {
+                    // eslint-disable-next-line @next/next/no-img-element
+                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
+                  })}
+                </div>
+              </div>
+
               {/* Brand Info + Metrics Row */}
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "64px", marginBottom: "80px", position: "relative", flexWrap: "wrap", paddingBottom: "80px" }}>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "64px", marginBottom: idx < curatedBrands.length - 1 ? "160px" : "80px", position: "relative", flexWrap: "wrap", paddingBottom: "80px" }}>
 
               {/* LEFT STICKY (INFO) */}
               <div style={{ flex: "1 1 350px", position: "sticky", top: "120px" }}>
-                <div style={{ marginBottom: 24, background: brand.logoNoBox ? "transparent" : "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden" }}>
+                <div style={brand.logoNoBox ? { marginBottom: 24, display: "inline-flex", alignItems: "center", justifyContent: "flex-start" } : { marginBottom: 24, background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={brand.logo} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
+                  <img src={brand.logo} alt={brand.name} style={brand.logoNoBox ? { maxHeight: 100, maxWidth: 160, objectFit: "contain", ...brand.logoStyle } : { width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
                 </div>
-                <h3 style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, margin: "0 0 24px 0", color: "#111", letterSpacing: "-1px" }}>{brand.name}</h3>
+                <h3 className={brand.isBestPick ? "gold-gradient-text" : ""} style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, margin: brand.isBestPick ? "0 0 12px 0" : "0 0 24px 0", letterSpacing: "-1px", ...(!brand.isBestPick ? { color: "#111" } : {}) }}>{brand.name}</h3>
+                {brand.isBestPick && (
+                  <div style={{ display: "inline-flex", padding: "6px 14px", borderRadius: "999px", fontSize: "0.85rem", fontWeight: 600, fontFamily: "var(--font-sans), sans-serif", letterSpacing: "0.5px", textTransform: "uppercase", border: "1.5px solid #111", color: "#111", background: "transparent", alignItems: "center", gap: "6px", marginBottom: "24px" }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    Investor Top Pick
+                  </div>
+                )}
                 <div style={{ fontSize: "1.05rem", color: "#444", lineHeight: 1.6, maxWidth: "400px" }}>
                   {brand.desc.map((p, i) => (
                     <p key={i} style={{ marginBottom: 16 }}>{p}</p>
                   ))}
                 </div>
+
               </div>
 
               {/* RIGHT SCROLLING (METRICS) */}
               <div style={{ flex: "1 1 50%", maxWidth: "560px", display: "flex", flexDirection: "column", gap: "24px" }}>
+
+                {/* Metric Card: Staff Breakdown */}
+                {brand.staffInfo && (
+                  <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", flexDirection: "column", gap: "20px" }}>
+                    <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Staff Breakdown</div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+                      {brand.staffInfo.map((s: { role: string; count: string }, i: number) => (
+                        <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid #e8e8e8", padding: "12px 0", gap: 12 }}>
+                          <span style={{ fontSize: "0.95rem", color: "#666", fontWeight: 500, flexShrink: 0 }}>{s.role}</span>
+                          <span style={{ fontSize: "0.95rem", color: "#111", fontWeight: 600, textAlign: "right" }}>{s.count}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Metric Card: Investment */}
                 <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
@@ -613,7 +717,7 @@ export default function Home() {
 
                 {/* Metric Card: Monthly Net Profit */}
                 <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                  <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit</div>
+                  <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit <span style={{ fontSize: "0.85rem", color: "#666", display: "block", fontFamily: "var(--font-sans), sans-serif", marginTop: 4 }}>(100% ownership)</span></div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
                     <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.profit}</div>
                     <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Take-home profit after all costs.</div>
@@ -658,31 +762,6 @@ export default function Home() {
 
               </div>
               </div>
-
-              {/* ── PER-BRAND IMAGE MARQUEE (3 rows) ── */}
-              <div style={{ background: "#111", padding: "64px 0", overflow: "hidden", display: "flex", flexDirection: "column", gap: "20px", marginBottom: idx < curatedBrands.length - 1 ? "160px" : "80px", marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)", width: "100vw" }}>
-                {/* Row 1: left to right */}
-                <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
-                  {[...brand.marqueePhotos, ...brand.marqueePhotos].map((src, i) => {
-                    // eslint-disable-next-line @next/next/no-img-element
-                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
-                  })}
-                </div>
-                {/* Row 2: right to left */}
-                <div style={{ display: "flex", width: "max-content", animation: "marquee-left 35s linear infinite" }}>
-                  {[...brand.marqueePhotos.slice().reverse(), ...brand.marqueePhotos.slice().reverse()].map((src, i) => {
-                    // eslint-disable-next-line @next/next/no-img-element
-                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
-                  })}
-                </div>
-                {/* Row 3: left to right */}
-                <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
-                  {[...brand.marqueePhotos, ...brand.marqueePhotos].map((src, i) => {
-                    // eslint-disable-next-line @next/next/no-img-element
-                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
-                  })}
-                </div>
-              </div>
             </div>
           ))}
         </div>
@@ -691,25 +770,37 @@ export default function Home() {
       {/* ── VIEW ALL OPTIONS – ACCORDION LIST ── */}
       <section style={{ maxWidth: 1360, margin: "0 auto", padding: "60px 48px 120px" }}>
         {/* Toggle button */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 48 }}>
-          <h2 style={{ fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontSize: "clamp(2.5rem, 4vw, 3.5rem)", color: "#111", margin: 0, letterSpacing: "-1px" }}>
-            All <span style={{ fontStyle: "italic" }}>Options</span>
-          </h2>
+        {/* Toggle button */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", marginBottom: 64, gap: "20px" }} ref={optionsHeadingRef}>
+          <div style={{ overflow: "hidden" }}>
+            <h2 className={optionsHeadingVisible ? "animate-slice-up delay-100" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontSize: "clamp(2.5rem, 4vw, 3.5rem)", color: "#111", margin: 0, letterSpacing: "-1px" }}>
+              Explore Additional <span style={{ fontStyle: "italic" }}>Opportunities</span>
+            </h2>
+          </div>
+          <p style={{ fontSize: "1.1rem", color: "#555", maxWidth: "600px", margin: 0, lineHeight: 1.6 }}>
+            Browse through our extended catalogue of high-potential culinary franchises. We have carefully vetted numerous options, making sure there is an opportunity to fit every investment thesis.
+          </p>
           <button
             onClick={() => { setShowAllOptions(!showAllOptions); setExpandedBrand(null); }}
             style={{
-              background: showAllOptions ? "#111" : "transparent",
-              color: showAllOptions ? "#fff" : "#111",
-              padding: "14px 28px",
+              background: "#111",
+              color: "#fff",
+              padding: "18px 40px",
               borderRadius: "999px",
-              fontSize: "0.95rem",
+              fontSize: "1.15rem",
               fontWeight: 600,
               cursor: "pointer",
-              border: "1.5px solid #111",
-              transition: "all 0.2s"
+              border: "none",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+              transition: "all 0.3s ease",
+              marginTop: "16px",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px"
             }}
           >
-            {showAllOptions ? "Hide Options" : "View All The Options You Have"}
+            {showAllOptions ? "Hide Expanded Catalogue" : "View Expanded Catalogue"}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transition: "transform 0.3s ease", transform: showAllOptions ? "rotate(180deg)" : "rotate(0deg)" }}><polyline points="6 9 12 15 18 9"></polyline></svg>
           </button>
         </div>
 
@@ -751,7 +842,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Expanded Detail Panel */}
                 {/* Expanded Detail Panel */}
                 <div style={{
                   display: "grid",
@@ -904,15 +994,13 @@ export default function Home() {
 
       {/* ── FAQ SECTION ── */}
       <section id="faq" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px 160px", scrollMarginTop: 90 }}>
-        <div style={{ marginBottom: 64 }}>
-          <h2 style={{
-            fontSize: "clamp(3rem, 5vw, 4.5rem)",
+        <div style={{ overflow: "hidden", marginBottom: "48px" }} ref={faqHeadingRef}>
+          <h2 className={faqHeadingVisible ? "animate-slice-up delay-100" : "slice-hidden"} style={{
             fontFamily: "var(--font-playfair), serif",
+            fontSize: "clamp(3rem, 5vw, 4rem)",
             fontWeight: 400,
-            lineHeight: 1.1,
-            letterSpacing: "-1px",
-            color: "#111",
-            margin: 0
+            margin: 0,
+            color: "#111"
           }}>
             Frequently Asked <span style={{ fontStyle: "italic" }}>Questions</span>
           </h2>
@@ -1129,12 +1217,8 @@ export default function Home() {
               userSelect: "none",
             }}
           >
-            <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.5px", color: "#3dba44" }}>
-              Franchise
-            </span>
-            <span style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.5px", color: "#111", marginTop: -2 }}>
-              Broker.
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.jpeg" alt="Polaris Commercials" style={{ width: "100px", objectFit: "contain", mixBlendMode: "multiply" }} />
           </Link>
 
           <p style={{ fontSize: 13, color: "#888", margin: 0 }}>

@@ -899,3 +899,12 @@ body {
   left: -12px;
   background: radial-gradient(circle at top left, transparent 12px, #fff 12.5px);
 }
+
+.gold-gradient-text {
+  background: linear-gradient(to right, #b8860b, #daa520, #996515, #d4af37, #8a5a19);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  width: fit-content;
+}
