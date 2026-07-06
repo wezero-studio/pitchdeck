@@ -821,6 +821,22 @@ body {
   }
 }
 
+/* Our Curated Picks: desktop uses the sticky-info + vertical-metrics row;
+   mobile swaps to a horizontal scroll-jacked card carousel instead, since
+   the sticky column has nowhere to go once the row wraps to a single
+   column and ends up overlapping the metric cards. */
+.curated-mobile-scroll {
+  display: none;
+}
+@media (max-width: 768px) {
+  .curated-desktop-row {
+    display: none !important;
+  }
+  .curated-mobile-scroll {
+    display: block;
+  }
+}
+
 @media (max-width: 640px) {
   .stats-row {
     grid-template-columns: repeat(2, 1fr) !important;

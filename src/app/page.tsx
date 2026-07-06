@@ -301,6 +301,52 @@ export default function Home() {
   const [faqHeadingRef, faqHeadingVisible] = useIntersectionObserver();
   const [ctaHeadingRef, ctaHeadingVisible] = useIntersectionObserver();
 
+  // Mobile-only: "Our Curated Picks" horizontal scroll-jacked card carousel.
+  // Each brand gets a tall wrapper (extra scroll room) with a sticky, fixed-
+  // height viewport inside it; the card track's translateX is driven 1:1 by
+  // how far you've scrolled through that wrapper, so cards slide left as you
+  // scroll down and the section releases once you reach the last card.
+  const curatedWrapperRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const curatedTrackRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    let ticking = false;
+
+    function updateCuratedScroll() {
+      curatedWrapperRefs.current.forEach((wrapper, i) => {
+        const track = curatedTrackRefs.current[i];
+        if (!wrapper || !track) return;
+        // The sticky pinned element (heading + card track) is no longer
+        // forced to viewport height — it releases once the wrapper runs out
+        // of room for *its own* height, not the full viewport.
+        const stickyEl = wrapper.firstElementChild as HTMLElement | null;
+        const stickyHeight = stickyEl ? stickyEl.getBoundingClientRect().height : window.innerHeight;
+        const rect = wrapper.getBoundingClientRect();
+        const scrollableRange = rect.height - stickyHeight;
+        let progress = scrollableRange > 0 ? -rect.top / scrollableRange : 0;
+        progress = Math.min(1, Math.max(0, progress));
+        const cardCount = track.children.length;
+        track.style.transform = `translateX(-${progress * (cardCount - 1) * 100}vw)`;
+      });
+      ticking = false;
+    }
+
+    function onScrollOrResize() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateCuratedScroll);
+      }
+    }
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    updateCuratedScroll();
+    return () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
+  }, []);
+
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
   const [showAllOptions, setShowAllOptions] = useState(false);
@@ -655,8 +701,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Brand Info + Metrics Row */}
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "64px", marginBottom: idx < curatedBrands.length - 1 ? "160px" : "80px", position: "relative", flexWrap: "wrap", paddingBottom: "80px" }}>
+              {/* Brand Info + Metrics Row (desktop only — see .curated-mobile-scroll below for mobile) */}
+              <div className="curated-desktop-row" style={{ display: "flex", alignItems: "flex-start", gap: "64px", marginBottom: idx < curatedBrands.length - 1 ? "160px" : "80px", position: "relative", flexWrap: "wrap", paddingBottom: "80px" }}>
 
               {/* LEFT STICKY (INFO) */}
               <div style={{ flex: "1 1 350px", position: "sticky", top: "120px" }}>
@@ -761,6 +807,129 @@ export default function Home() {
                 </div>
 
               </div>
+              </div>
+
+              {/* Mobile only: heading + metric cards are both pinned together
+                  (see the useEffect above), so nothing scrolls out of frame
+                  before the cards appear — only the card track moves. */}
+              <div className="curated-mobile-scroll" style={{ marginBottom: idx < curatedBrands.length - 1 ? "60px" : "40px" }}>
+                <div ref={(el) => { curatedWrapperRefs.current[idx] = el; }} style={{ height: `${(brand.staffInfo ? 6 : 5) * 55}vh`, position: "relative" }}>
+                  <div style={{ position: "sticky", top: "90px", transform: "translateZ(0)" }}>
+
+                    {/* Heading — pinned alongside the cards, not scrolled past first */}
+                    <div style={{ padding: "0 16px", marginBottom: 24 }}>
+                      <div style={brand.logoNoBox ? { marginBottom: 24, display: "inline-flex", alignItems: "center", justifyContent: "flex-start" } : { marginBottom: 24, background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden" }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={brand.logo} alt={brand.name} style={brand.logoNoBox ? { maxHeight: 100, maxWidth: 160, objectFit: "contain", ...brand.logoStyle } : { width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
+                      </div>
+                      <h3 className={brand.isBestPick ? "gold-gradient-text" : ""} style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, margin: brand.isBestPick ? "0 0 12px 0" : "0 0 24px 0", letterSpacing: "-1px", ...(!brand.isBestPick ? { color: "#111" } : {}) }}>{brand.name}</h3>
+                      {brand.isBestPick && (
+                        <div style={{ display: "inline-flex", padding: "6px 14px", borderRadius: "999px", fontSize: "0.85rem", fontWeight: 600, fontFamily: "var(--font-sans), sans-serif", letterSpacing: "0.5px", textTransform: "uppercase", border: "1.5px solid #111", color: "#111", background: "transparent", alignItems: "center", gap: "6px", marginBottom: "24px" }}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                          Investor Top Pick
+                        </div>
+                      )}
+                      {brand.desc[0] && (
+                        <div style={{ fontSize: "1.05rem", color: "#444", lineHeight: 1.6 }}>
+                          <p style={{ marginBottom: 0 }}>{brand.desc[0]}</p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Card track */}
+                    <div style={{ overflow: "hidden" }}>
+                      <div ref={(el) => { curatedTrackRefs.current[idx] = el; }} style={{ display: "flex", willChange: "transform" }}>
+
+                      {/* Card: Staff Breakdown */}
+                      {brand.staffInfo && (
+                        <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                          <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", flexDirection: "column", gap: "20px" }}>
+                            <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Staff Breakdown</div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+                              {brand.staffInfo.map((s: { role: string; count: string }, i: number) => (
+                                <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid #e8e8e8", padding: "12px 0", gap: 12 }}>
+                                  <span style={{ fontSize: "0.95rem", color: "#666", fontWeight: 500, flexShrink: 0 }}>{s.role}</span>
+                                  <span style={{ fontSize: "0.95rem", color: "#111", fontWeight: 600, textAlign: "right" }}>{s.count}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Card: Investment */}
+                      <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                        <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                          <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Investment Required</div>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.price}</div>
+                            <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Initial capital needed to set up.</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card: Daily Sales */}
+                      <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                        <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                          <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Average Daily Sales</div>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.sales}</div>
+                            <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Expected daily turnover.</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card: Monthly Net Profit */}
+                      <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                        <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                          <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit <span style={{ fontSize: "0.85rem", color: "#666", display: "block", fontFamily: "var(--font-sans), sans-serif", marginTop: 4 }}>(100% ownership)</span></div>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.profit}</div>
+                            <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Take-home profit after all costs.</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card: Ownership & Deal Type */}
+                      <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                        <div className="tooltip-container" style={{ position: "relative", background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                          <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111", display: "flex", alignItems: "center", gap: "8px" }}>
+                            Ownership Structure
+                          </div>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
+                            <div style={{ fontSize: "1.8rem", fontWeight: 400, color: "#111", lineHeight: 1.1, maxWidth: "200px" }}>{brand.ownership}</div>
+                          </div>
+                          <div style={{ fontSize: "0.85rem", color: "#666", lineHeight: 1.4, marginTop: 8 }}>{brand.dealTooltip}</div>
+                        </div>
+                      </div>
+
+                      {/* Card: Social / Rating + Instagram */}
+                      <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                        <div style={{ display: "flex", gap: "16px" }}>
+                          <div style={{ flex: 1, background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px" }}>
+                            <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
+                            <div>
+                              <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
+                              <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                            </div>
+                          </div>
+
+                          <a href={brand.instagram} target="_blank" rel="noopener noreferrer" style={{ flex: 1, background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px", textDecoration: "none" }}>
+                            <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", flexShrink: 0 }}>
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </div>
+                            <div>
+                              <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>Instagram</div>
+                              <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>View Profile</div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
