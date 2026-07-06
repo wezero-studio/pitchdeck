@@ -717,7 +717,7 @@ export default function Home() {
                     Investor Top Pick
                   </div>
                 )}
-                <div style={{ fontSize: "1.05rem", color: "#444", lineHeight: 1.6, maxWidth: "400px" }}>
+                <div style={{ fontSize: "1.2rem", color: "#444", lineHeight: 1.6, maxWidth: "400px" }}>
                   {brand.desc.map((p, i) => (
                     <p key={i} style={{ marginBottom: 16 }}>{p}</p>
                   ))}
@@ -830,7 +830,7 @@ export default function Home() {
                         </div>
                       )}
                       {brand.desc[0] && (
-                        <div style={{ fontSize: "1.05rem", color: "#444", lineHeight: 1.6 }}>
+                        <div style={{ fontSize: "1.2rem", color: "#444", lineHeight: 1.6 }}>
                           <p style={{ marginBottom: 0 }}>{brand.desc[0]}</p>
                         </div>
                       )}
