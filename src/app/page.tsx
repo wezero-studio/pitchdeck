@@ -248,8 +248,8 @@ const curatedBrands: CuratedBrand[] = [
     logoStyle: { objectFit: "contain" } as React.CSSProperties,
     desc: [
       <span key="1">
-        <span className="hidden md:inline">The only opportunity here with 100% ownership and full franchising rights — sub-franchise and sell branches of your own.</span>
-        <span className="md:hidden">100% ownership with full franchising rights — sub-franchise and scale beyond one branch.</span>
+        <span className="hidden md:inline">The only opportunity here with 100% ownership and full franchising rights, making it the most beneficial option — sub-franchise and sell branches of your own.</span>
+        <span className="md:hidden">100% ownership with full franchising rights — the most beneficial option, with room to scale beyond one branch.</span>
       </span>,
       "As full-rights holder, you inherit centralized operating systems that strengthen direct channels and protect your margins from day one."
     ],
