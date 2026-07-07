@@ -201,8 +201,8 @@ const curatedBrands: CuratedBrand[] = [
     logoStyle: { objectFit: "contain", transform: "scale(1.15)" } as React.CSSProperties,
     desc: [
       <span key="1">
-        <span className="hidden md:inline">Ottoman Kitchen is a single-branch franchise: you buy the rights, run the branch, and cover staff and kitchen costs, paying a ~10% royalty in return. It&apos;s a clean, proven Turkish concept, with no shared brand, no split staff, and no bundled obligations.</span>
-        <span className="md:hidden">Ottoman Kitchen is a clean, single-branch Turkish franchise — you own it, run it, and keep the margins after a ~10% royalty.</span>
+        <span className="hidden md:inline">A single-branch franchise — you buy the rights, run the branch, and keep the margins after a ~10% royalty. No shared brand, no split staff.</span>
+        <span className="md:hidden">A single-branch Turkish franchise — you own it, run it, and keep the margins after a ~10% royalty.</span>
       </span>,
       "As franchisee, you inherit centralized operating systems that strengthen direct channels and protect your margins from day one."
     ],
@@ -248,8 +248,8 @@ const curatedBrands: CuratedBrand[] = [
     logoStyle: { objectFit: "contain" } as React.CSSProperties,
     desc: [
       <span key="1">
-        <span className="hidden md:inline">Yer istanbul is the only opportunity here offering 100% ownership with full franchising rights — you can sub-franchise and sell branches of your own. It&apos;s the most scalable structure on the table.</span>
-        <span className="md:hidden">Yer istanbul offers 100% ownership with full franchising rights — the only brand here you can sub-franchise and scale beyond one branch.</span>
+        <span className="hidden md:inline">The only opportunity here with 100% ownership and full franchising rights — sub-franchise and sell branches of your own.</span>
+        <span className="md:hidden">100% ownership with full franchising rights — sub-franchise and scale beyond one branch.</span>
       </span>,
       "As full-rights holder, you inherit centralized operating systems that strengthen direct channels and protect your margins from day one."
     ],
