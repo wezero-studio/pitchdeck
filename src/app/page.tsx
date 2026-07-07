@@ -40,6 +40,7 @@ type BrandData = {
   industry: string;
   link: string;
   instagram?: string;
+  reviewLink?: string;
   image: string;
   reviews: string;
   reviewsCount: string;
@@ -50,6 +51,58 @@ type BrandData = {
   logoNoBox?: boolean;
   photos?: BrandPhoto[];
   photoFallback?: string[];
+};
+
+type StaffInfoItem = { role: string; count: string };
+
+type CuratedBrand = {
+  name: string;
+  logo: string;
+  logoNoBox: boolean;
+  logoStyle?: React.CSSProperties;
+  desc: React.ReactNode[];
+  price: string;
+  priceGBP?: string;
+  priceBundledNote?: string;
+  sales: string;
+  salesGBP?: string;
+  salesBundledNote?: string;
+  profit: string;
+  profitGBP?: string;
+  profitBundledNote?: string;
+  ownership: string;
+  dealTooltip: string;
+  sharedStaffNote?: string;
+  isBestPick: boolean;
+  instagram: string;
+  reviewLink?: string;
+  rating: string;
+  reviews: string;
+  staffInfo?: StaffInfoItem[];
+  photos: string[];
+  marqueePhotos: string[];
+};
+
+type ExtendedBrand = {
+  logo: string;
+  name: string;
+  tag: string;
+  investment: string;
+  investmentGBP?: string;
+  investmentPKR?: string;
+  sales: string;
+  salesGBP?: string;
+  salesPKR?: string;
+  profit: string;
+  profitGBP?: string;
+  profitPKR?: string;
+  ownership: string;
+  dealTooltip: string;
+  instagram: string;
+  reviewLink?: string;
+  rating: string;
+  reviews: string;
+  photos: string[];
 };
 
 // Fills the 8 collage slots — [hero, tallLeft, topMid, topRight, smallLeft,
@@ -68,7 +121,7 @@ function buildCollageSlots(photos: BrandPhoto[], fallback: string[]): string[] {
   return slots;
 }
 
-const curatedBrands = [
+const curatedBrands: CuratedBrand[] = [
   /*
   {
     name: "The Fat Boy",
@@ -137,8 +190,11 @@ const curatedBrands = [
     logoNoBox: false,
     logoStyle: { objectFit: "contain", transform: "scale(1.15)" } as React.CSSProperties,
     desc: [
-      "Turkish Restaurant",
-      "One branch. Buy a Franchise."
+      <span key="1">
+        <span className="hidden md:inline">From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.</span>
+        <span className="md:hidden">We evolve culinary concepts into High-Yield Destinations defined by quality and market dominance.</span>
+      </span>,
+      "Our centralized operating systems strengthen direct channels and protect your profit margins."
     ],
     price: "5cr",
     sales: "2.5-7L",
@@ -147,13 +203,17 @@ const curatedBrands = [
     dealTooltip: "Franchise model. Investor buys rights, runs own branch, covers staff/kitchen, pays ~10% royalty. Single branch only.",
     isBestPick: false,
     instagram: "https://www.instagram.com/ottomankitchen.isb/",
-    rating: "4.7",
+    reviewLink: "https://www.google.com/maps/place/Ottoman+Kitchen/@33.7317242,73.0789085,17z/data=!4m8!3m7!1s0x38dfbf0010f9c7af:0xc4bc7568f8206262!8m2!3d33.7317242!4d73.0789085!9m1!1b1!16s%2Fg%2F11lf1chfcf?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D",
+    rating: "4.4",
     reviews: "820 reviews",
+    priceGBP: "~£141K",
+    salesGBP: "£700-£1,970",
+    profitGBP: "£5.6K-£8.5K/mo",
     staffInfo: [
-      { role: "Head Chef", count: "TBD" },
-      { role: "Management", count: "TBD" },
-      { role: "Kitchen Staff", count: "TBD" },
-      { role: "Total Staff", count: "TBD" },
+      { role: "Head Chef", count: "1 + 1 backup" },
+      { role: "Management", count: "1 Head Manager + 1 Associate + 1 Backup" },
+      { role: "Main Staff", count: "20-25 staff" },
+      { role: "Backup Staff", count: "5-7 backup · ~25-29 total" },
     ],
     photos: [
       "/ottoman/img2.jpg", "/ottoman/img3.jpg", "/ottoman/img4.jpg", "/ottoman/img5.jpg", "/ottoman/img6.jpg", "/ottoman/img7.jpg"
@@ -188,7 +248,8 @@ const curatedBrands = [
     dealTooltip: "100% shares and full franchising rights. You can sub-franchise and sell branches to others. Most profitable opportunity.",
     isBestPick: true,
     instagram: "https://www.instagram.com/yeristanbulisb/?hl=en",
-    rating: "4.6",
+    reviewLink: "https://www.google.com/maps/place/Yer+Istanbul/@33.7090185,73.0457625,17z/data=!4m8!3m7!1s0x38dfbfe81bb9a3ad:0xa54d06c9ec287ffb!8m2!3d33.7090185!4d73.0457625!9m1!1b1!16s%2Fg%2F11kqzkth8v?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D",
+    rating: "4.3",
     reviews: "940 reviews",
     staffInfo: [
       { role: "Head Chef", count: "1 + 1 backup" },
@@ -196,6 +257,9 @@ const curatedBrands = [
       { role: "Main Staff", count: "25 (11–12 Kitchen · 13–14 Waiting & Cleaning)" },
       { role: "Backup Staff", count: "6–7 backup · ~31 total" },
     ],
+    priceGBP: "~£155K-£169K",
+    salesGBP: "£700-£2,535",
+    profitGBP: "£7K-£9.9K/mo",
     photos: [
       "/yeristanbul/img1.jpg", "/yeristanbul/img2.jpg", "/yeristanbul/img3.jpg", "/yeristanbul/img4.jpg", "/yeristanbul/img5.jpg", "/yeristanbul/img6.jpg"
     ],
@@ -216,22 +280,35 @@ const curatedBrands = [
     logoNoBox: true,
     logoStyle: { objectFit: "contain" } as React.CSSProperties,
     desc: [
-      "Franchise Turkish Restaurant"
+      <span key="1">
+        <span className="hidden md:inline">From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.</span>
+        <span className="md:hidden">We evolve culinary concepts into High-Yield Destinations defined by quality and market dominance.</span>
+      </span>,
+      "Our centralized operating systems strengthen direct channels and protect your profit margins."
     ],
     price: "7-8cr",
+    priceGBP: "~£197K-£225K",
+    priceBundledNote: "Must be bundled with Bait ul Arab (+8-9cr · ~+£225K-£254K extra)",
     sales: "2.5-7.5L",
-    profit: "22-33L",
+    salesGBP: "£700-£2,113",
+    salesBundledNote: "Bait ul Arab adds +2-4L/day (~+£565-£1,128)",
+    profit: "22-35L",
+    profitGBP: "£6.2K-£9.9K/mo",
+    profitBundledNote: "Bait ul Arab: additional ~20-30L/mo (~+£5.6K-£8.5K/mo)",
     ownership: "Franchise Only",
-    dealTooltip: "Franchise model. Investor buys rights, runs own branch, covers staff/kitchen, pays ~10% royalty. Single branch only.",
+    dealTooltip: "Franchise model. Basha Istanbul cannot be purchased standalone — it must be bundled with Bait ul Arab. The staff cost listed is Basha Istanbul\'s only; in practice, kitchen and management staff are shared between both brands.",
+    sharedStaffNote: "Kitchen & management staff shared with Bait ul Arab.",
     isBestPick: false,
     instagram: "https://www.instagram.com/bashaistanbulpk/?hl=en",
-    rating: "4.7",
+    reviewLink: "https://www.google.com/maps/place/Basha+Istanbul+Authentic+Turkish+Restaurant+Islamabad/@33.719372,73.0554409,17z/data=!3m1!5s0x38df951d441febb7:0xea7b79b3c4af4bd4!4m8!3m7!1s0x38dfbf3678b1ff53:0x3a33d1a92f2d133a!8m2!3d33.719372!4d73.0554409!9m1!1b1!16s%2Fg%2F11s9lps_hk?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D",
+    rating: "4.4",
     reviews: "820 reviews",
     staffInfo: [
-      { role: "Head Chef", count: "TBD" },
-      { role: "Management", count: "TBD" },
-      { role: "Kitchen Staff", count: "TBD" },
-      { role: "Total Staff", count: "TBD" },
+      { role: "Head Chef", count: "1 + 2 backup" },
+      { role: "Management", count: "2 Head Managers + 2 Associate + 3 Backups" },
+      { role: "Main Staff", count: "30-35 staff (12-13 Kitchen · 17-19 Waiting)" },
+      { role: "Backup Staff", count: "8-11 backup" },
+      { role: "Staff Note", count: "Kitchen & management shared with Bait ul Arab" },
     ],
     photos: [
       "/basha istanbul/img2.jpg", "/basha istanbul/img3.jpg", "/basha istanbul/img4.jpg", "/basha istanbul/img6.jpg", "/basha istanbul/img7.jpg", "/basha istanbul/img8.jpg"
@@ -278,6 +355,8 @@ export default function Home() {
   // Desktop scroll-reveal
   const brandRefs = React.useRef<(HTMLDivElement | null)[]>([]);
   const [visibleBrands, setVisibleBrands] = useState<Set<number>>(new Set());
+  const [showAllOptions, setShowAllOptions] = useState(false);
+  const [expandedBrand, setExpandedBrand] = useState<number | null>(null);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -312,6 +391,10 @@ export default function Home() {
   const curatedWrapperRefs = React.useRef<(HTMLDivElement | null)[]>([]);
   const curatedTrackRefs = React.useRef<(HTMLDivElement | null)[]>([]);
 
+  // Mobile-only: "Explore Additional Opportunities" horizontal scroll-jacked card carousel
+  const exploreWrapperRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const exploreTrackRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+
   useEffect(() => {
     let ticking = false;
 
@@ -319,17 +402,31 @@ export default function Home() {
       curatedWrapperRefs.current.forEach((wrapper, i) => {
         const track = curatedTrackRefs.current[i];
         if (!wrapper || !track) return;
-        // The sticky pinned element (heading + card track) is no longer
-        // forced to viewport height — it releases once the wrapper runs out
-        // of room for *its own* height, not the full viewport.
         const stickyEl = wrapper.firstElementChild as HTMLElement | null;
         const stickyHeight = stickyEl ? stickyEl.getBoundingClientRect().height : window.innerHeight;
         const rect = wrapper.getBoundingClientRect();
         const scrollableRange = rect.height - stickyHeight;
-        let progress = scrollableRange > 0 ? -rect.top / scrollableRange : 0;
+        let progress = scrollableRange > 0 ? -rect.top / (scrollableRange * 0.75) : 0;
         progress = Math.min(1, Math.max(0, progress));
         const cardCount = track.children.length;
-        track.style.transform = `translateX(-${progress * (cardCount - 1) * 100}vw)`;
+        track.style.transform = `translate3d(-${progress * (cardCount - 1) * 100}vw, 0, 0)`;
+      });
+
+      exploreWrapperRefs.current.forEach((wrapper, i) => {
+        const track = exploreTrackRefs.current[i];
+        if (!wrapper || !track) return;
+        if (!showAllOptions || expandedBrand !== i) {
+          track.style.transform = "translate3d(0,0,0)";
+          return;
+        }
+        const stickyEl = wrapper.firstElementChild as HTMLElement | null;
+        const stickyHeight = stickyEl ? stickyEl.getBoundingClientRect().height : window.innerHeight;
+        const rect = wrapper.getBoundingClientRect();
+        const scrollableRange = rect.height - stickyHeight;
+        let progress = scrollableRange > 0 ? -rect.top / (scrollableRange * 0.75) : 0;
+        progress = Math.min(1, Math.max(0, progress));
+        const cardCount = track.children.length;
+        track.style.transform = `translate3d(-${progress * (cardCount - 1) * 100}vw, 0, 0)`;
       });
       ticking = false;
     }
@@ -348,18 +445,17 @@ export default function Home() {
       window.removeEventListener("scroll", onScrollOrResize);
       window.removeEventListener("resize", onScrollOrResize);
     };
-  }, []);
+  }, [expandedBrand, showAllOptions]);
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
-  const [showAllOptions, setShowAllOptions] = useState(false);
-  const [expandedBrand, setExpandedBrand] = useState<number | null>(null);
+  const [showGBP, setShowGBP] = useState(false);
 
   return (
     <div
       style={{
         minHeight: "100vh",
-        background: "#fff",
+        background: "#f9f8f6",
         color: "#111",
         fontFamily: "Fraunces, serif",
       }}
@@ -483,7 +579,7 @@ export default function Home() {
         >
           <div style={{ display: "flex", alignItems: "center" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.jpeg" alt="Polaris Commercials" style={{ height: "48px", width: "auto", objectFit: "contain", mixBlendMode: "lighten" }} />
+            <img src="/logo.jpeg" alt="Polaris Commercials" style={{ height: "60px", width: "auto", objectFit: "contain", mixBlendMode: "lighten" }} />
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <a
@@ -566,41 +662,56 @@ export default function Home() {
       <section
         ref={section2Ref}
         style={{
-          backgroundColor: "#fff",
-          padding: "160px 24px",
+          backgroundColor: "#f9f8f6",
+          padding: "72px 24px",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "80px",
+          justifyContent: "center",
           color: "#111",
         }}
       >
-        <div style={{ maxWidth: "1200px", textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }}>
-          <div style={{ overflow: "hidden" }}>
-            <p className={section2Visible ? "animate-slice-up delay-100" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.35, fontWeight: 400, margin: 0 }}>
-              A carefully selected portfolio of high-performing food and beverage franchises in Pakistan, prepared exclusively for our UK investor partners. <span style={{ fontStyle: "italic" }}>Review key metrics, investments, and robust ROI projections below.</span>
-            </p>
+        <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexDirection: "column", gap: "40px" }}>
+          
+          {/* Top Left Text */}
+          <div style={{ textAlign: "left", maxWidth: "900px" }}>
+            <div style={{ overflow: "hidden" }}>
+              <p className={section2Visible ? "animate-slice-up delay-100" : "slice-hidden"} style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2.5rem, 4.5vw, 4.2rem)", lineHeight: 1.15, fontWeight: 400, margin: 0, letterSpacing: "-1px" }}>
+                A carefully selected portfolio of high-performing food and beverage franchises in Pakistan.
+              </p>
+            </div>
+            <div style={{ overflow: "hidden", marginTop: "16px" }}>
+              <p className={section2Visible ? "animate-slice-up delay-200" : "slice-hidden"} style={{ fontSize: "1.4rem", color: "#555", margin: 0, maxWidth: "640px", lineHeight: 1.6 }}>
+                Prepared exclusively for our UK investor partners. Review key metrics, investments, and robust ROI projections below.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px", alignItems: "center" }}>
-          <div style={{ overflow: "hidden", padding: "8px" }}>
-            <div className={section2Visible ? "animate-slice-up delay-200" : "slice-hidden"} style={{ display: "flex", alignItems: "center", gap: "24px" }}>
-              <img src="/cafepraha/img1.jpg" alt="Cafe Praha" style={{ width: "120px", height: "64px", objectFit: "cover", borderRadius: "6px" }} />
-              <div style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", fontWeight: 400 }}>High-Yield <span style={{ fontStyle: "italic" }}>Franchises</span></div>
+          {/* List rows */}
+          <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+            
+            {/* Row 1 */}
+            <div style={{ overflow: "hidden" }}>
+              <div className={section2Visible ? "animate-slice-up delay-200" : "slice-hidden"} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid #dcdbd8", padding: "16px 0", gap: "24px" }}>
+                <div style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", fontWeight: 400 }}>High-Yield <span style={{ fontStyle: "italic" }}>Franchises</span></div>
+                <img src="/cafepraha/img1.jpg" alt="Cafe Praha" style={{ width: "clamp(100px, 18vw, 220px)", height: "72px", objectFit: "cover", borderRadius: "8px", flexShrink: 0 }} />
+              </div>
             </div>
-          </div>
-          <div style={{ overflow: "hidden", padding: "8px" }}>
-            <div className={section2Visible ? "animate-slice-up delay-300" : "slice-hidden"} style={{ display: "flex", alignItems: "center", gap: "24px" }}>
-              <div style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", fontWeight: 400 }}>Strategic <span style={{ fontStyle: "italic" }}>Positioning</span></div>
-              <img src="/chaayekhana/img1.jpg" alt="Chai Khaana" style={{ width: "120px", height: "64px", objectFit: "cover", borderRadius: "6px" }} />
+            
+            {/* Row 2 */}
+            <div style={{ overflow: "hidden" }}>
+              <div className={section2Visible ? "animate-slice-up delay-300" : "slice-hidden"} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid #dcdbd8", padding: "16px 0", gap: "24px" }}>
+                <div style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", fontWeight: 400 }}>Strategic <span style={{ fontStyle: "italic" }}>Positioning</span></div>
+                <img src="/chaayekhana/img1.jpg" alt="Chai Khaana" style={{ width: "clamp(100px, 18vw, 220px)", height: "72px", objectFit: "cover", borderRadius: "8px", flexShrink: 0 }} />
+              </div>
             </div>
-          </div>
-          <div style={{ overflow: "hidden", padding: "8px" }}>
-            <div className={section2Visible ? "animate-slice-up delay-300" : "slice-hidden"} style={{ display: "flex", alignItems: "center", gap: "24px" }}>
-              <img src="/saadidisajji/img1.jpg" alt="Saadi di Sajji" style={{ width: "120px", height: "64px", objectFit: "cover", borderRadius: "6px" }} />
-              <div style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(2rem, 3.8vw, 3.2rem)", fontWeight: 400 }}>Proven Financial <span style={{ fontStyle: "italic" }}>Returns</span></div>
+
+            {/* Row 3 */}
+            <div style={{ overflow: "hidden" }}>
+              <div className={section2Visible ? "animate-slice-up delay-400" : "slice-hidden"} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid #dcdbd8", borderBottom: "1px solid #dcdbd8", padding: "16px 0", gap: "24px" }}>
+                <div style={{ fontFamily: "var(--font-playfair), serif", fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", fontWeight: 400 }}>Proven Financial <span style={{ fontStyle: "italic" }}>Returns</span></div>
+                <img src="/yeristanbul/img3.jpg" alt="Yer Istanbul" style={{ width: "clamp(100px, 18vw, 220px)", height: "72px", objectFit: "cover", borderRadius: "8px", flexShrink: 0 }} />
+              </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -611,6 +722,7 @@ export default function Home() {
           maxWidth: 1360,
           margin: "0 auto",
           padding: "40px 24px 80px 24px",
+          background: "#f9f8f6",
         }}
       >
         {/* Stats Row */}
@@ -708,9 +820,65 @@ export default function Home() {
 
               {/* LEFT STICKY (INFO) */}
               <div style={{ flex: "1 1 350px", position: "sticky", top: "120px" }}>
-                <div style={brand.logoNoBox ? { marginBottom: 24, display: "inline-flex", alignItems: "center", justifyContent: "flex-start" } : { marginBottom: 24, background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={brand.logo} alt={brand.name} style={brand.logoNoBox ? { maxHeight: 100, maxWidth: 160, objectFit: "contain", ...brand.logoStyle } : { width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
+                {/* Logo row with currency toggle to the right */}
+                <div style={{ display: "flex", alignItems: "flex-end", gap: "32px", marginBottom: 24 }}>
+                  <div style={brand.logoNoBox ? { display: "inline-flex", alignItems: "center", justifyContent: "flex-start" } : { background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 100, width: 120, overflow: "hidden", flexShrink: 0 }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={brand.logo} alt={brand.name} style={brand.logoNoBox ? { maxHeight: 120, maxWidth: 190, objectFit: "contain", ...brand.logoStyle } : { width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
+                  </div>
+                  {/* Currency Toggle — only shown on first brand to avoid repetition */}
+                  {idx === 0 && (
+                    <button
+                      onClick={() => setShowGBP(!showGBP)}
+                      style={{
+                        background: showGBP ? "#111" : "transparent",
+                        color: showGBP ? "#fff" : "#111",
+                        border: "1.5px solid #ccc",
+                        borderRadius: "999px",
+                        padding: "8px 16px",
+                        fontSize: "0.78rem",
+                        fontWeight: 600,
+                        cursor: "pointer",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        transition: "all 0.2s ease",
+                        whiteSpace: "nowrap",
+                        flexShrink: 0,
+                        marginLeft: "16px",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      <span style={{ fontSize: "0.9rem" }}>{showGBP ? "🇬🇧" : "🇵🇰"}</span>
+                      {showGBP ? "GBP £" : "PKR ₨"}
+                    </button>
+                  )}
+                  {idx > 0 && (
+                    <button
+                      onClick={() => setShowGBP(!showGBP)}
+                      style={{
+                        background: showGBP ? "#111" : "transparent",
+                        color: showGBP ? "#fff" : "#111",
+                        border: "1.5px solid #ccc",
+                        borderRadius: "999px",
+                        padding: "8px 16px",
+                        fontSize: "0.78rem",
+                        fontWeight: 600,
+                        cursor: "pointer",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        transition: "all 0.2s ease",
+                        whiteSpace: "nowrap",
+                        flexShrink: 0,
+                        marginLeft: "16px",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      <span style={{ fontSize: "0.9rem" }}>{showGBP ? "🇬🇧" : "🇵🇰"}</span>
+                      {showGBP ? "GBP £" : "PKR ₨"}
+                    </button>
+                  )}
                 </div>
                 <h3 className={brand.isBestPick ? "gold-gradient-text" : ""} style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, margin: brand.isBestPick ? "0 0 12px 0" : "0 0 24px 0", letterSpacing: "-1px", ...(!brand.isBestPick ? { color: "#111" } : {}) }}>{brand.name}</h3>
                 {brand.isBestPick && (
@@ -749,53 +917,80 @@ export default function Home() {
                 <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Investment Required</div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
-                    <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.price}</div>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>
+                      {showGBP && brand.priceGBP ? brand.priceGBP : brand.price}
+                    </div>
                     <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Initial capital needed to set up.</div>
                   </div>
+                  {brand.priceBundledNote && (
+                    <div style={{ fontSize: "0.78rem", color: "#c05e00", background: "#fff4ec", borderRadius: "6px", padding: "8px 12px", marginTop: 8, lineHeight: 1.5, fontWeight: 500 }}>
+                      ⚠ {brand.priceBundledNote}
+                    </div>
+                  )}
                 </div>
 
                 {/* Metric Card: Daily Sales */}
                 <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Average Daily Sales</div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
-                    <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.sales}</div>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>
+                      {showGBP && brand.salesGBP ? brand.salesGBP : brand.sales}
+                      {!showGBP && <span style={{ fontSize: "1rem", color: "#888", marginLeft: 6 }}>PKR</span>}
+                    </div>
                     <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Expected daily turnover.</div>
                   </div>
+                  {brand.salesBundledNote && (
+                    <div style={{ fontSize: "0.78rem", color: "#555", marginTop: 8, lineHeight: 1.5 }}>+ {brand.salesBundledNote}</div>
+                  )}
                 </div>
 
                 {/* Metric Card: Monthly Net Profit */}
                 <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit <span style={{ fontSize: "0.85rem", color: "#666", display: "block", fontFamily: "var(--font-sans), sans-serif", marginTop: 4 }}>(100% ownership)</span></div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
-                    <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.profit}</div>
+                    <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>
+                      {showGBP && brand.profitGBP ? brand.profitGBP : brand.profit}
+                      {!showGBP && <span style={{ fontSize: "1rem", color: "#888", marginLeft: 6 }}>PKR</span>}
+                    </div>
                     <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Take-home profit after all costs.</div>
                   </div>
+                  {brand.profitBundledNote && (
+                    <div style={{ fontSize: "0.78rem", color: "#555", marginTop: 8, lineHeight: 1.5 }}>+ {brand.profitBundledNote}</div>
+                  )}
                 </div>
 
                 {/* Metric Card: Ownership & Deal Type */}
-                <div className="tooltip-container" style={{ position: "relative", background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}>
+                <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111", display: "flex", alignItems: "center", gap: "8px" }}>
                     Ownership Structure
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
                     <div style={{ fontSize: "1.8rem", fontWeight: 400, color: "#111", lineHeight: 1.1, maxWidth: "200px" }}>{brand.ownership}</div>
-                    <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "160px", textAlign: "right", lineHeight: 1.4 }}>Hover for terms</div>
                   </div>
-                  <div className="tooltip-content" style={{ opacity: 0, visibility: "hidden", transform: "translateY(10px)", transition: "all 0.2s ease", position: "absolute", bottom: "110%", left: 0, width: "100%", fontSize: "0.95rem", color: "#4b5563", lineHeight: 1.5, padding: "16px", background: "#fff", borderRadius: "8px", border: "1px solid #e5e7eb", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", zIndex: 10 }}>
+                  <div style={{ fontSize: "0.85rem", color: "#666", lineHeight: 1.4, marginTop: 16 }}>
                     {brand.dealTooltip}
                   </div>
                 </div>
 
                 {/* Social / Rating Row */}
                 <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-                  <div style={{ flex: "1 1 200px", background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px" }}>
-                    <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
-                    <div>
-                      <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
-                      <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                  {brand.reviewLink ? (
+                    <a href={brand.reviewLink} target="_blank" rel="noopener noreferrer" style={{ flex: "1 1 200px", background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px", textDecoration: "none", cursor: "pointer" }}>
+                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
+                      <div>
+                        <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
+                        <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                      </div>
+                    </a>
+                  ) : (
+                    <div style={{ flex: "1 1 200px", background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px" }}>
+                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
+                      <div>
+                        <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
+                        <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   <a href={brand.instagram} target="_blank" rel="noopener noreferrer" style={{ flex: "1 1 200px", background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px", textDecoration: "none" }}>
                     <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", flexShrink: 0 }}>
@@ -816,13 +1011,38 @@ export default function Home() {
                   before the cards appear — only the card track moves. */}
               <div className="curated-mobile-scroll" style={{ marginBottom: idx < curatedBrands.length - 1 ? "60px" : "40px" }}>
                 <div ref={(el) => { curatedWrapperRefs.current[idx] = el; }} style={{ height: `${(brand.staffInfo ? 6 : 5) * 55}vh`, position: "relative" }}>
-                  <div style={{ position: "sticky", top: "90px", transform: "translateZ(0)" }}>
+                  <div style={{ position: "sticky", top: "90px", transform: "translateZ(0)", willChange: "transform" }}>
 
                     {/* Heading — pinned alongside the cards, not scrolled past first */}
                     <div style={{ padding: "0 16px", marginBottom: 24 }}>
-                      <div style={brand.logoNoBox ? { marginBottom: 24, display: "inline-flex", alignItems: "center", justifyContent: "flex-start" } : { marginBottom: 24, background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden" }}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={brand.logo} alt={brand.name} style={brand.logoNoBox ? { maxHeight: 100, maxWidth: 160, objectFit: "contain", ...brand.logoStyle } : { width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
+                    {/* Logo row with currency toggle to the right */}
+                      <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: 24, flexWrap: "wrap" }}>
+                        <div style={brand.logoNoBox ? { display: "inline-flex", alignItems: "center", justifyContent: "flex-start" } : { background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden", flexShrink: 0 }}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={brand.logo} alt={brand.name} style={brand.logoNoBox ? { maxHeight: 100, maxWidth: 160, objectFit: "contain", ...brand.logoStyle } : { width: "100%", height: "100%", objectFit: "cover", ...brand.logoStyle }} />
+                        </div>
+                        <button
+                          onClick={() => setShowGBP(!showGBP)}
+                          style={{
+                            background: showGBP ? "#111" : "transparent",
+                            color: showGBP ? "#fff" : "#111",
+                            border: "1.5px solid #ccc",
+                            borderRadius: "999px",
+                            padding: "8px 16px",
+                            fontSize: "0.78rem",
+                            fontWeight: 600,
+                            cursor: "pointer",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "6px",
+                            transition: "all 0.2s ease",
+                            whiteSpace: "nowrap",
+                            flexShrink: 0,
+                          }}
+                        >
+                          <span style={{ fontSize: "0.9rem" }}>{showGBP ? "🇬🇧" : "🇵🇰"}</span>
+                          {showGBP ? "GBP £" : "PKR ₨"}
+                        </button>
                       </div>
                       <h3 className={brand.isBestPick ? "gold-gradient-text" : ""} style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, margin: brand.isBestPick ? "0 0 12px 0" : "0 0 24px 0", letterSpacing: "-1px", ...(!brand.isBestPick ? { color: "#111" } : {}) }}>{brand.name}</h3>
                       {brand.isBestPick && (
@@ -840,7 +1060,7 @@ export default function Home() {
 
                     {/* Card track */}
                     <div style={{ overflow: "hidden" }}>
-                      <div ref={(el) => { curatedTrackRefs.current[idx] = el; }} style={{ display: "flex", willChange: "transform" }}>
+                      <div ref={(el) => { curatedTrackRefs.current[idx] = el; }} style={{ display: "flex", willChange: "transform", transform: "translate3d(0,0,0)", WebkitFontSmoothing: "antialiased" }}>
 
                       {/* Card: Staff Breakdown */}
                       {brand.staffInfo && (
@@ -864,9 +1084,16 @@ export default function Home() {
                         <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                           <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Investment Required</div>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
-                            <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.price}</div>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>
+                              {showGBP && brand.priceGBP ? brand.priceGBP : brand.price}
+                            </div>
                             <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Initial capital needed to set up.</div>
                           </div>
+                          {brand.priceBundledNote && (
+                            <div style={{ fontSize: "0.78rem", color: "#c05e00", background: "#fff4ec", borderRadius: "6px", padding: "8px 12px", marginTop: 8, lineHeight: 1.5, fontWeight: 500 }}>
+                              ⚠ {brand.priceBundledNote}
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -875,7 +1102,10 @@ export default function Home() {
                         <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                           <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Average Daily Sales</div>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
-                            <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.sales}</div>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>
+                              {showGBP && brand.salesGBP ? brand.salesGBP : brand.sales}
+                              {!showGBP && <span style={{ fontSize: "1rem", color: "#888", marginLeft: 6 }}>PKR</span>}
+                            </div>
                             <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Expected daily turnover.</div>
                           </div>
                         </div>
@@ -886,41 +1116,59 @@ export default function Home() {
                         <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                           <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit <span style={{ fontSize: "0.85rem", color: "#666", display: "block", fontFamily: "var(--font-sans), sans-serif", marginTop: 4 }}>(100% ownership)</span></div>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
-                            <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>{brand.profit}</div>
+                            <div style={{ fontSize: "2.5rem", fontWeight: 400, color: "#111", lineHeight: 1 }}>
+                              {showGBP && brand.profitGBP ? brand.profitGBP : brand.profit}
+                              {!showGBP && <span style={{ fontSize: "1rem", color: "#888", marginLeft: 6 }}>PKR</span>}
+                            </div>
                             <div style={{ fontSize: "0.9rem", color: "#555", maxWidth: "200px", textAlign: "right", lineHeight: 1.4 }}>Take-home profit after all costs.</div>
                           </div>
+                          {brand.profitBundledNote && (
+                            <div style={{ fontSize: "0.78rem", color: "#c05e00", background: "#fff4ec", borderRadius: "6px", padding: "8px 12px", marginTop: 8, lineHeight: 1.5, fontWeight: 500 }}>
+                              ⚠ {brand.profitBundledNote}
+                            </div>
+                          )}
                         </div>
                       </div>
 
                       {/* Card: Ownership & Deal Type */}
                       <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
-                        <div className="tooltip-container" style={{ position: "relative", background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                        <div style={{ background: "#f4f5f7", padding: "32px", borderRadius: "8px", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                           <div style={{ fontSize: "1.2rem", fontFamily: "var(--font-playfair), serif", color: "#111", display: "flex", alignItems: "center", gap: "8px" }}>
                             Ownership Structure
                           </div>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px" }}>
                             <div style={{ fontSize: "1.8rem", fontWeight: 400, color: "#111", lineHeight: 1.1, maxWidth: "200px" }}>{brand.ownership}</div>
                           </div>
-                          <div style={{ fontSize: "0.85rem", color: "#666", lineHeight: 1.4, marginTop: 8 }}>{brand.dealTooltip}</div>
+                          <div style={{ fontSize: "0.85rem", color: "#666", lineHeight: 1.4, marginTop: 16 }}>{brand.dealTooltip}</div>
                         </div>
                       </div>
 
                       {/* Card: Social / Rating + Instagram */}
                       <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
-                        <div style={{ display: "flex", gap: "16px" }}>
-                          <div style={{ flex: 1, background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px" }}>
-                            <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
-                            <div>
-                              <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
-                              <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                        <div style={{ display: "flex", gap: "12px" }}>
+                          {brand.reviewLink ? (
+                            <a href={brand.reviewLink} target="_blank" rel="noopener noreferrer" style={{ flex: 1, minWidth: 0, background: "#f4f5f7", padding: "20px 16px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", cursor: "pointer" }}>
+                              <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
+                              <div style={{ minWidth: 0 }}>
+                                <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
+                                <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                              </div>
+                            </a>
+                          ) : (
+                            <div style={{ flex: 1, minWidth: 0, background: "#f4f5f7", padding: "20px 16px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "12px" }}>
+                              <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
+                              <div style={{ minWidth: 0 }}>
+                                <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
+                                <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                              </div>
                             </div>
-                          </div>
+                          )}
 
-                          <a href={brand.instagram} target="_blank" rel="noopener noreferrer" style={{ flex: 1, background: "#f4f5f7", padding: "32px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "16px", textDecoration: "none" }}>
+                          <a href={brand.instagram} target="_blank" rel="noopener noreferrer" style={{ flex: 1, minWidth: 0, background: "#f4f5f7", padding: "20px 16px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
                             <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", flexShrink: 0 }}>
                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                             </div>
-                            <div>
+                            <div style={{ minWidth: 0 }}>
                               <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>Instagram</div>
                               <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>View Profile</div>
                             </div>
@@ -939,7 +1187,7 @@ export default function Home() {
       </section>
 
       {/* ── VIEW ALL OPTIONS – ACCORDION LIST ── */}
-      <section style={{ maxWidth: 1360, margin: "0 auto", padding: "60px 48px 120px" }}>
+      <section style={{ maxWidth: 1360, margin: "0 auto", padding: "60px 48px 120px", background: "#f9f8f6" }}>
         {/* Toggle button */}
         {/* Toggle button */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", marginBottom: 64, gap: "20px" }} ref={optionsHeadingRef}>
@@ -979,16 +1227,16 @@ export default function Home() {
           <div>
             {/* List border bottom */}
             {([
-              { logo: "/chopchips.png", name: "Chopped Chips", tag: "Food & Beverage", investment: "3cr", sales: "1-4L", profit: "10-17L", ownership: "Franchise Only", dealTooltip: "Investor buys rights, runs own branch, pays ~10% royalty.", instagram: "https://www.instagram.com/chopchips.pk/", rating: "4.8", reviews: "1.2k reviews", photos: ["/chopchips/img6.jpg", "/chopchips/img2.jpg", "/chopchips/images.jpg", "/chopchips/img4.jpg", "/chopchips/img5.jpg", "/chopchips/img3.jpg", "/chopchips/img7.jpg"] },
-              { logo: "/enaarilogo.jpg", name: "Enaari", tag: "Fine Dining", investment: "£150,000", sales: "£350,000/yr", profit: "22%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/_enaari_/", rating: "4.9", reviews: "850 reviews", photos: [] },
-              { logo: "/lastcrumb.jpg", name: "The Last Crumb", tag: "Dessert & Bakery", investment: "£120,000", sales: "£280,000/yr", profit: "20%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/lastcrumbcookiespakistan/?hl=en", rating: "4.7", reviews: "2.1k reviews", photos: ["/lastcrumb/img1.jpeg", "/lastcrumb/img2.jpg", "/lastcrumb/img3.jpg", "/lastcrumb/img4.jpg", "/lastcrumb/img5.jpg"] },
-              { logo: "/artisan.png", name: "Artisan", tag: "Cafe & Roastery", investment: "£140,000", sales: "£310,000/yr", profit: "21%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/artisancoffeeroasterpk/?hl=en", rating: "4.8", reviews: "1.5k reviews", photos: ["/artisan/img2.jpg", "/artisan/img3.jpg", "/artisan/img4.jpg", "/artisan/img5.jpg", "/artisan/img6.webp", "/artisan/img7.jpg", "/artisan/img8.jpg"] },
-              { logo: "/softswirl.jpg", name: "Soft Swirl", tag: "Dessert & Ice Cream", investment: "£90,000", sales: "£200,000/yr", profit: "25%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/softswirlpk/", rating: "4.9", reviews: "3.2k reviews", photos: ["/softswirl/img1.jpg", "/softswirl/img2.jpg", "/softswirl/img3.jpg", "/softswirl/img4.jpg"] },
-              { logo: "/saadidisajji.jpg", name: "Saadi di Sajji", tag: "Restaurant", investment: "£160,000", sales: "£360,000/yr", profit: "17%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/saadidisajjipk/", rating: "4.5", reviews: "1.1k reviews", photos: ["/saadidisajji/img1.jpg", "/saadidisajji/img2.jpg", "/saadidisajji/img3.jpg", "/saadidisajji/img4.jpg", "/saadidisajji/img5.jpg"] },
-              { logo: "/cafepraha.jpg", name: "Cafe Praha", tag: "Cafe", investment: "£130,000", sales: "£290,000/yr", profit: "22%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/caffepraha/?hl=en", rating: "4.7", reviews: "1.8k reviews", photos: ["/cafepraha/img1.jpg", "/cafepraha/img2.jpg", "/cafepraha/img3.jpg", "/cafepraha/img4.jpg", "/cafepraha/img5.jpg", "/cafepraha/img6.jpg", "/cafepraha/img7.jpg", "/cafepraha/img8.jpg"] },
-              { logo: "/chaayekhana.jpg", name: "Chai Khaana", tag: "Cafe", investment: "£75,000", sales: "£150,000/yr", profit: "24%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/chaaye_khana/?hl=en", rating: "4.8", reviews: "4.5k reviews", photos: ["/chaayekhana/img1.jpg", "/chaayekhana/img2.jpeg", "/chaayekhana/img3.jpg", "/chaayekhana/img4.jpg", "/chaayekhana/img5.webp", "/chaayekhana/img6.jpg", "/chaayekhana/img7.jpg", "/chaayekhana/img8.jpg"] },
-              { logo: "/thefatboy.png", name: "The Fat Boy", tag: "Restaurant", investment: "4cr", sales: "1-5L", profit: "15-25L", ownership: "50/50 or Franchise", dealTooltip: "50/50 Partnership (~4cr) or full franchise rights.", instagram: "https://www.instagram.com/thefatboylahore/?hl=en", rating: "4.6", reviews: "820 reviews", photos: ["/thefatboy/img1.jpg", "/thefatboy/img2.jpg"] },
-            ]).map((brand, idx) => (
+              { logo: "/chopchips.png", name: "Chopped Chips", tag: "Food & Beverage", investment: "3cr", investmentGBP: "~£85K", sales: "1-4L/day", salesGBP: "£282-£1,127/day", profit: "10-17L/mo", profitGBP: "£2.8K-£4.8K/mo", ownership: "Franchise Only", dealTooltip: "Investor buys rights, runs own branch, pays ~10% royalty.", instagram: "https://www.instagram.com/chopchips.pk/", rating: "4.8", reviews: "1.2k reviews", photos: ["/chopchips/img6.jpg", "/chopchips/img2.jpg", "/chopchips/images.jpg", "/chopchips/img4.jpg", "/chopchips/img5.jpg", "/chopchips/img3.jpg", "/chopchips/img7.jpg"] },
+              { logo: "/enaarilogo.jpg", name: "Enaari", tag: "Fine Dining", investment: "£150,000", investmentPKR: "~5.3cr", sales: "£350,000/yr", salesPKR: "~1.24cr/yr", profit: "22%", profitPKR: "22%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/_enaari_/", rating: "4.9", reviews: "850 reviews", photos: [] },
+              { logo: "/lastcrumb.jpg", name: "The Last Crumb", tag: "Dessert & Bakery", investment: "£120,000", investmentPKR: "~4.3cr", sales: "£280,000/yr", salesPKR: "~99L/yr", profit: "20%", profitPKR: "20%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/lastcrumbcookiespakistan/?hl=en", rating: "4.7", reviews: "2.1k reviews", photos: ["/lastcrumb/img1.jpeg", "/lastcrumb/img2.jpg", "/lastcrumb/img3.jpg", "/lastcrumb/img4.jpg", "/lastcrumb/img5.jpg"] },
+              { logo: "/artisan.png", name: "Artisan", tag: "Cafe & Roastery", investment: "£140,000", investmentPKR: "~5cr", sales: "£310,000/yr", salesPKR: "~1.1cr/yr", profit: "21%", profitPKR: "21%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/artisancoffeeroasterpk/?hl=en", rating: "4.8", reviews: "1.5k reviews", photos: ["/artisan/img2.jpg", "/artisan/img3.jpg", "/artisan/img4.jpg", "/artisan/img5.jpg", "/artisan/img6.webp", "/artisan/img7.jpg", "/artisan/img8.jpg"] },
+              { logo: "/softswirl.jpg", name: "Soft Swirl", tag: "Dessert & Ice Cream", investment: "£90,000", investmentPKR: "~3.2cr", sales: "£200,000/yr", salesPKR: "~71L/yr", profit: "25%", profitPKR: "25%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/softswirlpk/", rating: "4.9", reviews: "3.2k reviews", photos: ["/softswirl/img1.jpg", "/softswirl/img2.jpg", "/softswirl/img3.jpg", "/softswirl/img4.jpg"] },
+              { logo: "/saadidisajji.jpg", name: "Saadi di Sajji", tag: "Restaurant", investment: "£160,000", investmentPKR: "~5.7cr", sales: "£360,000/yr", salesPKR: "~1.28cr/yr", profit: "17%", profitPKR: "17%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/saadidisajjipk/", rating: "4.5", reviews: "1.1k reviews", photos: ["/saadidisajji/img1.jpg", "/saadidisajji/img2.jpg", "/saadidisajji/img3.jpg", "/saadidisajji/img4.jpg", "/saadidisajji/img5.jpg"] },
+              { logo: "/cafepraha.jpg", name: "Cafe Praha", tag: "Cafe", investment: "£130,000", investmentPKR: "~4.6cr", sales: "£290,000/yr", salesPKR: "~1.03cr/yr", profit: "22%", profitPKR: "22%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/caffepraha/?hl=en", rating: "4.7", reviews: "1.8k reviews", photos: ["/cafepraha/img1.jpg", "/cafepraha/img2.jpg", "/cafepraha/img3.jpg", "/cafepraha/img4.jpg", "/cafepraha/img5.jpg", "/cafepraha/img6.jpg", "/cafepraha/img7.jpg", "/cafepraha/img8.jpg"] },
+              { logo: "/chaayekhana.jpg", name: "Chai Khaana", tag: "Cafe", investment: "£75,000", investmentPKR: "~2.7cr", sales: "£150,000/yr", salesPKR: "~53L/yr", profit: "24%", profitPKR: "24%", ownership: "Franchise Only", dealTooltip: "Franchise model. Investor runs own branch and pays royalty.", instagram: "https://www.instagram.com/chaaye_khana/?hl=en", rating: "4.8", reviews: "4.5k reviews", photos: ["/chaayekhana/img1.jpg", "/chaayekhana/img2.jpeg", "/chaayekhana/img3.jpg", "/chaayekhana/img4.jpg", "/chaayekhana/img5.webp", "/chaayekhana/img6.jpg", "/chaayekhana/img7.jpg", "/chaayekhana/img8.jpg"] },
+              { logo: "/thefatboy.png", name: "The Fat Boy", tag: "Restaurant", investment: "4cr", investmentGBP: "~£113K", sales: "1-5L/day", salesGBP: "£282-£1,408/day", profit: "15-25L/mo", profitGBP: "£4.2K-£7K/mo", ownership: "50/50 or Franchise", dealTooltip: "50/50 Partnership (~4cr) or full franchise rights.", instagram: "https://www.instagram.com/thefatboylahore/?hl=en", rating: "4.6", reviews: "820 reviews", photos: ["/thefatboy/img1.jpg", "/thefatboy/img2.jpg"] },
+            ] as ExtendedBrand[]).map((brand, idx) => (
               <div key={idx}>
                 {/* List Row */}
                 <div
@@ -1019,7 +1267,7 @@ export default function Home() {
                   gridTemplateRows: expandedBrand === idx ? "1fr" : "0fr",
                   transition: "grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}>
-                  <div style={{ overflow: "hidden" }}>
+                  <div className="brand-expand-clip" data-expanded={expandedBrand === idx ? "true" : "false"} style={{ overflow: "hidden" }}>
                     <div style={{ 
                       padding: expandedBrand === idx ? "48px 0 80px" : "0", 
                       borderBottom: expandedBrand === idx ? "1px solid #e5e5e5" : "none",
@@ -1027,13 +1275,38 @@ export default function Home() {
                       transition: "opacity 0.4s ease-out 0.1s, padding 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                       visibility: expandedBrand === idx ? "visible" : "hidden"
                     }}>
-                      <div style={{ display: "flex", alignItems: "flex-start", gap: "64px", flexWrap: "wrap" }}>
+                      <div className="curated-desktop-row" style={{ display: "flex", alignItems: "flex-start", gap: "64px", flexWrap: "wrap" }}>
 
                         {/* Left: Info */}
                         <div style={{ flex: "1 1 350px" }}>
-                          <div style={{ marginBottom: 24, background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={brand.logo} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                          <div style={{ display: "flex", alignItems: "flex-end", gap: "16px", marginBottom: 24 }}>
+                            <div style={{ background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden", flexShrink: 0 }}>
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={brand.logo} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                            </div>
+                            <button
+                              onClick={() => setShowGBP(!showGBP)}
+                              style={{
+                                background: showGBP ? "#111" : "transparent",
+                                color: showGBP ? "#fff" : "#111",
+                                border: "1.5px solid #ccc",
+                                borderRadius: "999px",
+                                padding: "8px 16px",
+                                fontSize: "0.78rem",
+                                fontWeight: 600,
+                                cursor: "pointer",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "6px",
+                                transition: "all 0.2s ease",
+                                whiteSpace: "nowrap",
+                                flexShrink: 0,
+                                marginBottom: "4px",
+                              }}
+                            >
+                              <span style={{ fontSize: "0.9rem" }}>{showGBP ? "🇬🇧" : "🇵🇰"}</span>
+                              {showGBP ? "GBP £" : "PKR ₨"}
+                            </button>
                           </div>
                           <h3 style={{ fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, margin: "0 0 24px 0", color: "#111", letterSpacing: "-1px" }}>{brand.name}</h3>
                           <p style={{ fontSize: "1.05rem", color: "#444", lineHeight: 1.6, maxWidth: "400px", marginBottom: 16 }}>A highly profitable franchise brand with an established customer base and proven market demand in Pakistan.</p>
@@ -1045,25 +1318,39 @@ export default function Home() {
                           <div style={{ display: "flex", gap: 16 }}>
                             <div style={{ flex: 1, background: "#f4f5f7", padding: "28px", borderRadius: "8px", minHeight: "160px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                               <div style={{ fontSize: "1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Investment</div>
-                              <div style={{ fontSize: "2rem", fontWeight: 400, color: "#111" }}>{brand.investment}</div>
+                              <div style={{ fontSize: "2rem", fontWeight: 400, color: "#111" }}>
+                                {showGBP
+                                  ? (brand.investmentGBP || brand.investment)
+                                  : (brand.investmentPKR || brand.investment)
+                                }
+                              </div>
                             </div>
                             <div style={{ flex: 1, background: "#f4f5f7", padding: "28px", borderRadius: "8px", minHeight: "160px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                               <div style={{ fontSize: "1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Avg. Daily Sales</div>
-                              <div style={{ fontSize: "2rem", fontWeight: 400, color: "#111" }}>{brand.sales}</div>
+                              <div style={{ fontSize: "2rem", fontWeight: 400, color: "#111" }}>
+                                {showGBP
+                                  ? (brand.salesGBP || brand.sales)
+                                  : (brand.salesPKR || brand.sales)
+                                }
+                              </div>
                             </div>
                           </div>
                           <div style={{ display: "flex", gap: 16 }}>
                             <div style={{ flex: 1, background: "#f4f5f7", padding: "28px", borderRadius: "8px", minHeight: "160px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                               <div style={{ fontSize: "1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit</div>
-                              <div style={{ fontSize: "2rem", fontWeight: 400, color: "#111" }}>{brand.profit}</div>
+                              <div style={{ fontSize: "2rem", fontWeight: 400, color: "#111" }}>
+                                {showGBP
+                                  ? (brand.profitGBP || brand.profit)
+                                  : (brand.profitPKR || brand.profit)
+                                }
+                              </div>
                             </div>
-                            <div className="tooltip-container" style={{ flex: 1, position: "relative", background: "#f4f5f7", padding: "28px", borderRadius: "8px", minHeight: "160px", display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}>
+                            <div style={{ flex: 1, background: "#f4f5f7", padding: "28px", borderRadius: "8px", minHeight: "160px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                               <div style={{ fontSize: "1rem", fontFamily: "var(--font-playfair), serif", color: "#111", display: "flex", alignItems: "center", gap: 6 }}>
                                 Ownership
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
                               </div>
-                              <div style={{ fontSize: "1.2rem", fontWeight: 400, color: "#111" }}>{brand.ownership}</div>
-                              <div className="tooltip-content" style={{ opacity: 0, visibility: "hidden", transform: "translateY(10px)", transition: "all 0.2s ease", position: "absolute", bottom: "110%", left: 0, width: "100%", fontSize: "0.9rem", color: "#4b5563", lineHeight: 1.5, padding: "14px", background: "#fff", borderRadius: "8px", border: "1px solid #e5e7eb", boxShadow: "0 4px 12px rgba(0,0,0,0.1)", zIndex: 10 }}>{brand.dealTooltip}</div>
+                              <div style={{ fontSize: "1.2rem", fontWeight: 400, color: "#111", marginBottom: 8 }}>{brand.ownership}</div>
+                              <div style={{ fontSize: "0.85rem", color: "#666", lineHeight: 1.4 }}>{brand.dealTooltip}</div>
                             </div>
                           </div>
                           <div style={{ display: "flex", gap: 16 }}>
@@ -1086,6 +1373,133 @@ export default function Home() {
                           </div>
                         </div>
                       </div>
+
+
+                      {/* Mobile Layout — scroll-jacked card carousel (same as top picks) */}
+                      <div className="curated-mobile-scroll" style={{ marginBottom: "20px" }}>
+                        <div ref={(el) => { exploreWrapperRefs.current[idx] = el; }} style={{ height: `${5 * 55}vh`, position: "relative" }}>
+                          <div style={{ position: "sticky", top: "90px", transform: "translateZ(0)", willChange: "transform" }}>
+
+                            {/* Brand heading — pinned alongside the cards */}
+                            <div style={{ padding: "0 16px", marginBottom: 24 }}>
+                              <div style={{ display: "flex", alignItems: "flex-end", gap: "12px", marginBottom: 16, flexWrap: "wrap" }}>
+                                <div style={{ background: "#f4f5f7", borderRadius: "16px", display: "inline-flex", alignItems: "center", justifyContent: "center", height: 80, width: 96, overflow: "hidden", flexShrink: 0 }}>
+                                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                                  <img src={brand.logo} alt={brand.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                </div>
+                                <button
+                                  onClick={() => setShowGBP(!showGBP)}
+                                  style={{
+                                    background: showGBP ? "#111" : "transparent",
+                                    color: showGBP ? "#fff" : "#111",
+                                    border: "1.5px solid #ccc",
+                                    borderRadius: "999px",
+                                    padding: "8px 16px",
+                                    fontSize: "0.78rem",
+                                    fontWeight: 600,
+                                    cursor: "pointer",
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    gap: "6px",
+                                    transition: "all 0.2s ease",
+                                    whiteSpace: "nowrap",
+                                    flexShrink: 0,
+                                  }}
+                                >
+                                  <span style={{ fontSize: "0.9rem" }}>{showGBP ? "🇬🇧" : "🇵🇰"}</span>
+                                  {showGBP ? "GBP £" : "PKR ₨"}
+                                </button>
+                              </div>
+                              <h3 style={{ fontSize: "clamp(2rem, 6vw, 2.8rem)", fontFamily: "var(--font-playfair), serif", fontWeight: 400, margin: "0 0 12px 0", letterSpacing: "-1px", color: "#111" }}>{brand.name}</h3>
+                              <p style={{ fontSize: "1rem", color: "#444", lineHeight: 1.6, margin: 0 }}>A highly profitable franchise brand with an established customer base and proven market demand in Pakistan.</p>
+                            </div>
+
+                            {/* Card track */}
+                            <div style={{ overflow: "hidden" }}>
+                              <div ref={(el) => { exploreTrackRefs.current[idx] = el; }} style={{ display: "flex", willChange: "transform", transform: "translate3d(0,0,0)", WebkitFontSmoothing: "antialiased" }}>
+
+                                {/* Card: Investment */}
+                                <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                                  <div style={{ background: "#f4f5f7", padding: "28px", borderRadius: "12px", minHeight: "200px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                                    <div style={{ fontSize: "1.1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Investment Required</div>
+                                    <div>
+                                      <div style={{ fontSize: "2.2rem", fontWeight: 400, color: "#111", lineHeight: 1, marginBottom: 8 }}>{showGBP ? (brand.investmentGBP || brand.investment) : (brand.investmentPKR || brand.investment)}</div>
+                                      <div style={{ fontSize: "0.85rem", color: "#555", lineHeight: 1.4 }}>Initial capital needed to set up.</div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Card: Daily Sales */}
+                                <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                                  <div style={{ background: "#f4f5f7", padding: "28px", borderRadius: "12px", minHeight: "200px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                                    <div style={{ fontSize: "1.1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Average Daily Sales</div>
+                                    <div>
+                                      <div style={{ fontSize: "2.2rem", fontWeight: 400, color: "#111", lineHeight: 1, marginBottom: 8 }}>{showGBP ? (brand.salesGBP || brand.sales) : (brand.salesPKR || brand.sales)}</div>
+                                      <div style={{ fontSize: "0.85rem", color: "#555", lineHeight: 1.4 }}>Expected daily turnover.</div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Card: Profit */}
+                                <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                                  <div style={{ background: "#f4f5f7", padding: "28px", borderRadius: "12px", minHeight: "200px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                                    <div style={{ fontSize: "1.1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Monthly Net Profit</div>
+                                    <div>
+                                      <div style={{ fontSize: "2.2rem", fontWeight: 400, color: "#111", lineHeight: 1, marginBottom: 8 }}>{showGBP ? (brand.profitGBP || brand.profit) : (brand.profitPKR || brand.profit)}</div>
+                                      <div style={{ fontSize: "0.85rem", color: "#555", lineHeight: 1.4 }}>(100% ownership)</div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Card: Ownership */}
+                                <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                                  <div style={{ background: "#f4f5f7", padding: "28px", borderRadius: "12px", minHeight: "200px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                                    <div style={{ fontSize: "1.1rem", fontFamily: "var(--font-playfair), serif", color: "#111" }}>Ownership Structure</div>
+                                    <div>
+                                      <div style={{ fontSize: "1.6rem", fontWeight: 400, color: "#111", lineHeight: 1.2, marginBottom: 8 }}>{brand.ownership}</div>
+                                      <div style={{ fontSize: "0.85rem", color: "#666", lineHeight: 1.4 }}>{brand.dealTooltip}</div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Card: Socials */}
+                                <div style={{ width: "100vw", flexShrink: 0, padding: "0 16px", boxSizing: "border-box" }}>
+                                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                                    {brand.reviewLink ? (
+                                      <a href={brand.reviewLink} target="_blank" rel="noopener noreferrer" style={{ background: "#f4f5f7", padding: "24px", borderRadius: "12px", display: "flex", alignItems: "center", gap: 16, textDecoration: "none" }}>
+                                        <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
+                                        <div>
+                                          <div style={{ fontSize: "1.4rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
+                                          <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                                        </div>
+                                      </a>
+                                    ) : (
+                                      <div style={{ background: "#f4f5f7", padding: "24px", borderRadius: "12px", display: "flex", alignItems: "center", gap: 16 }}>
+                                        <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", fontSize: 22, flexShrink: 0 }}>★</div>
+                                        <div>
+                                          <div style={{ fontSize: "1.4rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>{brand.rating}</div>
+                                          <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>{brand.reviews}</div>
+                                        </div>
+                                      </div>
+                                    )}
+                                    <a href={brand.instagram} target="_blank" rel="noopener noreferrer" style={{ background: "#f4f5f7", padding: "24px", borderRadius: "12px", display: "flex", alignItems: "center", gap: 16, textDecoration: "none" }}>
+                                      <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", color: "#444", flexShrink: 0 }}>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                      </div>
+                                      <div>
+                                        <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#111", lineHeight: 1 }}>Instagram</div>
+                                        <div style={{ fontSize: 13, color: "#555", marginTop: 4, fontWeight: 600 }}>View Profile</div>
+                                      </div>
+                                    </a>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       
                       {/* Bottom: Pictures Layout */}
                       <div style={{ width: "100%", marginTop: 64, position: "relative" }}>
@@ -1103,11 +1517,11 @@ export default function Home() {
                           const pics = [0, 1, 2, 3, 4, 5, 6, 7].map(i => brand.photos?.[i] || fallbackImages[i]);
                           
                           return (
-                            <div style={{ 
-                              display: "grid", 
-                              gridTemplateColumns: "repeat(12, 1fr)", 
-                              gridTemplateRows: "repeat(5, 120px)", 
-                              gap: 16 
+                            <div className="brand-photo-grid" style={{
+                              display: "grid",
+                              gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
+                              gridTemplateRows: "repeat(5, 120px)",
+                              gap: 16
                             }}>
                               {/* Top Left */}
                               <div style={{ gridColumn: "1 / 4", gridRow: "1 / 3", borderRadius: 16, overflow: "hidden" }}>
@@ -1164,7 +1578,7 @@ export default function Home() {
       </section>
 
       {/* ── FAQ SECTION ── */}
-      <section id="faq" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px 160px", scrollMarginTop: 90 }}>
+      <section id="faq" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px 160px", scrollMarginTop: 90, background: "#f9f8f6" }}>
         <div style={{ overflow: "hidden", marginBottom: "48px" }} ref={faqHeadingRef}>
           <h2 className={faqHeadingVisible ? "animate-slice-up delay-100" : "slice-hidden"} style={{
             fontFamily: "var(--font-playfair), serif",
@@ -1268,7 +1682,7 @@ export default function Home() {
       </section>
 
       {/* ── CLOSING CTA SECTION ── */}
-      <section style={{ maxWidth: 1360, margin: "0 auto", padding: "0 24px 80px" }}>
+      <section style={{ maxWidth: 1360, margin: "0 auto", padding: "0 24px 80px", background: "#f9f8f6" }}>
         {/* TOP: Text Content */}
         <div style={{ marginBottom: 80 }}>
           <h2 style={{
@@ -1366,7 +1780,7 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ borderTop: "1px solid #f0f0f0", padding: "40px 48px" }}>
+      <footer style={{ borderTop: "1px solid #e8e6e2", padding: "40px 48px", background: "#f9f8f6" }}>
         <div
           style={{
             maxWidth: 1380,
@@ -1409,6 +1823,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
 
       <style>{`
         @keyframes marquee {

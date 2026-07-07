@@ -834,6 +834,28 @@ body {
   }
   .curated-mobile-scroll {
     display: block;
+    /* The card track's children are sized in raw "100vw" units (see the
+       scroll-jack transform math in page.tsx), so this wrapper has to
+       break out of the section's own horizontal padding and span the
+       true viewport width — otherwise every card renders shifted and
+       its trailing edge (text/photos) gets clipped by the page's
+       overflow-x: hidden. */
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
+  }
+  .brand-expand-clip[data-expanded="true"] {
+    overflow: visible !important;
+  }
+  .brand-photo-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: none !important;
+    gap: 12px !important;
+  }
+  .brand-photo-grid > div {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    aspect-ratio: 1 / 1 !important;
   }
 }
 
