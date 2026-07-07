@@ -549,10 +549,10 @@ export default function Home() {
               letterSpacing: "-0.01em",
             }}
           >
-            <div style={{ overflow: "hidden" }}><div className="animate-slice-up" style={{ whiteSpace: "nowrap" }}>Curated Restaurant</div></div>
-            <div style={{ overflow: "hidden" }}><div className="animate-slice-up delay-100" style={{ whiteSpace: "nowrap" }}>Franchise Portfolio</div></div>
+            <div style={{ overflow: "hidden" }}><div className="animate-slice-up whitespace-normal md:whitespace-nowrap">Curated Restaurant</div></div>
+            <div style={{ overflow: "hidden" }}><div className="animate-slice-up delay-100 whitespace-normal md:whitespace-nowrap">Franchise Portfolio</div></div>
             <div style={{ overflow: "hidden" }}>
-              <div className="animate-slice-up delay-200" style={{ whiteSpace: "nowrap" }}>
+              <div className="animate-slice-up delay-200 whitespace-normal md:whitespace-nowrap">
                 <span style={{ fontStyle: "italic", paddingRight: "4px" }}>in</span> <span style={{ fontStyle: "italic" }}>Pakistan</span>
               </div>
             </div>
