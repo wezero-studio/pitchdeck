@@ -175,8 +175,11 @@ const curatedBrands = [
     logoNoBox: true,
     logoStyle: { objectFit: "contain" } as React.CSSProperties,
     desc: [
-      "From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.",
-      "By building strong, centralized operating systems, we reduce dependency on third-party aggregators, strengthen direct consumer channels, and protect your profit margins."
+      <span key="1">
+        <span className="hidden md:inline">From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.</span>
+        <span className="md:hidden">We evolve culinary concepts into High-Yield Destinations defined by quality and market dominance.</span>
+      </span>,
+      "Our centralized operating systems strengthen direct channels and protect your profit margins."
     ],
     price: "5.5cr-6cr",
     sales: "2.5-9L",
@@ -431,8 +434,7 @@ export default function Home() {
         id="home"
         style={{
           width: "100%",
-          height: "100vh",
-          minHeight: "600px",
+          minHeight: "100svh",
           position: "relative",
           display: "flex",
           flexDirection: "column",
