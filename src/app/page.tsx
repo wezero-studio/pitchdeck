@@ -105,6 +105,16 @@ type ExtendedBrand = {
   photos: string[];
 };
 
+// Rotates an array by `offset` so a shared photo pool can be handed to
+// several marquee rows starting at different points — otherwise every row
+// shows the exact same sequence, just reversed.
+function rotateArray<T>(arr: T[], offset: number): T[] {
+  const n = arr.length;
+  if (n === 0) return arr;
+  const o = ((offset % n) + n) % n;
+  return [...arr.slice(o), ...arr.slice(0, o)];
+}
+
 // Fills the 8 collage slots — [hero, tallLeft, topMid, topRight, smallLeft,
 // midRightTall, bottomMidTall, bottomRight] — with real photos first, widest
 // ones going to the two big landscape-ish boxes (hero, bottomRight) and
@@ -191,10 +201,10 @@ const curatedBrands: CuratedBrand[] = [
     logoStyle: { objectFit: "contain", transform: "scale(1.15)" } as React.CSSProperties,
     desc: [
       <span key="1">
-        <span className="hidden md:inline">From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.</span>
-        <span className="md:hidden">We evolve culinary concepts into High-Yield Destinations defined by quality and market dominance.</span>
+        <span className="hidden md:inline">Ottoman Kitchen is a single-branch franchise: you buy the rights, run the branch, and cover staff and kitchen costs, paying a ~10% royalty in return. It&apos;s a clean, proven Turkish concept, with no shared brand, no split staff, and no bundled obligations.</span>
+        <span className="md:hidden">Ottoman Kitchen is a clean, single-branch Turkish franchise — you own it, run it, and keep the margins after a ~10% royalty.</span>
       </span>,
-      "Our centralized operating systems strengthen direct channels and protect your profit margins."
+      "As franchisee, you inherit centralized operating systems that strengthen direct channels and protect your margins from day one."
     ],
     price: "5cr",
     sales: "2.5-7L",
@@ -219,14 +229,16 @@ const curatedBrands: CuratedBrand[] = [
       "/ottoman/img2.jpg", "/ottoman/img3.jpg", "/ottoman/img4.jpg", "/ottoman/img5.jpg", "/ottoman/img6.jpg", "/ottoman/img7.jpg"
     ],
     marqueePhotos: [
+      "/ottoman/img2.jpg",
+      "/ottoman/img3.jpg",
+      "/ottoman/img4.jpg",
+      "/ottoman/img5.jpg",
+      "/ottoman/img6.jpg",
+      "/ottoman/img7.jpg",
+      "/ottoman/img8.jpg",
       "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600&q=80",
       "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1583623025817-d180a2221d0a?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
@@ -236,10 +248,10 @@ const curatedBrands: CuratedBrand[] = [
     logoStyle: { objectFit: "contain" } as React.CSSProperties,
     desc: [
       <span key="1">
-        <span className="hidden md:inline">From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.</span>
-        <span className="md:hidden">We evolve culinary concepts into High-Yield Destinations defined by quality and market dominance.</span>
+        <span className="hidden md:inline">Yer istanbul is the only opportunity here offering 100% ownership with full franchising rights — you can sub-franchise and sell branches of your own. It&apos;s the most scalable structure on the table.</span>
+        <span className="md:hidden">Yer istanbul offers 100% ownership with full franchising rights — the only brand here you can sub-franchise and scale beyond one branch.</span>
       </span>,
-      "Our centralized operating systems strengthen direct channels and protect your profit margins."
+      "As full-rights holder, you inherit centralized operating systems that strengthen direct channels and protect your margins from day one."
     ],
     price: "5.5cr-6cr",
     sales: "2.5-9L",
@@ -261,17 +273,18 @@ const curatedBrands: CuratedBrand[] = [
     salesGBP: "£700-£2,535",
     profitGBP: "£7K-£9.9K/mo",
     photos: [
-      "/yeristanbul/img1.jpg", "/yeristanbul/img2.jpg", "/yeristanbul/img3.jpg", "/yeristanbul/img4.jpg", "/yeristanbul/img5.jpg", "/yeristanbul/img6.jpg"
+      "/yeristanbul/img1.jpg", "/yeristanbul/img3.jpg", "/yeristanbul/img4.jpg", "/yeristanbul/img5.jpg", "/yeristanbul/img6.jpg", "/yeristanbul/img7.jpg"
     ],
     marqueePhotos: [
-      "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+      "/yeristanbul/img1.jpg",
+      "/yeristanbul/img3.jpg",
+      "/yeristanbul/img4.jpg",
+      "/yeristanbul/img5.jpg",
+      "/yeristanbul/img6.jpg",
+      "/yeristanbul/img7.jpg",
       "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1583623025817-d180a2221d0a?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80"
     ]
   },
   {
@@ -281,10 +294,10 @@ const curatedBrands: CuratedBrand[] = [
     logoStyle: { objectFit: "contain" } as React.CSSProperties,
     desc: [
       <span key="1">
-        <span className="hidden md:inline">From operational foundations to scalable franchising, we help culinary concepts evolve into High-Yield Destinations, where true value is defined by quality, consistency, and market dominance.</span>
-        <span className="md:hidden">We evolve culinary concepts into High-Yield Destinations defined by quality and market dominance.</span>
+        <span className="hidden md:inline">Basha Istanbul is a franchise opportunity bundled with its sister concept Bait ul Arab — one investment, two revenue streams, with kitchen and management staff shared across both to keep operating costs efficient.</span>
+        <span className="md:hidden">Basha Istanbul comes bundled with Bait ul Arab — one investment, two revenue streams, with shared staff to keep costs efficient.</span>
       </span>,
-      "Our centralized operating systems strengthen direct channels and protect your profit margins."
+      "As franchisee, you inherit centralized operating systems that strengthen direct channels and protect your margins from day one."
     ],
     price: "7-8cr",
     priceGBP: "~£197K-£225K",
@@ -314,14 +327,16 @@ const curatedBrands: CuratedBrand[] = [
       "/basha istanbul/img2.jpg", "/basha istanbul/img3.jpg", "/basha istanbul/img4.jpg", "/basha istanbul/img6.jpg", "/basha istanbul/img7.jpg", "/basha istanbul/img8.jpg"
     ],
     marqueePhotos: [
+      "/basha istanbul/images (1).jpg",
+      "/basha istanbul/img2.jpg",
+      "/basha istanbul/img3.jpg",
+      "/basha istanbul/img4.jpg",
+      "/basha istanbul/img5.webp",
+      "/basha istanbul/img6.jpg",
+      "/basha istanbul/img7.jpg",
+      "/basha istanbul/img8.jpg",
       "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1583623025817-d180a2221d0a?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80"
     ]
   }
 ];
@@ -794,24 +809,33 @@ export default function Home() {
               <div style={{ background: "#111", padding: "64px 0", overflow: "hidden", display: "flex", flexDirection: "column", gap: "20px", marginBottom: "80px", marginLeft: "calc(-50vw + 50%)", marginRight: "calc(-50vw + 50%)", width: "100vw" }}>
                 {/* Row 1: left to right */}
                 <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
-                  {[...brand.marqueePhotos, ...brand.marqueePhotos].map((src, i) => {
-                    // eslint-disable-next-line @next/next/no-img-element
-                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
-                  })}
+                  {(() => {
+                    const row = rotateArray(brand.marqueePhotos, 0);
+                    return [...row, ...row].map((src, i) => {
+                      // eslint-disable-next-line @next/next/no-img-element
+                      return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", objectPosition: src === "/yeristanbul/img4.jpg" ? "center 75%" : "center", borderRadius: "8px", margin: "0 10px" }} />
+                    });
+                  })()}
                 </div>
                 {/* Row 2: right to left */}
                 <div style={{ display: "flex", width: "max-content", animation: "marquee-left 35s linear infinite" }}>
-                  {[...brand.marqueePhotos.slice().reverse(), ...brand.marqueePhotos.slice().reverse()].map((src, i) => {
-                    // eslint-disable-next-line @next/next/no-img-element
-                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
-                  })}
+                  {(() => {
+                    const row = rotateArray(brand.marqueePhotos, Math.round(brand.marqueePhotos.length / 3)).slice().reverse();
+                    return [...row, ...row].map((src, i) => {
+                      // eslint-disable-next-line @next/next/no-img-element
+                      return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", objectPosition: src === "/yeristanbul/img4.jpg" ? "center 75%" : "center", borderRadius: "8px", margin: "0 10px" }} />
+                    });
+                  })()}
                 </div>
                 {/* Row 3: left to right */}
                 <div style={{ display: "flex", width: "max-content", animation: "marquee-right 35s linear infinite" }}>
-                  {[...brand.marqueePhotos, ...brand.marqueePhotos].map((src, i) => {
-                    // eslint-disable-next-line @next/next/no-img-element
-                    return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", borderRadius: "8px", margin: "0 10px" }} />
-                  })}
+                  {(() => {
+                    const row = rotateArray(brand.marqueePhotos, Math.round((brand.marqueePhotos.length * 2) / 3));
+                    return [...row, ...row].map((src, i) => {
+                      // eslint-disable-next-line @next/next/no-img-element
+                      return <img key={i} src={src} alt={brand.name} style={{ height: "220px", width: "340px", objectFit: "cover", objectPosition: src === "/yeristanbul/img4.jpg" ? "center 75%" : "center", borderRadius: "8px", margin: "0 10px" }} />
+                    });
+                  })()}
                 </div>
               </div>
 
